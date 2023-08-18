@@ -74,7 +74,7 @@ function revealSite(){
         stagger: {
             amount: 0.2,
         },
-    }, "-=1");
+    }, "-=1.2");
 }
 t1.to(".header > h1", 2, {
     top: 0,
