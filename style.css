@@ -1,0 +1,283 @@
+@import url('https://fonts.googleapis.com/css2?family=Bad Script&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Exo+2&display=swap');
+@import url('https://db.onlinewebfonts.com/c/1a991b240e707c46ca904d731893f108?family=Neue+Montreal');
+@font-face {
+    font-family: "thunder";
+    src: url(Thunder-LC.otf);
+}
+/*Custom to Start*/
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html, body{
+    width: 100%;
+    height: 100vh;
+    background: #e5e3dc;
+    cursor: none;
+}
+/*Content Box*/
+.website-content{
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    font-family: "Roslindale Display Condensed";
+    overflow: hidden;
+}
+/*Links Named*/
+.hover-this {
+    transition: all 0.3s ease;
+    cursor: none;
+}
+
+span {
+    display: inline-block;
+    font-family: "Bad Script";
+    font-weight: 300;
+    color: #0a0a0a;
+    font-size: 36px;
+    pointer-events: none;
+    transition: transform 0.1s linear;
+}
+/*Hover Cursor*/
+.cursor {
+    pointer-events: none;
+    position: fixed;
+    padding: 0.3rem;
+    background-color: #e5e3dc;
+    border-radius: 50%;
+    mix-blend-mode: difference;
+    transition: transform 0.3s ease;
+    z-index: 5;
+    transition: 100ms;
+}
+
+.hover-this:hover + .cursor {
+    transform: scale(7);
+}
+.grow, .grow-small{
+    transition: 100ms;
+    transform: scale(10);
+    background: #ffffffbb;
+    mix-blend-mode: difference;
+}
+.grow-small{
+    transform: scale(3);
+}
+.navbar{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2em 20px;
+    font-size: 1.2em;
+    line-height: 90%;
+}
+span{
+    display: inline-block;
+    font-family: "Bad Script";
+    color: #0a0a0a;
+    font-size: 36px;
+    font-weight: 600;
+    pointer-events: none;
+}
+.site-header{
+    position: absolute;
+    top: 40%;
+    transform: translateY(-50%);
+    width: 100%;
+}
+.row{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12vw;
+    text-transform: uppercase;
+    font-weight: 400;
+    letter-spacing: -0.4vw;
+}
+.header-row{
+    position: relative;
+    line-height: 75%;
+    top: 150px;
+    transition: 1s;
+}
+
+.row:nth-child(1){
+    width: 80%;
+    right: 0;
+}
+.row:nth-child(2){
+    position: absolute;
+    width: 90%;
+    right: 0;
+}
+.row span{
+    text-transform: uppercase;
+    font-style: italic;
+    font-weight: lighter;
+    font-size: 4vw;
+    padding: 0 2em 0 1em;
+}
+.row:nth-child(2) span
+{
+    font-size: 9vw;
+}
+.footer{
+    position: absolute;
+    bottom: 1em;
+    width: 100%;
+    font-size: 1.8em;
+    padding: 2em 6em;
+}
+/*Marquee*/
+.marquee{
+    position: absolute;
+    bottom: 0%;
+    width: 100%;
+    padding-left: 4em;
+    margin: 0 auto;
+    white-space: nowrap;
+    overflow: hidden;
+    transform: rotate(-10deg);
+}
+.marquee span{
+    font-family: "thunder";
+    font-weight: 700;
+    color: #6bd978;
+    font-size: 1500%;
+    text-transform: uppercase;
+    display: inline-block;
+    padding-left: -10%;
+    animation: marquee-animation 240s linear infinite;
+}
+
+@keyframes marquee-animation {
+    0%{
+        transform: translate(0, 0);
+    }
+    100%{
+        transform: translate(-100%, 0);
+    }
+}
+section{
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+section img{
+    width: 10%;
+    object-fit: cover;
+}
+.img-1{
+    position: absolute;
+    bottom: 10%;
+    left: 10%;
+    transform: translate(-50%, -50%);
+}
+.img-2{
+    position: absolute;
+    top: 50%;
+    right: 10%;
+    transform: translate(-50%, -50%);
+}
+/*pre loader page full*/
+.pre-loader{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: #0a0a0a;
+    color: #e5e3dc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    cursor: none;
+}
+.pre-loader-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.pre-loader-container .header{
+    position: relative;
+    width: max-content;
+    margin: 0 auto;
+}
+.header{
+    display: flex;
+    justify-content: center;
+}
+.header h1{
+    position: relative;
+    top: 125px;
+    width: max-content;
+    text-transform: uppercase;
+    text-align: center;
+    font-family: "Exo 2";
+    font-weight: 500;
+    font-size: 5vw;
+    line-height: 90%;
+    color: #0a0a0a;
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.6);
+}
+.text-highlight-art:hover{
+    color: #0a0a0a;
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.6);
+}
+.text-highlight-soul:hover{
+    color: #0a0a0a;
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.6);
+}
+.header h1::before{
+    content: attr(data-text);
+    position: absolute;
+    overflow: hidden;
+    width: 0%;
+    transition: 1s;
+    animation: fill 2s cubic-bezier(0.6, 0, 0.4, 1) forwards;
+    color: #e5e3dc;
+    animation-delay: 2s;
+}
+@keyframes fill {
+    0%{
+        width: 0%;
+    }
+    100%{
+        width: 100%;
+    }
+}
+.header-wrapper::after
+{
+    content: "";
+    position: relative;
+    top: 120px;
+    left: -20px;
+    width: 110%;
+    height: 120px;
+    background: #0a0a0a;
+    margin: 0 auto;
+}
+.pre-loader-btn{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    font-size: 1.5vw;
+    margin: 3em 0em 1em 0;
+    font-family: "Neue Montreal";
+    z-index: 2;
+    opacity: 0;
+}
+.btn{
+    width: max-content;
+}
+.pre-loader-btn svg{
+    position: relative;
+    width: 80px;
+    top: 0;
+    padding: 0 0.4em;
+}
