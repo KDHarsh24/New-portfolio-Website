@@ -127,13 +127,6 @@ span{
 {
     font-size: 9vw;
 }
-.footer{
-    position: absolute;
-    bottom: 1em;
-    width: 100%;
-    font-size: 1.8em;
-    padding: 2em 6em;
-}
 /*Marquee*/
 .marquee{
     position: absolute;
