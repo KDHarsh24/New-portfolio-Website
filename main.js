@@ -1,6 +1,7 @@
+
 (function () {
 
-    const link = document.querySelectorAll('.navbar > .hover-this');
+    const link = document.querySelectorAll('.hover-this');
     const cursor = document.querySelector('.cursor');
 
     const animateit = function (e) {
@@ -60,21 +61,14 @@ function revealSite(){
         display: "none",
         ease: "power2.inOut",
     });
-    t1.to(".header-row", 0.8, {
-        top: 0,
-        ease: "power4.inOut",
-        stagger: {
-            amount: 0.2,
-        },
-    }, "-=1.2");
     t1.from(".hover-this", 2, {
         y: 40,
         opacity: 0,
-        ease: "power4.inOut",
+        ease: "power3.inOut",
         stagger: {
             amount: 0.2,
         },
-    }, "-=1.2");
+    }, "-=1");
 }
 t1.to(".header > h1", 2, {
     top: 0,
@@ -96,3 +90,56 @@ function parralax(e){
         layer.style.transform = `translateX(${x}px) translateY(${y}px)`;
     });
 };
+//For Eyes Land
+const svg = document.querySelector("svg");
+const mouse = svg.createSVGPoint();
+const leftEye = createEye("#left-eye");
+const rightEye = createEye("#right-eye");
+
+let requestId = null;
+
+window.addEventListener("mousemove", onMouseMove);
+
+function onFrame(){
+    let point = mouse.matrixTransform(svg.getScreenCTM().inverse());
+    leftEye.rotateTo(point);
+    rightEye.rotateTo(point);
+
+    requestId = null;
+}
+
+function onMouseMove(event){
+    mouse.x = event.clientX;
+    mouse.y = event.clientY;
+
+    if (!requestId){
+        requestId = requestAnimationFrame(onFrame);
+    }
+}
+
+function createEye(selector){
+    const element = document.querySelector(selector);
+    TweenMax.set(element, {
+        transformOrigin: "center",
+
+    });
+    let bbox = element.getBBox();
+    let centerX = bbox.x - bbox.width / 2;
+    let centerY = bbox.y - bbox.height / 2;
+
+    function rotateTo(point){
+        let dx = point.x - centerX;
+        let dy = point.y - centerY;
+
+        let angle = Math.atan2(dy, dx);
+
+        TweenMax.to(element, 0, {
+            rotation: angle + "_rad_short",
+        });
+    }
+
+    return {
+        element,
+        rotateTo,
+    };
+}

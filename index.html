@@ -13,13 +13,46 @@
         </div>
         <div class="cursor"></div>
         <div class="site-header">
-            <div class="row">
-                <div class="header-row"><span>the</span>purity</div>
-                <div class="header-row-wrapper"></div>
-            </div>
-            <div class="row">
-                <div class="header-row"><span>of</span>noise</div>
-                <div class="header-row-wrapper"></div>
+            <div class="wrapper">
+                <svg id="svg" viewBox="0 0 1000 1000">
+                    <g id="left-eye">
+                        <circle class="eye-outer" 
+                        cx="400"
+                        cy="500"
+                        r="100"
+                        stroke="#0f0f0f"
+                        stroke-width="2"
+                        fill="#fff"/>
+                        <circle class="eye-inner" 
+                        cx="480"
+                        cy="500"
+                        r="20"
+                        fill="#0f0f0f"/>
+                    </g>
+                    <g id="right-eye">
+                        <circle class="eye-outer" 
+                        cx="600"
+                        cy="500"
+                        r="100"
+                        stroke="#0f0f0f"
+                        stroke-width="2"
+                        fill="#fff"/>
+                        <circle class="eye-inner" 
+                        cx="680"
+                        cy="500"
+                        r="20"
+                        fill="#0f0f0f"/>
+                    </g>
+                </svg>
+                <div class="container">
+                    <div>
+                        <div class="text-link">Project</div>
+                    </div>
+                    <div>
+                        <div class="text-link">Mysterys</div>
+                        <div class="text-link">Contact</div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="marquee">
@@ -82,4 +115,5 @@
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script src="main.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
 </html>
