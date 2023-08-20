@@ -15,7 +15,9 @@
 
           span.style.transform = `translate(${xMove}px, ${yMove}px)`;
 
-          if (e.type === 'mouseleave') span.style.transform = '';
+          if (e.type === 'mouseleave') {
+            span.style.transform = '';
+            }
     };
 
     link.forEach(b => b.addEventListener('mousemove', animateit));
@@ -68,7 +70,7 @@ function revealSite(){
         stagger: {
             amount: 0.2,
         },
-    }, "-=1");
+    }, "-=1.1");
 }
 t1.to(".header > h1", 2, {
     top: 0,
@@ -109,8 +111,8 @@ function onFrame(){
 }
 
 function onMouseMove(event){
-    mouse.x = event.clientX;
-    mouse.y = event.clientY;
+    mouse.x = event.clientX-100;
+    mouse.y = event.clientY-130;
 
     if (!requestId){
         requestId = requestAnimationFrame(onFrame);
