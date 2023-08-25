@@ -193,3 +193,7 @@ canvas.addEventListener("mouseout", ()=>{
     isDrawing = false;
     clearCanvas();
 });
+
+const circleType = new CircleType(
+    document.getElementById("rotated")
+    ).radius(40);
