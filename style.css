@@ -41,6 +41,7 @@ html, body{
 .hover-this {
     transition: all 0.3s ease;
     cursor: none;
+    z-index: 1;
 }
 
 .hover-this span{
@@ -79,6 +80,7 @@ html, body{
 }
 .site-header{
     position: absolute;
+    z-index: 0;
     top: 40%;
     transform: translateY(-50%);
     width: 100%;
@@ -93,14 +95,10 @@ html, body{
 }
 #svg{
     position: absolute;
+    z-index: 1;
     width: 100%;
     height: 100%;
     pointer-events: none;
-}
-.eyesbox{
-    height: 100%;
-    width: 100%;
-    position: absolute;
 }
 .container{
     position: absolute;
@@ -203,6 +201,7 @@ section{
 /*pre loader page full*/
 .pre-loader{
     position: fixed;
+    z-index: 1;
     width: 100%;
     height: 100%;
     background: #0a0a0a;
