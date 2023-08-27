@@ -41,7 +41,6 @@ html, body{
 .hover-this {
     transition: all 0.3s ease;
     cursor: none;
-    z-index: 5;
 }
 
 .hover-this span{
@@ -97,13 +96,11 @@ html, body{
     width: 100%;
     height: 100%;
     pointer-events: none;
-    z-index: 6;
 }
 .eyesbox{
     height: 100%;
     width: 100%;
     position: absolute;
-    z-index: 7;
 }
 .container{
     position: absolute;
@@ -111,7 +108,6 @@ html, body{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    z-index: 5;
 }
 .text-link{
     text-decoration: none;
@@ -121,7 +117,6 @@ html, body{
     font-size: 160px;
     line-height: 160x;
     height: 160px;
-    z-index: 5;
     text-transform: uppercase;
 }
 .container div{
@@ -134,7 +129,6 @@ html, body{
 }
 /*Rotating Form*/
 .circular-text{
-    z-index: 2;
     transform: translate(-120%, -50%);
     color: #0a0a0a;
     font-size: 16px;
@@ -153,14 +147,12 @@ html, body{
 }
 .logo-box{
     position: fixed;
-    z-index: 2;
     top: 4%;
     right: 7%;
     width: max-content;
 }
 .img-logo{
     position: relative;
-    z-index: 2;
     top: -110px;
     left: 3px;
     height: 75px;
@@ -218,7 +210,6 @@ section{
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 2;
     cursor: none;
 }
 .pre-loader-container{
@@ -293,7 +284,6 @@ section{
     font-size: 1.5vw;
     margin: 3em 0em 1em 0;
     font-family: "Neue Montreal";
-    z-index: 2;
     opacity: 0;
 }
 .btn{
