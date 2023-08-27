@@ -8,15 +8,20 @@
    <link rel="stylesheet" href="style.css"> 
 </head>
 <body>
+    <!--Cursor in Website-->
+    <div class="cursor"></div>
+    <!--WebSite Main Content containing the main content inside a link navigation and landing page-->
     <div class="website-content">
+        <!--Navbar of the website only Name in it-->
         <div class="navbar">
             <a href="#" class="hover-this"><span class="logo">HarshKumarDas</span></a>     
         </div>
-        <div class="cursor"></div>
+        <!--Body of the Landing Page-->
         <div class="site-header">
+            <!--For Body's Center Item-->
             <div class="wrapper">
+                <!--Eyes-->
                 <svg id="svg" viewBox="0 0 1000 1000">
-                    
                     <g id="left-eye">
                         <circle class="eye-outer" 
                         cx="400"
@@ -46,6 +51,7 @@
                         fill="#0f0f0f"/>
                     </g>
                 </svg>
+                <!--For the Buttons to Other Pages-->
                 <div class="container">
                     <div>
                         <div class="text-link">Project</div>
@@ -57,21 +63,28 @@
                 </div>
             </div>
         </div>
+        <!--Running Marquee-->
         <div class="marquee">
             <span>
             Creative. Technology. Software. Analysis. Creative. Technology. Software. Analysis. Creative. Technology. Software. Analysis. Creative. Technology. Software. Analysis. Creative. Technology. Software. Analysis.
             </span>
         </div>
+        <!--Two Gliding Images-->
         <section>
             <img src="bar-chart.png" data-speed="10" class="layer img-1" alt="">
             <img src="travel-bag.png" data-speed="10" class="layer img-2" alt="">
         </section>
-        <div class="circular-text">
-            <span id="rotated">
-                <p>Harsh   Kumar  Das   Harsh   Kumar   Das   Harsh   Kumar   Das</p>
-            </span>
+        <!--Circular text with logo trying in process-->
+        <div class="logo-box">
+            <img src="Logo.png" alt="" class="img-logo">
+            <div class="circular-text">
+                <span id="rotated">
+                    <p>Harsh   Kumar  Das   Harsh   Kumar   Das   Harsh   Kumar   Das</p>
+                </span>
+            </div>
         </div>
     </div>
+    <!--The Preloader-->
     <div class="pre-loader" onclick="revealSite()">
         <div class="ore-loader-container"  >
             <div class="pre-loader-header">
@@ -119,6 +132,7 @@
             </div>
         </div>
     </div>
+    <!--Canvas to Draw in hue-->
     <canvas class="draw">
     </canvas>
 </body>
