@@ -27,6 +27,16 @@ html, body{
     height: 100vh;
     overflow: hidden;
 }
+/*NavBar*/
+.navbar{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2em 20px;
+    font-size: 1.2em;
+    line-height: 90%;
+}
 /*Links Named*/
 .hover-this {
     transition: all 0.3s ease;
@@ -68,21 +78,6 @@ html, body{
 .grow-small{
     transform: scale(3);
 }
-.navbar{
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 2em 20px;
-    font-size: 1.2em;
-    line-height: 90%;
-}
-span{
-    
-    color: #0a0a0a;
-    font-weight: 600;
-    pointer-events: none;
-}
 .site-header{
     position: absolute;
     top: 40%;
@@ -116,6 +111,7 @@ span{
     display: flex;
     flex-direction: column;
     justify-content: center;
+    z-index: 5;
 }
 .text-link{
     text-decoration: none;
@@ -126,15 +122,48 @@ span{
     line-height: 160x;
     height: 160px;
     z-index: 5;
-
     text-transform: uppercase;
 }
 .container div{
+    position: relative;
     display: flex;
     justify-content: center;
 }
 .text-link+.text-link{
     margin-left: 20px;
+}
+/*Rotating Form*/
+.circular-text{
+    z-index: 2;
+    transform: translate(-120%, -50%);
+    color: #0a0a0a;
+    font-size: 16px;
+    font-family: "thunder";
+    font-size: bolder;
+    transition: 0.5s ease-out;
+    animation: rotateit 10s linear infinite;
+}
+@keyframes rotateit {
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}
+.logo-box{
+    position: fixed;
+    z-index: 2;
+    top: 4%;
+    right: 7%;
+    width: max-content;
+}
+.img-logo{
+    position: relative;
+    z-index: 2;
+    top: -110px;
+    left: 3px;
+    height: 75px;
 }
 /*Marquee*/
 .marquee{
@@ -155,25 +184,17 @@ span{
     text-transform: uppercase;
     display: inline-block;
     padding-left: -10%;
-    animation: marquee-animation 240s linear infinite;
+    animation: marquee-animation 120s linear infinite;
 }
 
 @keyframes marquee-animation {
-    0%{
-        transform: translate(0, 0);
-    }
-    100%{
-        transform: translate(-100%, 0);
-    }
+    from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 }
 section{
     width: 100%;
     height: 100vh;
     overflow: hidden;
-}
-section img{
-    width: 10%;
-    object-fit: cover;
 }
 .img-1{
     position: absolute;
@@ -284,22 +305,59 @@ section img{
     top: 0;
     padding: 0 0.4em;
 }
+@media (min-width: 1260px) {
+    .img-1{
+        height: 150px;
+    }
+    .img-2{
+        top: 64%;
+        height: 150px;
+    }
+}
 @media (max-width: 1260px) {
     .container div{
         font-size: 150px;
+    }
+    .img-1{
+        height: 150px;
+    }
+    .img-2{
+        height: 150px;
     }
 }
 @media (max-width: 1100px) {
     .container div{
         font-size: 120px;
-        align-items: center;
+        top: -10px;
+    }
+    .text-link{
+        height: 140px;
+    }
+}
+@media (max-width: 940px) {
+    .container div{
         flex-direction: column;
+        align-items: center;
+        font-size: 150px;
+        top: 0px;
+    }
+    .img-1{
+        height: 100px;
+    }
+    .img-2{
+        top: 64%;
+        height: 100px;
+    }
+}
+@media (max-width: 540px) {
+    .container div{
+        font-size: 100px;
     }
     .text-link{
         height: 120px;
     }
 }
-@media (max-width: 510px) {
+@media (max-width: 380px) {
     .container div{
         font-size: 80px;
     }
@@ -310,26 +368,4 @@ section img{
     left: 0;
     height: 100vh;
     width: 100vw;
-    z-index: 0;
-}
-.circular-text{
-    position: absolute;
-    top: 3%;
-    right: 7%;
-    transform: translate(-120%, -50%);
-    color: rgba(255, 255, 255, 0);
-    font-size: 16px;
-    font-family: "thunder";
-    font-size: bolder;
-    transition: 0.5s ease-out;
-    animation: rotateit 10s linear infinite;
-    background-image: "Logo.png";
-}
-@keyframes rotateit {
-    0%{
-        transform: rotate(0deg);
-    }
-    100%{
-        transform: rotate(360deg);
-    }
 }
