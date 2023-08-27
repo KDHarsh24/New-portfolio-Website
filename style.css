@@ -80,7 +80,6 @@ html, body{
 }
 .site-header{
     position: absolute;
-    z-index: 0;
     top: 40%;
     transform: translateY(-50%);
     width: 100%;
