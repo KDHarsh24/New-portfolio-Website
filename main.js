@@ -1,34 +1,37 @@
-
+/*Function for link Hover with cursor movement with cursor*/
 (function () {
-
+    /*For class hover-this only */
     const link = document.querySelectorAll('.hover-this');
-    const cursor = document.querySelector('.cursor');
 
     const animateit = function (e) {
-          const span = document.querySelector('.hover-this');
-          const { offsetX: x, offsetY: y } = e,
-          { offsetWidth: width, offsetHeight: height } = this,
-
-          move = 25,
-          xMove = x / width * (move * 2) - move,
-          yMove = y / height * (move * 2) - move;
-
-          span.style.transform = `translate(${xMove}px, ${yMove}px)`;
-
-          if (e.type === 'mouseleave') {
-            span.style.transform = '';
-            }
+        /*Selecting mouse position in pixels */
+        const { offsetX: x, offsetY: y } = e,
+        { offsetWidth: width, offsetHeight: height } = this,
+        move = 25,
+        /*the speed of movement */
+        xMove = x / width * (move * 2) - move,
+        yMove = y / height * (move * 2) - move;
+        /*Changing the style here of the box hover-this */
+        this.style.transform = `translate(${xMove}px, ${yMove}px)`;
+        /*When Mouse leaves reseting it to normal */
+        if (e.type === 'mouseleave') {
+            this.style.transform = '';
+        }
     };
-
+    /*Giving to each hoverthis on mouse movement as per need*/
     link.forEach(b => b.addEventListener('mousemove', animateit));
     link.forEach(b => b.addEventListener('mouseleave', animateit));
 
 })();
+
+/*Cursor Change and it's look */
 var cursor = document.querySelector(".cursor"),
+/*How will it look on hovering hover-this */
 cursorScale = document.querySelectorAll('.hover-this'),
 mouseX = 0, mouseY = 0;
 gsap.to({}, 0.016, {
     repeat:-1,
+    /*setting mouse top and left as per the cursor movement */
     onRepeat: function(){
         gsap.set(cursor, {
             css:{
@@ -38,10 +41,12 @@ gsap.to({}, 0.016, {
         })
     }
 });
+//performing the mouse movement function
 window.addEventListener("mousemove", function(e){
     mouseX = e.clientX;
     mouseY = e.clientY;
 });
+//Giving a new css when on hover-this
 cursorScale.forEach(link =>{
     link.addEventListener("mouseleave", ()=>{
         cursor.classList.remove('grow');
@@ -55,8 +60,10 @@ cursorScale.forEach(link =>{
         }
     });
 });
-const t1 = gsap.timeline();
 
+//Timeline of Gsap
+const t1 = gsap.timeline();
+//preloader to main site
 function revealSite(){
     t1.to(".pre-loader", 1, {
         opacity: 0,
@@ -82,13 +89,15 @@ t1.to(".header > h1", 2, {
     opacity: 1,
     delay: 1,
 });
+
+/*Two photo moving parralx effect */
 document.addEventListener("mousemove", parralax);
 function parralax(e){
     this.querySelectorAll(".layer").forEach((layer)=>{
         const speed = layer.getAttribute("data-speed");
         const x = (window.innerWidth - e.pageX*speed) / 300;
         const y = (window.innerWidth - e.pageY*speed) / 300;
-
+        //transform css to the images
         layer.style.transform = `translateX(${x}px) translateY(${y}px)`;
     });
 };
@@ -123,7 +132,6 @@ function createEye(selector){
     const element = document.querySelector(selector);
     TweenMax.set(element, {
         transformOrigin: "center",
-
     });
     let bbox = element.getBBox();
     let centerX = bbox.x - bbox.width / 2;
@@ -146,7 +154,7 @@ function createEye(selector){
     };
 }
 
-const canvas = document.querySelector('.draw');
+/*const canvas = document.querySelector('.draw');
 const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
@@ -192,8 +200,8 @@ canvas.addEventListener("mouseup", ()=>{
 canvas.addEventListener("mouseout", ()=>{
     isDrawing = false;
     clearCanvas();
-});
-
+});*/
+//structuring the circle of the logo box
 const circleType = new CircleType(
     document.getElementById("rotated")
     ).radius(40);
