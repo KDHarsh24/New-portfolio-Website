@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Bad Script&display=swap');
+@import url("https://db.onlinewebfonts.com/c/99501fdab737541e9315ceaf9229370f?family=Monument+Extended+Regular");
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Exo+2&display=swap');
 @import url('https://db.onlinewebfonts.com/c/1a991b240e707c46ca904d731893f108?family=Neue+Montreal');
 @import url('https://fonts.googleapis.com/css2?family=Exo+2&family=Oswald:wght@700&display=swap');
@@ -62,7 +62,7 @@ html, body{
     border-radius: 50%;
     mix-blend-mode: difference;
     transition: transform 0.3s ease;
-    z-index: 8;
+    z-index: 15;
     transition: 100ms;
 }
 
@@ -94,14 +94,14 @@ html, body{
 }
 #svg{
     position: absolute;
-    z-index: 2;
+    z-index: 3;
     width: 100%;
     height: 100%;
     pointer-events: none;
 }
 g{
     position: absolute;
-    z-index: 2;
+    z-index: 4;
 }
 .container{
     position: absolute;
@@ -114,6 +114,7 @@ g{
     text-decoration: none;
     display: flex;
     justify-content: center;
+    align-items: center;
     font-family: "Oswald";
     font-size: 160px;
     line-height: 160x;
@@ -181,8 +182,12 @@ g{
 }
 
 @keyframes marquee-animation {
-    from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+    from { 
+        transform: translateX(0); 
+    }
+  to { 
+    transform: translateX(-50%); 
+}
 }
 section{
     width: 100%;
@@ -360,4 +365,170 @@ section{
     left: 0;
     height: 100vh;
     width: 100vw;
+}
+/*Contact form starst*/
+.contact-web{
+    position: absolute;
+    overflow: hidden;
+    width: 100%;
+    height: 100vh;
+    color: #e5e3dc;
+    background-color: #0a0a0a;
+    font-family: "Neue Montreal";
+    display: none;
+}
+.navbar-contact{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: "first baseline";
+    padding: 0.4em 20px;
+    font-size: 1.2em;
+}
+.branding{
+    display: flex;
+    align-items: center;
+}
+.contact-logo{
+    height: 30px;
+}
+.navbar-contact .hover-this span{
+    color: #e5e3dc;
+}
+.contact-marquee{
+    width: 1000%;
+    margin: 0 auto;
+    white-space: nowrap;
+    overflow: hidden;
+    padding: 1em;
+}
+.contact-marquee span{
+    font-family: "Monument Extended Regular";
+    font-weight: 700;
+    color: #ff4c00;
+    font-size: 6em;
+    text-transform: uppercase;
+    display: inline-block;
+    padding-left: -10%;
+    animation: marquee-animation 15s linear infinite;
+}
+.col{
+    width: 50%;
+    padding: 1em 3em;
+}
+.contact-section h3{
+    text-transform: uppercase;
+    color: #747474;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+.contact-section span{
+    text-transform: uppercase;
+}
+.contact-form{
+    position: relative;
+    top: -20px;
+}
+.contact-details p{
+    font-size: 40px;
+    line-height: 60px;
+    padding-top: 0.8em;
+}
+.item{
+    padding: 4em 0 0 0;
+
+}
+.contact-info{
+    display: flex;
+}
+.address{
+    padding-left: 4em;
+}
+input{
+    background: none;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid #747474;
+    font-size: 24px;
+    padding: 0 1em;
+    width: 100%;
+    color: #e5e3dc;
+    font-family: "Neue Montreal";
+}
+.contact-row{
+    display: flex;
+    margin: 2em 0 !important;
+}
+textarea#message{
+    width: 100%;
+    background: none;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid #747474;
+    font-size: 24px;
+    padding: 24px;
+    color: #e5e3dc;
+    font-family: "Neue Montreal";
+}
+.submit{
+    width: 100%;
+}
+.submit button{
+    width: 100%;
+    text-decoration: none;
+    display: flex;
+    justify-content: space-between;
+    color: #e5e3dc;
+    font-size: 60px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.send-icon{
+    font-size: 50px;
+}
+body::-webkit-scrollbar{
+    display: none;
+}
+@media (max-width: 1310px) {
+    .contact-details p{
+        font-size: 30px;
+    }
+}
+@media (min-width:900px) {
+    .contact-section{
+        width: 100%;
+        display: flex;
+    }
+}
+@media (max-width:450px) {
+    .contact-details p{
+        font-size: 25px;
+    }
+    .branding{
+        display: none;
+    }
+}
+@media (max-width: 391px) {
+    .contact-details p{
+        font-size: 20px;
+    }
+}
+@media (max-width: 900px) {
+    .col{
+        width: 100%;
+    }
+    .contact-web{
+        overflow-y: scroll;
+    }
+    .contact-info{
+        flex-direction: column;
+    }
+    .address{
+        padding-left: 0px;
+    }
+}
+button{
+    background-color: transparent;
+    border: none;
 }

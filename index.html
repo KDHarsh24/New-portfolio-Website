@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Website | Start</title>
     <link rel="icon" href="Logo.png">
-   <link rel="stylesheet" href="style.css"> 
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script> 
 </head>
 <body>
     <!--Cursor in Website-->
@@ -69,7 +70,7 @@
                     </div>
                     <div>
                         <div class="text-link hover-this">Mysterys</div>
-                        <div class="text-link hover-this">Contact</div>
+                        <div class="text-link hover-this" onclick="revealContact()">Contact</div>
                     </div>
                 </div>
             </div>
@@ -131,6 +132,69 @@
                     </svg>
                     to Begin
                 </div>
+            </div>
+        </div>
+    </div>
+    <div class="contact-web">
+        <div class="navbar-contact">
+            <a href="#" class="hover-this" onclick="revealWeb()">
+                <span class="logo">HarshKumarDas</span>
+            </a>   
+            <div class="branding">
+                <p>HKD</p>
+                <img src="Logo.png" alt="" class="contact-logo"/>
+                <p>2004</p>
+            </div>  
+        </div>
+        <div class="contact-marquee">
+            <span>
+                Contact Us / Contact Us / Contact Us / Contact Us / Contact Us / Contact Us / Contact Us / 
+            </span>
+        </div>
+        <div class="contact-section">
+            <div class="contact-details col">
+                <p>Social Media काम नहीं हमारा <br>
+                    अपनी राय ज़रूर सुना के जाना <br>
+                    किस्मत रही तो फिर कही मिलेंगे दुबारा 
+                </p>
+                <div class="social-media items">
+                    <h3>Handles</h3>
+                    <span>GitHub - Linkedin</span>
+                </div>
+                <div class="contact-info">
+                    <div class="email item">
+                        <h3>Get in touch</h3>
+                        <span>harshkumardas24@gmail.com</span>
+                    </div> 
+                    <div class="address item">
+                        <h3>Location</h3>
+                        Imphal - INDIA
+                    </div>                   
+                </div>
+            </div>
+            <div class="contact-form col" action="mail.php" method="post">
+                <form class="contact-wrapper">
+                    <div class="contact-row">
+                        <input type="text" placeholder="Name" name="name" class="hover-this"/>
+                    </div>
+                    <div class="contact-row">
+                        <input type="email" placeholder="Email" name="email" class="hover-this"/>
+                    </div>
+                    <div class="contact-row">
+                        <textarea name="message" 
+                        id="message"
+                        rows="4" placeholder="Message" class="hover-this"></textarea>
+                    </div>
+                    <div class="submit contact-row">
+                        <button type="submit" class="hover-this">Submit
+                            <div class="send-icon">
+                                <ion-icon name="arrow-forward-sharp"></ion-icon>
+                                <ion-icon name="arrow-forward-sharp"></ion-icon>
+                                <ion-icon name="arrow-forward-sharp"></ion-icon>
+                            </div>
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

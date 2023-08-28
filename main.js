@@ -79,6 +79,48 @@ function revealSite(){
         },
     }, "-=1.1");
 }
+function revealWeb(){
+    t1.to(".website-content", 1, {
+        opacity: 1,
+        display: "block",
+        ease: "power2.inOut"
+    });
+    t1.to(".contact-web", 0,{
+        opacity: 0,
+        display: "none",
+        ease: "power3.inOut",
+    }, "-=1.0");
+    t1.from(".hover-this", 2, {
+        y: 40,
+        opacity: 0,
+        ease: "power3.inOut",
+        stagger: {
+            amount: 0.2,
+        },
+    }, "-=1.1");
+    t1.to("body, html", 1, {
+        background: "#efe3dc"
+    });
+}
+function revealContact(){
+    t1.to(".website-content", 1, {
+        opacity: 0,
+        display: "none",
+        ease: "power2.inOut"
+    });
+    t1.to(".contact-web", 1,{
+        opacity: 1,
+        display: "block",
+        ease: "power3.inOut",
+        delay: "1s"
+    });
+    t1.from(".contact-web", 2,{
+        y: 150,
+    }, "-=1.5");
+    t1.to("body, html", 2, {
+        background: "#0a0a0a"
+    });
+}
 t1.to(".header > h1", 2, {
     top: 0,
     ease: "power3.inOut",
