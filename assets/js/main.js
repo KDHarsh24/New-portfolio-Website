@@ -247,3 +247,8 @@ canvas.addEventListener("mouseout", ()=>{
 const circleType = new CircleType(
     document.getElementById("rotated")
     ).radius(40);
+
+document.addEventListener('contextmenu', event => {
+    alert("If you want the code take it from Github don't do this things.");
+    event.preventDefault()
+});

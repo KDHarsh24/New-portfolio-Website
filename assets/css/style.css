@@ -76,7 +76,7 @@ html, body{
     mix-blend-mode: difference;
 }
 .grow-small{
-    transform: scale(3);
+    transform: scale(5);
 }
 .site-header{
     position: absolute;
@@ -432,10 +432,10 @@ section{
 .contact-details p{
     font-size: 40px;
     line-height: 60px;
-    padding-top: 0.8em;
+    padding-top: 0.5em;
 }
 .item{
-    padding: 4em 0 0 0;
+    padding: 3em 0 0 0;
 
 }
 .contact-info{
@@ -479,7 +479,7 @@ textarea#message{
     display: flex;
     justify-content: space-between;
     color: #e5e3dc;
-    font-size: 60px;
+    font-size: 50px;
     font-weight: 600;
     text-transform: uppercase;
 }
@@ -531,4 +531,11 @@ body::-webkit-scrollbar{
 button{
     background-color: transparent;
     border: none;
+}
+.social-link{
+    text-decoration: none;
+    color: #e5e3dc;
+}
+.social-link + .social-link{
+    margin-left: 30px;
 }

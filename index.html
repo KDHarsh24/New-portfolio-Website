@@ -5,10 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Website | Start</title>
     <link rel="icon" href="Logo.png">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
     <script src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script> 
 </head>
 <body>
+    <?php echo $alert ?>
     <!--Cursor in Website-->
     <div class="cursor"></div>
     <!--WebSite Main Content containing the main content inside a link navigation and landing page-->
@@ -26,7 +27,7 @@
                     <p>Harsh   Kumar  Das   Harsh   Kumar   Das   Harsh   Kumar   Das</p>
                 </span>
             </div>
-            <img src="Logo.png" alt="" class="img-logo">
+            <img src="assets/img/Logo.png" alt="" class="img-logo">
         </div>
         <!--Body of the Landing Page-->
         <div class="site-header">
@@ -83,8 +84,8 @@
         </div>
         <!--Two Gliding Images-->
         <section>
-            <img src="bar-chart.png" data-speed="10" class="layer img-1" alt="">
-            <img src="travel-bag.png" data-speed="10" class="layer img-2" alt="">
+            <img src="assets/img/bar-chart.png" data-speed="10" class="layer img-1" alt="">
+            <img src="assets/img/travel-bag.png" data-speed="10" class="layer img-2" alt="">
         </section>
     </div>
     <!--The Preloader-->
@@ -142,7 +143,7 @@
             </a>   
             <div class="branding">
                 <p>HKD</p>
-                <img src="Logo.png" alt="" class="contact-logo"/>
+                <img src="assets/img/Logo.png" alt="" class="contact-logo"/>
                 <p>2004</p>
             </div>  
         </div>
@@ -159,7 +160,7 @@
                 </p>
                 <div class="social-media items">
                     <h3>Handles</h3>
-                    <span>GitHub - Linkedin</span>
+                    <span><a href="https://github.com/KDHarsh24" class="social-link hover-this small">GitHub</a> <a href="https://www.linkedin.com/in/harsh-kumar-das-062440255" class="social-link hover-this small">Linkedin</a></span>
                 </div>
                 <div class="contact-info">
                     <div class="email item">
@@ -168,17 +169,18 @@
                     </div> 
                     <div class="address item">
                         <h3>Location</h3>
-                        Imphal - INDIA
+                        Kolkata-INDIA
                     </div>                   
                 </div>
             </div>
-            <div class="contact-form col" action="mail.php" method="post">
-                <form class="contact-wrapper">
+            <div class="contact-form col">
+                <h4 class="mail-notification">Send an Email</h4>
+                <form class="contact-wrapper" id="myform" action="https://formsubmit.co/kdharsh24@gmail.com" method="POST">
                     <div class="contact-row">
-                        <input type="text" placeholder="Name" name="name" class="hover-this"/>
+                        <input type="text" placeholder="Name" name="name" class="hover-this" id="name"/>
                     </div>
                     <div class="contact-row">
-                        <input type="email" placeholder="Email" name="email" class="hover-this"/>
+                        <input type="email" placeholder="Email" name="email" class="hover-this" id="email"/>
                     </div>
                     <div class="contact-row">
                         <textarea name="message" 
@@ -199,9 +201,9 @@
         </div>
     </div>
 </body>
-<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/peterhry/CircleType@2.3.1/dist/circletype.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
-<script src="main.js"></script>
+<script src="assets/js/main.js"></script>
 </html>
