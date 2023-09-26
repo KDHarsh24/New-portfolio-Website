@@ -195,7 +195,7 @@ function createEye(selector){
         rotateTo,
     };
 }
-
+//Canvas Code not neeeded
 /*const canvas = document.querySelector('.draw');
 const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
@@ -243,6 +243,8 @@ canvas.addEventListener("mouseout", ()=>{
     isDrawing = false;
     clearCanvas();
 });*/
+
+
 //structuring the circle of the logo box
 const circleType = new CircleType(
     document.getElementById("rotated")
