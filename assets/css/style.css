@@ -27,6 +27,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    -webkit-user-select: none;
 }
 html, body{
     width: 100%;
@@ -161,6 +162,32 @@ g{
         transform: rotate(360deg);
     }
 }
+.desbox{
+    height: 35vh;
+    width: 8vw;
+    background-color: aliceblue;
+    position: absolute;
+    top: 0;
+    border-bottom-right-radius: 25%;
+}
+.desbox2{
+    height: 24vh;
+    width: 8vw;
+    background-color: aliceblue;
+    position: absolute;
+    top: 0;
+    left: 8vw;
+    border-bottom-right-radius: 25%;
+}
+.desbox3{
+    height: 10vh;
+    width: 4vw;
+    background-color: aliceblue;
+    position: absolute;
+    top: 0;
+    left: 16vw;
+    border-bottom-right-radius: 25%;
+}
 .logo-box{
     position: fixed;
     top: 4%;
@@ -169,8 +196,8 @@ g{
 }
 .img-logo{
     position: relative;
-    top: -110px;
-    left: 3px;
+    top: -115px;
+    left: 5px;
     height: 75px;
 }
 /*Marquee*/
