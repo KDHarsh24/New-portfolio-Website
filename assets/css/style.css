@@ -8,17 +8,17 @@
     font-family: "thunder";
     src: url(Thunder-LC.otf);
 }
-::-webkit-scrollbar {
+.contact-web::-webkit-scrollbar {
     width: 5px;
-  }
+}
   /* Track */
-  ::-webkit-scrollbar-track {
+.contact-web::-webkit-scrollbar-track {
     background-color: none;
     width: 0px;
-  }
+}
    
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
+/* Handle */
+.contact-web::-webkit-scrollbar-thumb {
     background: #ff4c00; 
     border-radius: 10px;
   }
@@ -247,6 +247,7 @@ section{
     right: 10%;
     transform: translate(-50%, -50%);
 }
+
 /*pre loader page full*/
 .pre-loader{
     position: fixed;
@@ -407,7 +408,9 @@ section{
     height: 100vh;
     width: 100vw;
 }
-/*Contact form starst*/
+
+
+/*Contact form start*/
 .contact-web{
     position: absolute;
     overflow: hidden;
@@ -528,9 +531,6 @@ textarea#message{
 .send-icon{
     font-size: 50px;
 }
-body::-webkit-scrollbar{
-    display: none;
-}
 @media (max-width: 1310px) {
     .contact-details p{
         font-size: 30px;
@@ -549,6 +549,7 @@ body::-webkit-scrollbar{
     .branding{
         display: none;
     }
+   
 }
 @media (max-width: 391px) {
     .contact-details p{
@@ -568,6 +569,10 @@ body::-webkit-scrollbar{
     .address{
         padding-left: 0px;
     }
+    .col h4{
+        margin-top: 30px;
+        font-size: 30px;
+    }
 }
 button{
     background-color: transparent;
@@ -579,4 +584,8 @@ button{
 }
 .social-link + .social-link{
     margin-left: 30px;
+}
+
+.mystery{
+    display: none;
 }
