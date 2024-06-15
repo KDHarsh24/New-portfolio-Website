@@ -103,6 +103,9 @@ function revealWeb(){
     });
 }
 function revealContact(){
+    let stateObj = { id: "100" };
+    setTimeout( window.history.pushState(stateObj,
+        "contactpage", "/contact"), 2000)
     t1.to(".website-content", 1, {
         opacity: 0,
         display: "none",
