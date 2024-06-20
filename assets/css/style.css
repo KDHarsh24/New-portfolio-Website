@@ -8,18 +8,18 @@
     font-family: "thunder";
     src: url(Thunder-LC.otf);
 }
-.contact-web::-webkit-scrollbar {
+::-webkit-scrollbar {
     width: 5px;
 }
   /* Track */
-.contact-web::-webkit-scrollbar-track {
+::-webkit-scrollbar-track {
     background-color: none;
     width: 0px;
 }
    
 /* Handle */
-.contact-web::-webkit-scrollbar-thumb {
-    background: #ff4c00; 
+::-webkit-scrollbar-thumb {
+    background: #0a0a0a; 
     border-radius: 10px;
   }
 /*Custom to Start*/
@@ -31,13 +31,13 @@
 }
 html, body{
     width: 100%;
-    height: 100vh;
+    scroll-behavior: smooth;
     background: #e5e3dc;
     cursor: none;
 }
 /*Content Box*/
 .website-content{
-    position: absolute;
+    position: relative;
     width: 100%;
     height: 100vh;
     overflow: hidden;
@@ -45,13 +45,33 @@ html, body{
 /*NavBar*/
 .navbar{
     width: 100%;
+    height: 4%;
+    font-family: "Neue Montreal";
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: fixed;
+    z-index: 6;
+    top: 0px;
+    color: #0a0a0a;
     padding: 2em 20px;
-    font-size: 1.2em;
-    line-height: 90%;
+    font-size: 1.2em;  
 }
+.opaque-navbar {
+    background-color: transparent;
+    height: 60px;
+    border-bottom: 0px;
+    transition: background-color .5s ease 0s;
+}
+
+.opaque-navbar.opaque {
+    background-color: rgb(0, 0, 0, 0.9);
+    box-shadow: 5px 0px 20px #747474;
+    color:#e5e3dc;
+    height: 60px;
+    transition: background-color .5s ease 0s;
+}
+
 /*Links Named*/
 .hover-this {
     transition: all 0.3s ease;
@@ -59,14 +79,17 @@ html, body{
     z-index: 1;
 }
 
-.hover-this span{
+.logo{
     display: inline-block;
     font-family: "Bad Script";
     font-weight: 700;
-    color: #0a0a0a;
     font-size: 36px;
+    color: #0a0a0a;
     pointer-events: none;
     transition: transform 0.1s linear;
+}
+.navbarLogo{
+    color: #e5e3dc;
 }
 /*Hover Cursor*/
 .cursor {
@@ -127,6 +150,7 @@ g{
 }
 .text-link{
     text-decoration: none;
+    color: #0a0a0a;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -162,36 +186,11 @@ g{
         transform: rotate(360deg);
     }
 }
-.desbox{
-    height: 35vh;
-    width: 8vw;
-    background-color: aliceblue;
-    position: absolute;
-    top: 0;
-    border-bottom-right-radius: 25%;
-}
-.desbox2{
-    height: 24vh;
-    width: 8vw;
-    background-color: aliceblue;
-    position: absolute;
-    top: 0;
-    left: 8vw;
-    border-bottom-right-radius: 25%;
-}
-.desbox3{
-    height: 10vh;
-    width: 4vw;
-    background-color: aliceblue;
-    position: absolute;
-    top: 0;
-    left: 16vw;
-    border-bottom-right-radius: 25%;
-}
 .logo-box{
-    position: fixed;
-    top: 4%;
-    right: 7%;
+    position: absolute;
+    z-index: 6;
+    top: 3%;
+    right: 4%;
     width: max-content;
 }
 .img-logo{
@@ -203,7 +202,7 @@ g{
 /*Marquee*/
 .marquee{
     position: absolute;
-    bottom: 0%;
+    bottom: 2%;
     width: 100%;
     padding-left: 4em;
     margin: 0 auto;
@@ -249,72 +248,6 @@ section{
 }
 
 /*pre loader page full*/
-.pre-loader{
-    position: fixed;
-    z-index: 1;
-    width: 100%;
-    height: 100%;
-    background: #0a0a0a;
-    color: #e5e3dc;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: none;
-}
-.pre-loader-container{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-.pre-loader-container .header{
-    position: relative;
-    width: max-content;
-    margin: 0 auto;
-}
-.header{
-    display: flex;
-    justify-content: center;
-}
-.header h1{
-    position: relative;
-    top: 125px;
-    width: max-content;
-    text-transform: uppercase;
-    text-align: center;
-    font-family: "Exo 2";
-    font-weight: 500;
-    font-size: 5vw;
-    line-height: 90%;
-    color: #0a0a0a;
-    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.6);
-}
-.text-highlight-art:hover{
-    color: #0a0a0a;
-    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.6);
-}
-.text-highlight-soul:hover{
-    color: #0a0a0a;
-    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.6);
-}
-.header h1::before{
-    content: attr(data-text);
-    position: absolute;
-    overflow: hidden;
-    width: 0%;
-    transition: 1s;
-    animation: fill 2s cubic-bezier(0.6, 0, 0.4, 1) forwards;
-    color: #e5e3dc;
-    animation-delay: 2s;
-}
-@keyframes fill {
-    0%{
-        width: 0%;
-    }
-    100%{
-        width: 100%;
-    }
-}
 .header-wrapper::after
 {
     content: "";
@@ -387,6 +320,9 @@ section{
         top: 64%;
         height: 100px;
     }
+    .logo{
+        font-size: 28px;
+    }
 }
 @media (max-width: 540px) {
     .container div{
@@ -395,10 +331,14 @@ section{
     .text-link{
         height: 120px;
     }
+    
 }
 @media (max-width: 380px) {
     .container div{
         font-size: 80px;
+    }
+    .logo{
+        font-size: 24px;
     }
 }
 .draw{
@@ -412,35 +352,24 @@ section{
 
 /*Contact form start*/
 .contact-web{
-    position: absolute;
-    overflow: hidden;
+    position: relative;
+    padding-top: 4%;
     width: 100%;
-    height: 100vh;
     color: #e5e3dc;
     background-color: #0a0a0a;
     font-family: "Neue Montreal";
-    display: none;
-}
-.navbar-contact{
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: "first baseline";
-    padding: 0.4em 20px;
-    font-size: 1.2em;
 }
 .branding{
     display: flex;
     align-items: center;
+    display: none;
 }
 .contact-logo{
     height: 30px;
 }
-.navbar-contact .hover-this span{
-    color: #e5e3dc;
-}
+
 .contact-marquee{
-    width: 1000%;
+    width: 100%;
     margin: 0 auto;
     white-space: nowrap;
     overflow: hidden;
@@ -460,6 +389,11 @@ section{
     width: 50%;
     padding: 1em 3em;
 }
+.pink{
+    transition-duration: 2s;
+    position: relative;
+    left: 0px;
+}
 .contact-section h3{
     text-transform: uppercase;
     color: #747474;
@@ -472,11 +406,6 @@ section{
 .contact-form{
     position: relative;
     top: -20px;
-}
-.contact-details p{
-    font-size: 40px;
-    line-height: 60px;
-    padding-top: 0.5em;
 }
 .item{
     padding: 3em 0 0 0;
@@ -523,19 +452,15 @@ textarea#message{
     display: flex;
     justify-content: space-between;
     color: #e5e3dc;
-    font-size: 50px;
+    font-size: 48px;
     font-weight: 600;
     text-transform: uppercase;
 }
 
 .send-icon{
-    font-size: 50px;
+    font-size: 48px;
 }
-@media (max-width: 1310px) {
-    .contact-details p{
-        font-size: 30px;
-    }
-}
+
 @media (min-width:900px) {
     .contact-section{
         width: 100%;
@@ -543,18 +468,13 @@ textarea#message{
     }
 }
 @media (max-width:450px) {
-    .contact-details p{
-        font-size: 25px;
-    }
     .branding{
         display: none;
     }
    
 }
 @media (max-width: 391px) {
-    .contact-details p{
-        font-size: 20px;
-    }
+
 }
 @media (max-width: 900px) {
     .col{
@@ -573,19 +493,51 @@ textarea#message{
         margin-top: 30px;
         font-size: 30px;
     }
+    .submit button{
+        font-size: 36px;
+    }
+    .send-icon{
+        font-size: 36px;
+    }
 }
 button{
     background-color: transparent;
     border: none;
 }
 .social-link{
+    position: relative;
     text-decoration: none;
+    text-transform: uppercase;
     color: #e5e3dc;
 }
 .social-link + .social-link{
     margin-left: 30px;
 }
 
-.mystery{
-    display: none;
+.preloader{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100vh;
+    background-color: transparent;
+}
+.loader{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    background-color: #0a0a0a;
+}
+.count-preload{
+    font-family: 'Neue Montreal';
+    position: relative;
+    z-index: 2;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 12vw;
+    font-weight: 600;
+    color: #ff4c00;
 }

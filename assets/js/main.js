@@ -63,77 +63,6 @@ cursorScale.forEach(link =>{
 
 //Timeline of Gsap
 const t1 = gsap.timeline();
-//preloader to main site
-function revealSite(){
-    t1.to(".pre-loader", 1, {
-        opacity: 0,
-        display: "none",
-        ease: "power2.inOut",
-    });
-    t1.from(".hover-this", 2, {
-        y: 40,
-        opacity: 0,
-        ease: "power3.inOut",
-        stagger: {
-            amount: 0.2,
-        },
-    }, "-=1.1");
-}
-function revealWeb(){
-    t1.to(".website-content", 1, {
-        opacity: 1,
-        display: "block",
-        ease: "power2.inOut"
-    });
-    t1.to(".contact-web", 0,{
-        opacity: 0,
-        display: "none",
-        ease: "power3.inOut",
-    }, "-=1.0");
-    t1.from(".hover-this", 2, {
-        y: 40,
-        opacity: 0,
-        ease: "power3.inOut",
-        stagger: {
-            amount: 0.2,
-        },
-    }, "-=1.1");
-    t1.to("body, html", 1, {
-        background: "#efe3dc"
-    });
-}
-function revealContact(){
-    let stateObj = { id: "100" };
-    setTimeout( window.history.pushState(stateObj,
-        "contactpage", "/contact"), 2000)
-    t1.to(".website-content", 1, {
-        opacity: 0,
-        display: "none",
-        ease: "power2.inOut"
-    });
-    t1.to(".contact-web", 1,{
-        opacity: 1,
-        display: "block",
-        ease: "power3.inOut",
-        delay: "1s"
-    });
-    t1.from(".contact-web", 2,{
-        y: 150,
-    }, "-=1.5");
-    t1.to("body, html", 2, {
-        background: "#0a0a0a"
-    });
-}
-t1.to(".header > h1", 2, {
-    top: 0,
-    ease: "power3.inOut",
-    stagger: {
-        amount: 0.3,
-    }
-}).to(".pre-loader-btn", 0.3, {
-    opacity: 1,
-    delay: 1,
-});
 
 /*Two photo moving parralx effect */
 document.addEventListener("mousemove", parralax);
@@ -251,9 +180,92 @@ canvas.addEventListener("mouseout", ()=>{
 //structuring the circle of the logo box
 const circleType = new CircleType(
     document.getElementById("rotated")
-    ).radius(40);
+).radius(40);
 
-document.addEventListener('contextmenu', event => {
-    alert("If you want the code take it from Github don't do this things.");
-    event.preventDefault()
+// document.addEventListener('contextmenu', event => {
+//     alert("If you want the code take it from Github don't do this things.");
+//     event.preventDefault()
+// });
+
+$(window).scroll(function() {
+    if($(this).scrollTop() > 50)  /*height in pixels when the navbar becomes non opaque*/ 
+    {
+        $('.opaque-navbar').addClass('opaque');
+        $('.logo').addClass('navbarLogo')
+    } else {
+        $('.opaque-navbar').removeClass('opaque');
+        $('.logo').removeClass('navbarLogo')
+    }
+    if($(this).scrollTop() > 120)
+        document.getElementsByClassName('branding')[0].style.display = "flex";
+    else
+        document.getElementsByClassName('branding')[0].style.display = "none";
+});
+
+gsap.registerPlugin(ScrollTrigger);
+// gsap.from('.contact-details', {
+//     x: -100,
+//     opacity: 0,
+//     duration: 3,
+//     scrollTrigger: {
+//         trigger: ".contact-details",
+//         start: "top 50%", //at what point of screen to beginb that is from top 70%
+//         end: "center 20%", //at what point of screen to end that is from center 300%
+//         markers: true,
+//         toggleActions: "restart reverse restart reverse"
+//                     //  onEnter onLeave onEnterBack onLeaveBack
+//                     //pause stops movement onleave
+//         // toggleClass: "pink", // pink class will be added
+//     }
+// });
+
+gsap.to('.website-content', {
+    duration: 3,
+    scale: 0.75,
+    opacity: 0.8,
+    ease: "power2.in",
+    scrollTrigger: {
+        trigger: ".website-content",
+        start: "top 0%", //at what point of screen to beginb that is from top 70%
+        end: "bottom 50%", //at what point of screen to end that is from center 300%
+        markers: true,
+        scrub: 3,
+        toggleActions: "restart reverse none none"
+                    //  onEnter onLeave onEnterBack onLeaveBack
+                    //pause stops movement onleave
+        // toggleClass: "pink", // pink class will be added
+    }
+});
+gsap.from('.contact-web', {
+    scale: 0.75,
+    duration: 3, 
+    ease: "power2.in",
+    opacity: 0.8,
+    scrollTrigger: {
+        trigger: ".contact-web",
+        start: "top 110%", //at what point of screen to beginb that is from top 70%
+        end: "center 120%", //at what point of screen to end that is from center 300%
+        markers: true,
+        scrub: 3,
+        toggleActions: "restart reverse none reverse",
+                    //  onEnter onLeave onEnterBack onLeaveBack
+                    //  pause stops movement onleave
+        // toggleClass: "contact-web-anime", // pink class will be added
+    }
+});
+
+$(document).ready(() => {
+    let count = 0;
+    let counter = setInterval(() => {
+        if (count < 101)
+        {
+            $('.count-preload').text(count + '%');
+            $('.loader').css('width', 100 - count + '%');
+            count++;   
+        }
+        else {
+            clearInterval(counter);
+            $('.preloader').css('display', "none")
+        }
+    });
 });
