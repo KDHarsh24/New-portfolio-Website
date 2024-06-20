@@ -239,12 +239,12 @@ gsap.to('.website-content', {
 gsap.from('.contact-web', {
     scale: 0.75,
     duration: 3, 
-    ease: "power2.in",
+    ease: "power3.out",
     opacity: 0.8,
     scrollTrigger: {
         trigger: ".contact-web",
         start: "top 110%", //at what point of screen to beginb that is from top 70%
-        end: "center 120%", //at what point of screen to end that is from center 300%
+        end: "center 90%", //at what point of screen to end that is from center 300%
         markers: true,
         scrub: 3,
         toggleActions: "restart reverse none reverse",

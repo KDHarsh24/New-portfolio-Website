@@ -27,7 +27,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    -webkit-user-select: none;
+    user-select: none;
 }
 html, body{
     width: 100%;
@@ -247,36 +247,6 @@ section{
     transform: translate(-50%, -50%);
 }
 
-/*pre loader page full*/
-.header-wrapper::after
-{
-    content: "";
-    position: relative;
-    top: 120px;
-    left: -20px;
-    width: 110%;
-    height: 120px;
-    background: #0a0a0a;
-    margin: 0 auto;
-}
-.pre-loader-btn{
-    position: relative;
-    display: flex;
-    justify-content: center;
-    font-size: 1.5vw;
-    margin: 3em 0em 1em 0;
-    font-family: "Neue Montreal";
-    opacity: 0;
-}
-.btn{
-    width: max-content;
-}
-.pre-loader-btn svg{
-    position: relative;
-    width: 80px;
-    top: 0;
-    padding: 0 0.4em;
-}
 @media (min-width: 1260px) {
     .img-1{
         height: 150px;
@@ -349,7 +319,6 @@ section{
     width: 100vw;
 }
 
-
 /*Contact form start*/
 .contact-web{
     position: relative;
@@ -358,6 +327,7 @@ section{
     color: #e5e3dc;
     background-color: #0a0a0a;
     font-family: "Neue Montreal";
+    min-height: 100vh;
 }
 .branding{
     display: flex;
@@ -367,7 +337,6 @@ section{
 .contact-logo{
     height: 30px;
 }
-
 .contact-marquee{
     width: 100%;
     margin: 0 auto;
@@ -387,18 +356,17 @@ section{
 }
 .col{
     width: 50%;
+    height: 100%;
     padding: 1em 3em;
-}
-.pink{
-    transition-duration: 2s;
-    position: relative;
-    left: 0px;
 }
 .contact-section h3{
     text-transform: uppercase;
     color: #747474;
     font-size: 20px;
     margin-bottom: 10px;
+}
+.contact-section{
+    height: 100%;
 }
 .contact-section span{
     text-transform: uppercase;
@@ -409,7 +377,6 @@ section{
 }
 .item{
     padding: 3em 0 0 0;
-
 }
 .contact-info{
     display: flex;
@@ -432,6 +399,7 @@ input{
     display: flex;
     margin: 2em 0 !important;
 }
+
 textarea#message{
     width: 100%;
     background: none;
@@ -456,7 +424,6 @@ textarea#message{
     font-weight: 600;
     text-transform: uppercase;
 }
-
 .send-icon{
     font-size: 48px;
 }
@@ -513,7 +480,6 @@ button{
 .social-link + .social-link{
     margin-left: 30px;
 }
-
 .preloader{
     position: absolute;
     top: 0px;
@@ -540,4 +506,13 @@ button{
     font-size: 12vw;
     font-weight: 600;
     color: #ff4c00;
+}
+.map{
+    padding-top: 20px;
+    height: 100%;
+}
+.mapPart{
+    border-radius: 10px;
+    width: 100%;
+    height: 250px;
 }
