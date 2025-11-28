@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Bad+Script&display=swap');
+@import url("https://db.onlinewebfonts.com/c/99501fdab737541e9315ceaf9229370f?family=Monument+Extended+Regular");
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Exo+2&display=swap');
+@import url('https://db.onlinewebfonts.com/c/1a991b240e707c46ca904d731893f108?family=Neue+Montreal');
+@import url('https://fonts.googleapis.com/css2?family=Exo+2&family=Oswald:wght@700&display=swap');
+
+@font-face {
+    font-family: "thunder";
+    src: url("/assets/css/Thunder-LC.otf"); /* Assuming font was in assets/css/ */
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+  /* Track */
+::-webkit-scrollbar-track {
+    background-color: none;
+    width: 0px;
+}
+   
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #0a0a0a; 
+    border-radius: 10px;
+}
+
+/*Custom to Start*/
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+}
+
+html, body{
+    width: 100%;
+    scroll-behavior: smooth;
+    background: #e5e3dc;
+    cursor: none; /* Hide default cursor */
+}
+
+/*Content Box*/
+.website-content{
+    position: relative;
+    width: 100%;
+    /* height: 100vh;  Removed fixed height to allow scrolling content */
+    overflow-x: hidden;
+}
+
+/*Links Named*/
+.hover-this {
+    transition: all 0.3s ease;
+    cursor: none;
+    z-index: 1;
+    display: inline-block; /* Ensure transform works */
+}
+
+.text-link{
+    text-decoration: none;
+    color: #0a0a0a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Oswald";
+    font-size: 160px;
+    line-height: 160px;
+    height: 160px;
+    text-transform: uppercase;
+}
+
+.social-link{
+    position: relative;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #e5e3dc;
+}
+.social-link + .social-link{
+    margin-left: 30px;
+}
+
+/* Media Queries for Text Links */
+@media (max-width: 1260px) {
+    .text-link{
+        /* height: 150px; */
+    }
+}
+@media (max-width: 1100px) {
+    .text-link{
+        height: 140px;
+    }
+}
+@media (max-width: 540px) {
+    .text-link{
+        height: 120px;
+    }
+}

@@ -1,0 +1,86 @@
+.preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: #0a0a0a;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #e5e3dc;
+    font-family: "Neue Montreal", sans-serif;
+    overflow: hidden; /* Ensure canvas doesn't cause scrollbars */
+}
+
+.preloader-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.preloader-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 500px; /* Made wider */
+    max-width: 90%;
+    position: relative;
+    z-index: 1; /* Above canvas */
+    margin-top: 35vh; /* Push content down */
+}
+
+.count-preload {
+    font-size: 3rem; /* Reduced size */
+    font-weight: 700;
+    color: #e5e3dc;
+    margin-bottom: 1rem;
+    font-variant-numeric: tabular-nums; /* Prevents jumping numbers */
+    line-height: 1;
+}
+
+@media (max-width: 768px) {
+    .count-preload {
+        font-size: 3rem;
+    }
+    .preloader-content {
+        width: 80%;
+    }
+}
+
+@media (max-width: 480px) {
+    .count-preload {
+        font-size: 2.5rem;
+    }
+}
+
+.progress-bar-wrapper {
+    width: 100%;
+    height: 7px; /* Made thicker */
+    background-color: #333;
+    margin-bottom: 1.5rem;
+    position: relative;
+    overflow: hidden;
+    border-radius: 6px;
+}
+
+.progress-bar {
+    height: 100%;
+    background-color: #ff4c00; /* Accent color */
+    width: 0%;
+    transition: width 0.1s linear;
+}
+
+.thought-text {
+    font-size: 1rem; /* Increased size */
+    color: #747474;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    height: 30px; /* Increased height */
+    text-align: center;
+    font-weight: 500;
+}

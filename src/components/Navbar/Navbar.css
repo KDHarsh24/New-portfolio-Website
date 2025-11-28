@@ -1,0 +1,230 @@
+.navbar{
+    width: 100%;
+    height: 90px; /* Fixed height for better control */
+    font-family: "Neue Montreal";
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    z-index: 6;
+    top: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #0a0a0a;
+    padding: 0 40px;
+    font-size: 1.2em;
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.opaque-navbar {
+    background-color: transparent;
+    border-bottom: 0px;
+}
+
+.opaque-navbar.opaque {
+    background-color: rgba(20, 20, 20, 0.4); /* Even more transparent */
+    backdrop-filter: blur(50px) saturate(200%); /* Maximum blur */
+    -webkit-backdrop-filter: blur(50px) saturate(200%);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3), 
+                0 0 0 1px rgba(255, 255, 255, 0.2), /* Stronger border */
+                inset 0 0 40px rgba(255, 255, 255, 0.15); /* Intense inner glow */
+    color: #e5e3dc;
+    height: 60px;
+    width: 98%;
+    max-width: 1800px;
+    top: 8px;
+    border-radius: 30px;
+    padding: 0 30px;
+}
+
+.logo{
+    display: inline-block;
+    font-family: "Bad Script";
+    font-weight: 700;
+    font-size: 36px;
+    color: #0a0a0a;
+    pointer-events: none;
+    transition: transform 0.1s linear;
+}
+.navbarLogo{
+    color: #e5e3dc;
+}
+
+.navbar-eyes-container {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 60px;
+    width: 120px; /* 2:1 aspect ratio for 200x100 viewBox */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: auto; /* Enable clicks */
+    cursor: pointer;
+}
+
+#navbar-eyes {
+    width: 100%;
+    height: 100%;
+    padding: 3px;
+}
+
+/* Hamburger Menu */
+.hamburger-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: auto; /* Let parent align-items: center handle the positioning */
+    flex-shrink: 0;
+    cursor: pointer;
+    pointer-events: auto;
+    z-index: 100;
+}
+
+.hamburger-menu .bar {
+    width: 33px;
+    height: 4px !important; 
+    min-height: 3px;
+    background-color: #ffffff; /* start white and let blend invert it against bg */
+    mix-blend-mode: difference; /* visually inverts against the navbar background */
+    -webkit-mix-blend-mode: difference;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+    display: block;
+    margin-bottom: 18%; /* Fixed spacing */
+}
+
+/* Make hamburger bars light when navbar becomes opaque (on scroll) */
+/* fallback explicit colors (in case blend-mode unsupported) */
+.hamburger-menu .bar.dark {
+    background-color: #0a0a0a; /* dark fallback */
+    mix-blend-mode: normal;
+}
+.hamburger-menu .bar.light {
+    background-color: #e5e3dc; /* light fallback */
+    mix-blend-mode: normal;
+}
+
+/* Remove margin from the last bar so the group stays perfectly centered */
+.hamburger-menu .bar:last-child {
+    margin-bottom: 0;
+}
+
+.hamburger-menu:hover .bar:nth-child(1) {
+    width: 20px;
+}
+
+.hamburger-menu:hover .bar:nth-child(2) {
+    width: 30px;
+}
+
+.hamburger-menu:hover .bar:nth-child(3) {
+    width: 20px;
+}
+
+.branding {
+    display: flex;
+    align-items: center;
+    gap: 0px;
+    font-family: "Neue Montreal";
+    font-weight: 500;
+    color: #0a0a0a;
+    transition: color 0.3s ease;
+    height: 100%; /* Fill navbar height */
+}
+
+.branding p {
+    font-size: 1.5rem; /* Large text to match logo height */
+    margin: 0;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    line-height: 1;
+}
+
+.branding.light {
+    color: #e5e3dc;
+}
+
+.contact-logo {
+    height: 40%; /* Almost full height of the navbar */
+    width: auto;
+    object-fit: contain;
+}
+
+/* Removed invert filter logic */
+
+@media (max-width: 768px) {
+    .navbar {
+        height: 70px;
+        padding: 0 20px;
+    }
+    .opaque-navbar.opaque {
+        height: 50px;
+        padding: 0 15px;
+    }
+    .branding p {
+        font-size: 1.2rem;
+    }
+    
+    /* Hamburger adjustments */
+    .hamburger-menu {
+        width: 35px;
+    }
+    .hamburger-menu .bar {
+        width: 28px;
+        height: 3px !important;
+    }
+    
+    .navbar-eyes-container {
+        height: 50px;
+        width: 100px;
+    }
+}
+
+@media (max-width: 600px) {
+    .branding p {
+        display: none; /* Hide text on mobile */
+    }
+    .contact-logo {
+        height: 50%; /* Reduced from 70% to be less "big" */
+    }
+    
+    /* Further reduce for small mobile */
+    .hamburger-menu {
+        width: 30px;
+    }
+    .hamburger-menu .bar {
+        width: 24px;
+        height: 3px !important;
+    }
+    .hamburger-menu:hover .bar:nth-child(1) {
+        width: 16px;
+    }
+    .hamburger-menu:hover .bar:nth-child(2) {
+        width: 22px;
+    }
+    .hamburger-menu:hover .bar:nth-child(3) {
+        width: 16px;
+    }
+    
+    .navbar-eyes-container {
+        height: 40px;
+        width: 80px;
+    }
+}
+
+@media (max-width: 380px) {
+    .contact-logo {
+        height: 45%;
+    }
+    .navbar {
+        padding: 0 15px;
+    }
+}
+@media (max-width: 940px) {
+    .navbar {
+        padding: 0 20px;
+    }
+}

@@ -1,0 +1,29 @@
+.cursor {
+    pointer-events: none;
+    position: fixed;
+    padding: 0.3rem;
+    background-color: #e5e3dc;
+    border-radius: 50%;
+    mix-blend-mode: difference;
+    transition: transform 0.3s ease;
+    z-index: 10000; /* High z-index to be visible over menu */
+    transition: 100ms;
+    left: 0;
+    top: 0;
+}
+
+.grow, .grow-small{
+    transition: 100ms;
+    transform: scale(10);
+    background: #e5e3dc;
+    mix-blend-mode: difference;
+}
+.grow-small{
+    transform: scale(5);
+}
+
+@media (hover: none) and (pointer: coarse) {
+    .cursor {
+        display: none;
+    }
+}
