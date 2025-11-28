@@ -70,12 +70,12 @@ const Navbar = () => {
                 <div className="navbar-eyes-container hover-grow-only small" onClick={blinkEyes} style={{ cursor: 'none' }}>
                     <svg id="navbar-eyes" viewBox="0 0 200 100">
                         <g id="nav-left-eye">
-                            <circle className="eye-outer" cx="53" cy="50" r="45" stroke="#0f0f0f" strokeWidth="3" fill="#fff"/>
-                            <circle className="eye-inner" cx="53" cy="50" r="15" fill="#0f0f0f"/>
+                            <circle className="eye-outer" cx="50" cy="50" r="49" stroke="#0f0f0f" strokeWidth="2" fill="#fff"/>
+                            <circle className="eye-inner" cx="50" cy="50" r="15" fill="#0f0f0f"/>
                         </g>
                         <g id="nav-right-eye">
-                            <circle className="eye-outer" cx="147" cy="50" r="45" stroke="#0f0f0f" strokeWidth="3" fill="#fff"/>
-                            <circle className="eye-inner" cx="147" cy="50" r="15" fill="#0f0f0f"/>
+                            <circle className="eye-outer" cx="150" cy="50" r="49" stroke="#0f0f0f" strokeWidth="2" fill="#fff"/>
+                            <circle className="eye-inner" cx="150" cy="50" r="15" fill="#0f0f0f"/>
                         </g>
                     </svg>
                 </div>

@@ -7,7 +7,8 @@
     background-color: #0a0a0a;
     font-family: "Neue Montreal";
     min-height: 100vh;
-    overflow: hidden; /* Prevent boundary leaks */
+    overflow-x: hidden; /* Allow vertical scroll, prevent horizontal */
+    overflow-y: visible;
 }
 
 .contact-marquee{
@@ -198,13 +199,13 @@ textarea#message{
         font-size: 36px;
     }
     .contact-marquee span {
-        font-size: 4em; /* Reduce marquee size */
+        font-size: 5em; /* Increased marquee size for mobile */
     }
 }
 
 @media (max-width: 480px) {
     .contact-marquee span {
-        font-size: 2.5em;
+        font-size: 4em; /* Increased from 2.5em */
     }
     .submit button {
         font-size: 24px;

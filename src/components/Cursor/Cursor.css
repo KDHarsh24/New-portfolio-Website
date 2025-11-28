@@ -22,6 +22,31 @@
     transform: scale(5);
 }
 
+.plus {
+    transform: scale(1) !important;
+    background-color: transparent !important;
+    border-radius: 0;
+}
+
+.plus::before, .plus::after {
+    content: '';
+    position: absolute;
+    background-color: #e5e3dc;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.plus::before {
+    width: 2px;
+    height: 20px;
+}
+
+.plus::after {
+    width: 20px;
+    height: 2px;
+}
+
 @media (hover: none) and (pointer: coarse) {
     .cursor {
         display: none;
