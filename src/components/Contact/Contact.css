@@ -25,7 +25,7 @@
     text-transform: uppercase;
     display: inline-block;
     padding-left: -10%;
-    animation: marquee-animation 15s linear infinite;
+    animation: marquee-animation 30s linear infinite;
 }
 .col{
     width: 50%;
@@ -90,12 +90,78 @@ textarea#message{
 .submit button{
     width: 100%;
     text-decoration: none;
-    display: flex;
-    justify-content: space-between;
+    display: block; /* Changed to block to contain absolute canvas */
     color: #e5e3dc;
     font-size: 48px;
     font-weight: 600;
-    text-transform: uppercase;
+    text-transform: none;
+    font-family: "Neue Montreal";
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 0; /* Remove padding, handle in content */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    height: 100px; /* Fixed height for canvas */
+}
+
+.btn-star-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.btn-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 0 30px;
+}
+
+.blackhole-canvas {
+    width: 60px;
+    height: 60px;
+    pointer-events: none;
+}
+
+.submit button:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.social-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-transform: none !important; /* Override parent uppercase */
+    font-family: "Neue Montreal"; /* Ensure simple font */
+    font-size: 1.2rem;
+}
+
+.social-link ion-icon {
+    font-size: 1.4em;
+    transition: transform 0.3s ease;
+    position: relative;
+    top: 3px; /* Push icon down for better alignment */
+}
+
+.social-link:hover ion-icon {
+    transform: rotate(360deg) scale(1.2);
 }
 .send-icon{
     font-size: 48px;

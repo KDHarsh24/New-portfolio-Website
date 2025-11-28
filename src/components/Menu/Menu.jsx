@@ -214,7 +214,11 @@ const Menu = ({ isOpen, onClose }) => {
                                     onClick={onClose}
                                     ref={el => linksRef.current[index] = el}
                                 >
-                                    {item.label}
+                                    <span className="menu-original-text">{item.label}</span>
+                                    <div className="menu-marquee">
+                                        <span>{item.label} ✦ {item.label} ✦ {item.label} ✦ {item.label} ✦ </span>
+                                        <span>{item.label} ✦ {item.label} ✦ {item.label} ✦ {item.label} ✦ </span>
+                                    </div>
                                 </a>
                             </div>
                         ))}
