@@ -49,6 +49,6 @@
 
 @media (hover: none) and (pointer: coarse) {
     .cursor {
-        display: none;
+        display: none !important;
     }
 }

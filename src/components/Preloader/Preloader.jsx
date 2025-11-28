@@ -17,7 +17,12 @@ const Preloader = () => {
     const [count, setCount] = useState(0);
     const [thought, setThought] = useState(techThoughts[0]);
     const [visible, setVisible] = useState(true);
+    const [showSmileCanvas, setShowSmileCanvas] = useState(false);
+    const [smileSuccess, setSmileSuccess] = useState(false);
     const canvasRef = useRef(null);
+    const smileCanvasRef = useRef(null);
+    const isDrawing = useRef(false);
+    const currentPath = useRef([]);
 
     useEffect(() => {
         const canvas = canvasRef.current;
@@ -317,18 +322,25 @@ const Preloader = () => {
                     } else {
                         clearInterval(interval);
                         
-                        // Exit animation using GSAP - Slower and smoother
-                        gsap.to(".preloader", {
-                            yPercent: -100,
-                            duration: 1.8,
-                            ease: "power3.inOut",
-                            onComplete: () => {
-                                setVisible(false);
-                                // Re-enable scrolling
-                                document.body.style.overflow = '';
-                            }
-                        });
+                        // Check if user has already ticked before
+                        const hasTicked = localStorage.getItem('preloaderTicked');
                         
+                        if (hasTicked) {
+                            // Skip drawing and exit immediately
+                            gsap.to(".preloader", {
+                                yPercent: -100,
+                                borderBottomLeftRadius: "50vw",
+                                borderBottomRightRadius: "50vw",
+                                duration: 1.5,
+                                ease: "power3.inOut",
+                                onComplete: () => {
+                                    setVisible(false);
+                                    document.body.style.overflow = '';
+                                }
+                            });
+                        } else {
+                            setShowSmileCanvas(true);
+                        }
                         return 100;
                     }
                 });
@@ -343,18 +355,156 @@ const Preloader = () => {
         };
     }, []);
 
+    useEffect(() => {
+        if (!showSmileCanvas) return;
+        const canvas = smileCanvasRef.current;
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        
+        const resizeSmileCanvas = () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            ctx.lineCap = 'round';
+            ctx.lineJoin = 'round';
+            ctx.lineWidth = 8;
+            ctx.strokeStyle = '#ffffff'; // White ink
+        };
+        
+        resizeSmileCanvas();
+        window.addEventListener('resize', resizeSmileCanvas);
+
+        const startDrawing = (e) => {
+            e.preventDefault(); // Prevent scrolling/default touch actions
+            isDrawing.current = true;
+            currentPath.current = [];
+            ctx.beginPath();
+            const { clientX, clientY } = e.touches ? e.touches[0] : e;
+            ctx.moveTo(clientX, clientY);
+            currentPath.current.push({ x: clientX, y: clientY });
+        };
+
+        const draw = (e) => {
+            e.preventDefault();
+            if (!isDrawing.current) return;
+            const { clientX, clientY } = e.touches ? e.touches[0] : e;
+            ctx.lineTo(clientX, clientY);
+            ctx.stroke();
+            currentPath.current.push({ x: clientX, y: clientY });
+        };
+
+        const stopDrawing = () => {
+            if (!isDrawing.current) return;
+            isDrawing.current = false;
+            ctx.closePath();
+            checkTick();
+        };
+
+        const checkTick = () => {
+            const path = currentPath.current;
+            if (path.length < 10) return;
+
+            // Find min/max Y and their indices
+            let minY = Infinity;
+            let maxY = -Infinity;
+            let maxYIndex = -1;
+
+            path.forEach((p, index) => {
+                if (p.y < minY) minY = p.y;
+                if (p.y > maxY) {
+                    maxY = p.y;
+                    maxYIndex = index;
+                }
+            });
+
+            const start = path[0];
+            const end = path[path.length - 1];
+            const lowestPoint = path[maxYIndex];
+
+            // Heuristics for a Tick (Checkmark)
+            // 1. It goes down then up (Lowest point is somewhere in the middle)
+            // 2. Start is to the left of lowest point
+            // 3. End is to the right of lowest point
+            // 4. End is higher (smaller Y) than lowest point
+            
+            const isDownThenUp = lowestPoint.y > start.y && lowestPoint.y > end.y;
+            const isLeftToRight = start.x < lowestPoint.x && end.x > lowestPoint.x;
+            
+            // Relaxed check: Just check if we have a significant "V" or "U" shape
+            // Or even simpler: just check if we drew something significant
+            const width = Math.max(...path.map(p => p.x)) - Math.min(...path.map(p => p.x));
+            const height = maxY - minY;
+
+            if (width > 30 && height > 30 && isDownThenUp) {
+                setSmileSuccess(true);
+                localStorage.setItem('preloaderTicked', 'true');
+                
+                // Exit animation using GSAP
+                gsap.to(".preloader", {
+                    yPercent: -100,
+                    borderBottomLeftRadius: "50vw", // Round bottom corners
+                    borderBottomRightRadius: "50vw",
+                    duration: 1.5,
+                    ease: "power3.inOut",
+                    delay: 0.2,
+                    onComplete: () => {
+                        setVisible(false);
+                        document.body.style.overflow = '';
+                    }
+                });
+            }
+        };
+
+        canvas.addEventListener('mousedown', startDrawing);
+        canvas.addEventListener('mousemove', draw);
+        canvas.addEventListener('mouseup', stopDrawing);
+        canvas.addEventListener('touchstart', startDrawing);
+        canvas.addEventListener('touchmove', draw);
+        canvas.addEventListener('touchend', stopDrawing);
+
+        return () => {
+            window.removeEventListener('resize', resizeSmileCanvas);
+            canvas.removeEventListener('mousedown', startDrawing);
+            canvas.removeEventListener('mousemove', draw);
+            canvas.removeEventListener('mouseup', stopDrawing);
+            canvas.removeEventListener('touchstart', startDrawing);
+            canvas.removeEventListener('touchmove', draw);
+            canvas.removeEventListener('touchend', stopDrawing);
+        };
+    }, [showSmileCanvas]);
+
     if (!visible) return null;
 
     return (
         <div className="preloader">
             <canvas ref={canvasRef} className="preloader-canvas"></canvas>
-            <div className="preloader-content">
+            {showSmileCanvas && (
+                <canvas 
+                    ref={smileCanvasRef} 
+                    className="smile-canvas"
+                    style={{ 
+                        position: 'absolute', 
+                        top: 0, 
+                        left: 0, 
+                        zIndex: 10, 
+                        cursor: `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z'></path></svg>") 0 24, auto`,
+                        opacity: smileSuccess ? 0 : 1,
+                        transition: 'opacity 0.5s ease'
+                    }}
+                ></canvas>
+            )}
+            <div className={`preloader-content ${showSmileCanvas ? 'fade-out' : ''}`}>
                 <div className="count-preload">{count}%</div>
                 <div className="progress-bar-wrapper">
                     <div className="progress-bar" style={{ width: `${count}%` }}></div>
                 </div>
                 <div className="thought-text">{thought}</div>
             </div>
+            
+            {showSmileCanvas && !smileSuccess && (
+                <div className="smile-instruction">
+                    Draw a tick to continue
+                </div>
+            )}
         </div>
     );
 };

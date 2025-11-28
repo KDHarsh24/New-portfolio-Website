@@ -293,8 +293,8 @@
     }
     
     .scattered-postcard {
-        width: 150px; /* Smaller for mobile */
-        height: 100px; /* Smaller for mobile */
+        width: 180px; /* Smaller for mobile */
+        height: 120px; /* Smaller for mobile */
         cursor: pointer; 
     }
 
@@ -312,6 +312,30 @@
 
     .chapter-year {
         font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .postcard-face {
+        padding: 3px; /* Further reduced padding */
+    }
+    
+    .text-card-overlay {
+        padding: 1.5rem; /* Reduced padding */
+    }
+
+    .chapter-title {
+        font-size: 1.2rem; /* Smaller title */
+    }
+
+    .chapter-desc {
+        font-size: 0.8rem; /* Smaller desc */
+        line-height: 1.4;
+    }
+    
+    .chapter-year {
+        font-size: 0.7rem;
+        margin-bottom: 0.5rem;
     }
 }
 
