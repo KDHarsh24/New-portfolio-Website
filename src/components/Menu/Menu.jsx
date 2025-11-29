@@ -175,10 +175,10 @@ const Menu = ({ isOpen, onClose }) => {
 
     const menuItems = [
         { label: 'Home', link: '#home' },
-        { label: 'Projects', link: '#projects' },
         { label: 'Experience', link: '#experience' },
-        { label: 'Contact', link: '#contact' },
-        { label: 'Mystery', link: '#mystery' }
+        { label: 'Projects', link: '#projects' },
+        { label: 'Journey', link: '#journey' },
+        { label: 'Contact', link: '#contact' }
     ];
 
     return (

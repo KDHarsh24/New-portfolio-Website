@@ -1,0 +1,280 @@
+.marquee-section {
+    width: 100%;
+    padding: 2rem 0;
+    background-color: #0a0a0a;
+    color: #fff;
+    overflow: hidden;
+    position: relative;
+    z-index: 5;
+    scroll-margin-top: 100px; /* Offset for fixed navbar */
+}
+
+.marquee-header-container {
+    position: absolute;
+    left: 3.5%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: fit-content;
+    max-width: 400px;
+    justify-content: center;
+    margin: 0;
+    padding: 1.5rem 2rem;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    text-align: left;
+    z-index: 10;
+    pointer-events: none; /* Allow clicking through to marquee items */
+}
+
+.marquee-heading {
+    font-family: "Monument Extended Regular", sans-serif;
+    font-size: 1.5rem;
+    color: #fff;
+    margin-bottom: 0.5rem;
+    display: flex;
+    justify-content: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.marquee-subheading {
+    font-family: "Neue Montreal", sans-serif;
+    font-size: 0.9rem;
+    color: #aaa;
+    max-width: 100%;
+    line-height: 1.6;
+}
+
+.marquee-container {
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    cursor: none; /* Hide default cursor to show custom one */
+}
+
+.marquee-content {
+    display: inline-block;
+    animation: marquee-scroll 60s linear infinite;
+}
+
+.marquee-container:hover .marquee-content {
+    animation-play-state: paused;
+}
+
+.marquee-item {
+    margin-right: 8rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 2rem;
+    cursor: none; /* Override pointer to keep custom cursor */
+    vertical-align: middle;
+    transition: transform 0.3s ease;
+}
+
+.company-name {
+    font-family: "Monument Extended Regular", sans-serif;
+    font-size: 5rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.2);
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+}
+
+.company-logo {
+    height: 60px; /* Smaller logo next to big text */
+    width: auto;
+    filter: grayscale(100%) brightness(0.7);
+    transition: filter 0.3s ease, transform 0.3s ease;
+    opacity: 0.6;
+}
+
+.marquee-container:hover .company-name {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.marquee-container:hover .company-logo {
+    opacity: 0.8;
+}
+
+.marquee-item:hover .company-name {
+    color: #fff !important;
+}
+
+.marquee-item:hover .company-logo {
+    filter: grayscale(0%) brightness(1);
+    transform: scale(1.1);
+    opacity: 1;
+}
+
+@keyframes marquee-scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* Dialog Styles */
+.company-dialog-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+}
+
+.company-dialog {
+    background: #1a1a1a;
+    padding: 3rem;
+    border-radius: 24px;
+    width: 90%;
+    max-width: 600px;
+    position: relative;
+    border: 1px solid #333;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    animation: dialog-pop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+@keyframes dialog-pop {
+    0% { transform: scale(0.8); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.close-dialog-btn {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    background: none;
+    border: none;
+    color: #555;
+    font-size: 2.5rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: color 0.3s;
+    z-index: 10;
+}
+
+.close-dialog-btn:hover {
+    color: #fff;
+}
+
+.dialog-header {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    border-bottom: 1px solid #333;
+    padding-bottom: 1.5rem;
+}
+
+.dialog-logo-img {
+    height: 50px;
+    width: auto;
+}
+
+.dialog-title {
+    font-family: "Monument Extended Regular", sans-serif;
+    font-size: 2.5rem;
+    color: #fff;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+.dialog-body {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.dialog-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.dialog-label {
+    font-family: "Neue Montreal", sans-serif;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #777;
+    margin: 0;
+}
+
+.dialog-text {
+    font-family: "Neue Montreal", sans-serif;
+    font-size: 1.1rem;
+    color: #ccc;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.dialog-role-text {
+    font-family: "Neue Montreal", sans-serif;
+    font-size: 1.3rem;
+    color: #ff4c00;
+    font-weight: 500;
+    margin: 0;
+}
+
+.role-timeline-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 0.5rem;
+}
+
+.dialog-timeline {
+    font-family: "Neue Montreal", sans-serif;
+    font-size: 0.9rem;
+    color: #888;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 4px 10px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+@media (max-width: 768px) {
+    .marquee-header-container {
+        position: relative;
+        right: auto;
+        top: auto;
+        transform: none;
+        margin: 0 1rem 2rem 1rem;
+        padding: 1.5rem;
+        width: auto;
+        max-width: none;
+        pointer-events: auto;
+    }
+
+    .marquee-heading {
+        font-size: 1.5rem;
+    }
+
+    .marquee-item {
+        font-size: 3rem;
+        margin-right: 2rem;
+    }
+    
+    .dialog-title {
+        font-size: 1.8rem;
+    }
+    
+    .company-dialog {
+        padding: 2rem;
+    }
+}

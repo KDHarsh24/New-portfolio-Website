@@ -1,17 +1,18 @@
-.hero-split-section {
+.new-hero {
     width: 100%;
-    height: 100vh;
+    min-height: 75vh; /* Reduced from 85vh */
+    background-color: #e5e3dc; /* Beige color */
     display: flex;
-    background-color: #e5e3dc; /* Old Beige */
-    overflow: hidden;
+    align-items: center;
+    justify-content: center;
     font-family: "Neue Montreal", sans-serif;
-    padding: 100px 2rem 2rem 2rem;
+    padding: 2rem;
     box-sizing: border-box;
-    position: relative;
-    /* cursor: none; Removed global hide */
+    overflow: hidden;
+    position: relative; /* For canvas positioning */
 }
 
-.star-background-canvas {
+.hero-canvas {
     position: absolute;
     top: 0;
     left: 0;
@@ -21,332 +22,171 @@
     pointer-events: none;
 }
 
-.ancient-box {
-    position: relative;
-    z-index: 1;
+.hero-container {
     display: flex;
-    width: 97%; /* Reduced width */
-    height: 95%;
-    margin: 0 auto;
-    background: #fdfcf0;
-    border: 5px solid #5d4037; /* Wood border */
-    /* 3D Box Effect */
-    box-shadow: 
-        inset 2px 2px 5px rgba(0,0,0,0.3), /* Inner shadow for depth */
-        inset -2px -2px 5px rgba(255,255,255,0.1), /* Highlight */
-        5px 5px 15px rgba(0,0,0,0.3), /* Outer drop shadow */
-        0 0 0 2px #3e2723, /* Darker outer rim */
-        inset 0 0 0 2px #3e2723; /* Darker inner rim */
-    border-radius: 4px;
-}
-
-.hero-left-wrapper {
-    width: 40%; /* Reduced to 40% */
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    border-right: 2px solid #5d4037;
-}
-
-/* --- Top Left: Text Story --- */
-.hero-col-text {
-    width: 100%;
-    height: 45%; /* Reduced to give more space to visual */
-    position: relative;
-    border-bottom: 2px solid #5d4037;
-    background-color: #fff;
-    overflow: hidden;
-}
-
-.text-card-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    opacity: 0.85; /* Increased visibility */
-    filter: grayscale(0%); /* Removed grayscale */
-    transition: background-image 1s ease;
-}
-
-.text-card-overlay {
-    position: absolute;
-    top: 10%;
-    left: 10%;
-    width: 80%;
-    height: 80%;
-    background: rgba(255, 255, 255, 0.9); /* Slightly transparent */
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-    padding: 3rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    border: 1px solid #eee;
-}
-
-.text-content {
-    display: flex;
-    flex-direction: column;
-}
-
-.chapter-year {
-    font-size: 0.9rem;
-    color: #888;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-bottom: 1rem;
-}
-
-.chapter-title {
-    font-family: "Monument Extended Regular";
-    font-size: 1.8rem; /* Reduced from 2.5rem */
-    color: #222;
-    line-height: 1;
-    margin-bottom: 1rem;
-    text-transform: uppercase;
-}
-
-.separator-line {
-    width: 40px;
-    height: 2px;
-    background-color: #222;
-    margin-bottom: 1rem;
-}
-
-.chapter-desc {
-    font-size: 1.1rem;
-    line-height: 1.4;
-    color: #555;
-}
-
-/* --- Bottom Left: Interactive Canvas --- */
-.hero-col-visual {
-    width: 100%;
-    height: 55%; /* Increased by 5% */
-    position: relative;
-    background-color: #fdfcf0; /* Light Beige */
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.visual-header {
-    padding: 0.5rem;
-    display: flex;
-    justify-content: space-between;
     align-items: center;
-    font-size: 0.8rem;
-    color: #888;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2; /* Above canvas */
 }
 
-.visual-dots span {
-    display: inline-block;
-    width: 6px;
-    height: 6px;
-    background-color: #ccc;
-    border-radius: 50%;
-    margin-left: 4px;
-}
-
-.interactive-canvas {
+.hero-content {
     flex: 1;
-    width: 100%;
-    cursor: none; /* Hide default cursor */
+    padding-right: 4rem;
 }
 
-.visual-footer {
-    padding: 0.5rem;
-    text-align: center;
-    font-size: 0.8rem;
-    color: #aaa;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    box-sizing: border-box;
+.hero-title {
+    font-family: "Monument Extended Regular", sans-serif;
+    font-size: 5rem;
+    line-height: 1.1;
+    color: #222;
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    position: relative;
+    z-index: 10001; /* Ensure text is above the fixed cursor if possible, or at least high up */
+}
+
+.hero-title span {
+    display: inline-block;
+}
+
+.hero-title .highlight {
+    color: #ff4c00;
+}
+
+.hero-subtitle {
+    font-size: 2rem;
+    font-weight: 500;
+    color: #555;
+    margin-bottom: 1rem;
+}
+
+.hero-desc {
+    font-size: 1.2rem;
+    color: #777;
+    max-width: 500px;
+    line-height: 1.6;
+}
+
+.hero-visual {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.blob-wrapper {
+    position: relative;
+    width: 400px; /* Reduced from 500px */
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.blob-svg {
     position: absolute;
-    bottom: 10px; /* Moved to bottom */
-    width: 100%;
-    pointer-events: none;
+    width: 110%; /* Smaller */
+    height: 110%;
+    top: 15%; /* Lower position */
+    z-index: 0;
+    opacity: 1;
+    filter: drop-shadow(0 10px 20px rgba(255, 76, 0, 0.3));
 }
 
-/* --- Right: Scattered Postcards --- */
-.hero-col-nav {
-    width: 60%; 
-    height: 100%;
+.hero-photo {
+    width: 280px; /* Reduced from 350px */
+    height: 360px; /* Reduced from 450px */
     position: relative;
-    background-color: #e8e8e8;
-    overflow: hidden;
-    perspective: 1000px; /* For 3D effect */
+    z-index: 2; /* Increased z-index to ensure it's above blob */
+    /* Create the "Tombstone" shape: Flat top, Round bottom */
+    /* inset(top right bottom left round topLeft topRight bottomRight bottomLeft) */
+    clip-path: inset(0 0 0 0 round 20px 20px 50% 50%); 
+    
+    /* Remove old border/shadow as they don't follow clip-path well */
+    border: none;
+    box-shadow: none;
+    
+    /* Align bottom with the blob */
+    margin-bottom: 30px; 
+    transition: transform 0.5s ease;
+    filter: drop-shadow(0 20px 30px rgba(0,0,0,0.2)); /* Drop shadow for the cutout feel */
+    background-color: transparent; /* Ensure no background color behind the image */
 }
 
-.postcards-container {
-    width: 100%;
-    height: 100%;
-    position: relative;
+/* When hovering, pop up slightly */
+.hero-photo:hover {
+    transform: translateY(-10px) scale(1.05);
 }
 
-.scattered-postcard {
-    position: absolute;
-    width: 400px; 
-    height: 280px; 
-    cursor: none; /* Hide default cursor for custom one */
-    /* transition: transform 0.1s ease-out; Removed to prevent conflict with GSAP */
-    z-index: 1;
-    transform-style: preserve-3d;
-}
-
-.postcard-face {
-    width: 100%;
-    height: 100%;
-    background: #fff;
-    padding: 10px;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.2); /* Deeper shadow for 3D */
-    position: relative;
-    transition: transform 0.3s ease;
-    transform: translateZ(0);
-}
-
-.postcard-face img {
+.hero-photo img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: none; /* Real image */
-}
-
-.postcard-mark {
-    position: absolute;
-    bottom: 15px;
-    right: 15px;
-    background: #fff;
-    padding: 6px 12px;
-    font-size: 0.9rem;
-    font-weight: bold;
-    color: #333;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    transform: translateZ(20px); /* Pop out */
-}
-
-/* Hover & Active States */
-.scattered-postcard:hover {
-    z-index: 10 !important;
-    /* Transform handled by JS for tilt */
-}
-
-.scattered-postcard.active {
-    z-index: 20 !important;
-    /* transform: scale(1.1) !important; Removed to allow GSAP 3D tilt */
-    box-shadow: 0 20px 50px rgba(0,0,0,0.2);
-}
-
-.scattered-postcard.active .postcard-face {
-    border: 2px solid #333;
+    object-position: center top; /* Focus on head */
+    mix-blend-mode: multiply; /* Hides white background against beige */
+    display: block; /* Removes bottom space */
 }
 
 @media (max-width: 1024px) {
-    .hero-split-section {
-        flex-direction: column;
-        height: auto;
-        min-height: 100vh;
-        padding: 80px 1rem 1rem 1rem; /* Added top padding for navbar */
-        cursor: auto; 
+    .hero-container {
+        flex-direction: column-reverse;
+        text-align: center;
+        justify-content: center;
     }
 
-    .ancient-box {
-        flex-direction: column;
-        width: 100%; /* Further reduced for mobile */
+    .hero-content {
+        padding-right: 0;
+        margin-top: 2rem;
     }
 
-    .custom-cursor {
-        display: none !important; 
+    .hero-title {
+        font-size: 3rem;
+        justify-content: center;
     }
 
-    .hero-left-wrapper {
-        width: 100%;
-        height: auto;
-        border: 2px solid #5d4037;
-        border-bottom: none;
-        order: 2; /* Wrapper comes second */
-        display: flex;
-        flex-direction: column;
+    .blob-wrapper {
+        width: 300px;
+        height: 300px;
     }
 
-    .hero-col-visual {
-        height: 40vh; /* Reduced height to pull it up */
-        order: 1; /* Interactive first inside wrapper */
-        border-bottom: 2px solid #5d4037;
-    }
-
-    .hero-col-text {
-        height: auto; /* Auto height for text */
-        min-height: 30vh;
-        order: 2; /* Text second inside wrapper */
-    }
-
-    .hero-col-nav {
-        width: 100%;
-        height: 40vh; /* Reduced from 50vh */
-        border: 2px solid #5d4037;
-        order: 1; /* Postcards first overall */
-    }
-    
-    .scattered-postcard {
-        width: 180px; /* Smaller for mobile */
-        height: 150px; /* Smaller for mobile */
-        cursor: pointer; 
-    }
-
-    .postcard-face {
-        padding: 5px; /* Reduced padding for mobile */
-    }
-
-    .chapter-title {
-        font-size: 1.5rem; /* Smaller title on mobile */
-    }
-
-    .chapter-desc {
-        font-size: 0.9rem; /* Smaller desc on mobile */
-    }
-
-    .chapter-year {
-        font-size: 0.8rem;
+    .hero-photo {
+        width: 210px;
+        height: 270px;
+        margin-bottom: 20px;
     }
 }
 
 @media (max-width: 480px) {
-    .postcard-face {
-        padding: 3px; /* Further reduced padding */
+    .new-hero {
+        padding: 1rem;
+        min-height: auto; /* Allow content to dictate height on mobile */
+        padding-top: 100px; /* Space for navbar */
+        padding-bottom: 50px;
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
     }
     
-    .text-card-overlay {
-        padding: 1.5rem; /* Reduced padding */
+    .hero-subtitle {
+        font-size: 1.2rem;
     }
 
-    .chapter-title {
-        font-size: 1.2rem; /* Smaller title */
+    .blob-wrapper {
+        width: 250px;
+        height: 250px;
     }
 
-    .chapter-desc {
-        font-size: 0.8rem; /* Smaller desc */
-        line-height: 1.4;
-    }
-    
-    .chapter-year {
-        font-size: 0.7rem;
-        margin-bottom: 0.5rem;
-    }
-}
-
-@media (hover: none) and (pointer: coarse) {
-    .hero-split-section {
-        cursor: auto;
-    }
-    .custom-cursor {
-        display: none !important;
-    }
-    .scattered-postcard {
-        cursor: pointer;
+    .hero-photo {
+        width: 175px;
+        height: 225px;
+        margin-bottom: 15px;
     }
 }

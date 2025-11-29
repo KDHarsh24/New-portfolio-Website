@@ -9,6 +9,7 @@
     min-height: 100vh;
     overflow-x: hidden; /* Allow vertical scroll, prevent horizontal */
     overflow-y: visible;
+    scroll-margin-top: 100px; /* Offset for fixed navbar */
 }
 
 .contact-marquee{
@@ -256,10 +257,10 @@ textarea#message{
         font-size: 30px;
     }
     .submit button{
-        font-size: 36px;
+        font-size: 28px;
     }
     .send-icon{
-        font-size: 36px;
+        font-size: 28px;
     }
     .contact-marquee span {
         font-size: 5em; /* Increased marquee size for mobile */
@@ -271,13 +272,13 @@ textarea#message{
         font-size: 4em; /* Increased from 2.5em */
     }
     .submit button {
-        font-size: 24px;
+        font-size: 20px;
     }
     .send-icon {
-        font-size: 24px;
+        font-size: 20px;
     }
     input, textarea#message {
-        font-size: 18px;
+        font-size: 16px;
     }
 }
 button{

@@ -50,6 +50,51 @@ export const removeHoverEffect = (link) => {
     link.removeEventListener("mouseleave", cursorLeave);
 };
 
+export const setCursorText = (text) => {
+    if (!cursor) return;
+    const content = cursor.querySelector('.cursor-content');
+    if (content) {
+        content.innerHTML = text;
+        if (text) {
+            cursor.classList.add('has-content');
+        } else {
+            cursor.classList.remove('has-content');
+        }
+    }
+};
+
+export const setCursorMedia = (url) => {
+    if (!cursor) return;
+    const media = cursor.querySelector('.cursor-media');
+    if (media) {
+        if (url) {
+            media.style.backgroundImage = `url(${url})`;
+            cursor.classList.add('has-media');
+        } else {
+            media.style.backgroundImage = '';
+            cursor.classList.remove('has-media');
+        }
+    }
+};
+
+export const setCursorBubble = (active) => {
+    if (!cursor) return;
+    if (active) {
+        cursor.classList.add('is-bubble');
+    } else {
+        cursor.classList.remove('is-bubble');
+    }
+};
+
+export const setCursorGrow = (active) => {
+    if (!cursor) return;
+    if (active) {
+        cursor.classList.add('grow');
+    } else {
+        cursor.classList.remove('grow');
+    }
+};
+
 export const initCursorAnimation = () => {
     cursor = document.querySelector(".cursor");
     let mouseX = 0;

@@ -29,7 +29,12 @@ const Cursor = () => {
 
     if (isTouch) return null;
 
-    return <div className="cursor"></div>;
+    return (
+        <div className="cursor">
+            <div className="cursor-content"></div>
+            <div className="cursor-media"></div>
+        </div>
+    );
 };
 
 export default Cursor;
