@@ -25,7 +25,7 @@
     position: relative;
     z-index: 1;
     display: flex;
-    width: 95%; /* Reduced width */
+    width: 97%; /* Reduced width */
     height: 95%;
     margin: 0 auto;
     background: #fdfcf0;
@@ -193,7 +193,7 @@
     width: 400px; 
     height: 280px; 
     cursor: none; /* Hide default cursor for custom one */
-    transition: transform 0.1s ease-out; /* Faster transition for tilt */
+    /* transition: transform 0.1s ease-out; Removed to prevent conflict with GSAP */
     z-index: 1;
     transform-style: preserve-3d;
 }
@@ -237,7 +237,7 @@
 
 .scattered-postcard.active {
     z-index: 20 !important;
-    transform: scale(1.1) rotate(0deg) !important;
+    /* transform: scale(1.1) !important; Removed to allow GSAP 3D tilt */
     box-shadow: 0 20px 50px rgba(0,0,0,0.2);
 }
 
@@ -250,13 +250,13 @@
         flex-direction: column;
         height: auto;
         min-height: 100vh;
-        padding: 100px 1rem 1rem 1rem; /* Added top padding for navbar */
+        padding: 80px 1rem 1rem 1rem; /* Added top padding for navbar */
         cursor: auto; 
     }
 
     .ancient-box {
         flex-direction: column;
-        width: 85%; /* Further reduced for mobile */
+        width: 100%; /* Further reduced for mobile */
     }
 
     .custom-cursor {
@@ -281,7 +281,7 @@
 
     .hero-col-text {
         height: auto; /* Auto height for text */
-        min-height: 50vh;
+        min-height: 30vh;
         order: 2; /* Text second inside wrapper */
     }
 
@@ -294,7 +294,7 @@
     
     .scattered-postcard {
         width: 180px; /* Smaller for mobile */
-        height: 120px; /* Smaller for mobile */
+        height: 150px; /* Smaller for mobile */
         cursor: pointer; 
     }
 

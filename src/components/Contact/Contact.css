@@ -105,7 +105,7 @@ textarea#message{
     padding: 0; /* Remove padding, handle in content */
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
-    cursor: pointer;
+    cursor: none;
     position: relative;
     overflow: hidden;
     height: 100px; /* Fixed height for canvas */
@@ -136,6 +136,69 @@ textarea#message{
     width: 60px;
     height: 60px;
     pointer-events: none;
+}
+
+/* Blast overlay for button-only blackhole effect */
+.blast-overlay {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 60px;
+    height: 60px;
+    transform: translate(-50%, -50%) scale(0);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 2;
+    background: radial-gradient(circle, #000 0%, #000 40%, rgba(0,0,0,0.9) 60%, transparent 70%);
+    box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.8); /* Intense white glow */
+}
+
+.blast-overlay::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.9);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+}
+
+@keyframes blackhole-blast {
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 1;
+    }
+    40% {
+        transform: translate(-50%, -50%) scale(2);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(20); /* Massive expansion */
+        opacity: 0;
+    }
+}
+
+.submit button.blast .blast-overlay {
+    animation: blackhole-blast 1.2s cubic-bezier(0.1, 0.7, 0.1, 1) forwards;
+}
+
+/* Content gets sucked in before disappearing */
+.submit button.blast .btn-content {
+    transform: scale(0);
+    opacity: 0;
+    transition: all 0.4s ease-in;
+}
+
+/* Sent state styling */
+.submit button.sent {
+    cursor: default;
+    opacity: 0.95;
+}
+.submit button.sent .btn-content span {
+    color: #bdbdbd;
 }
 
 .submit button:hover {

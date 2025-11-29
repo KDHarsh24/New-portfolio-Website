@@ -16,15 +16,15 @@ const memories = [
     //     left: "5%"
     // },
     { 
-        id: 1, 
+        id: 0, 
         year: "2022", 
         puzzle: "The Land of Jewels", 
         significance: "Friendship forged in mist. Freedom found in the hills.", 
         img: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1920&auto=format&fit=crop", 
         shapeType: "valley",
-        rotation: "-3deg",
-        top: "10%",
-        left: "4%"
+        rotation: "-6deg",
+        top: "5%",
+        left: "0%"
     },
     { 
         id: 2, 
@@ -35,7 +35,7 @@ const memories = [
         shapeType: "study",
         rotation: "7deg",
         top: "45%",
-        left: "10%"
+        left: "7%"
     },
     { 
         id: 3, 
@@ -45,7 +45,7 @@ const memories = [
         img: "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?q=80&w=1920&auto=format&fit=crop", 
         shapeType: "beach",
         rotation: "-5deg",
-        top: "55%",
+        top: "50%",
         left: "50%"
     },
     { 
@@ -56,7 +56,7 @@ const memories = [
         img: "https://images.unsplash.com/photo-1514222134-b57cbb8ce073?q=80&w=1920&auto=format&fit=crop", 
         shapeType: "play",
         rotation: "2deg",
-        top: "15%",
+        top: "5%",
         left: "45%"
     }
 ];
@@ -101,27 +101,39 @@ const Hero = () => {
     const handlePostcardMove = (e, index) => {
         const card = e.currentTarget;
         const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left; 
-        const y = e.clientY - rect.top;  
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
         const centerX = rect.width / 2;
         const centerY = rect.height / 2;
-        
-        const rotateX = ((y - centerY) / centerY) * -10; 
+
+        const rotateX = ((y - centerY) / centerY) * -10;
         const rotateY = ((x - centerX) / centerX) * 10;
 
+        // Preserve the card's base Z rotation (e.g. "-3deg") while applying 3D tilt
+        const baseRotate = (memories[index] && memories[index].rotation) ? memories[index].rotation : '0deg';
+
         gsap.to(card, {
-            transform: `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.1)`,
+            transformPerspective: 1000,
+            rotation: baseRotate,
+            rotationX: rotateX,
+            rotationY: rotateY,
+            scale: 1.1,
             duration: 0.1,
-            ease: "power1.out"
+            ease: "power1.out",
+            overwrite: "auto"
         });
     };
 
     const handlePostcardLeave = (e, mem) => {
         handleCursorShrink();
         gsap.to(e.currentTarget, {
-            transform: `rotate(${mem.rotation}) scale(1)`,
+            rotation: mem.rotation,
+            rotationX: 0,
+            rotationY: 0,
+            scale: 1,
             duration: 0.5,
-            ease: "elastic.out(1, 0.5)"
+            ease: "elastic.out(1, 0.5)",
+            overwrite: "auto"
         });
     };
 

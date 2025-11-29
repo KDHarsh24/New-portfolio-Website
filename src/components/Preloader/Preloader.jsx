@@ -69,7 +69,7 @@ const Preloader = () => {
             // Planets: radiusX, radiusY, radius, speed, color, angle
             planets.push({ radiusX: minDim * 0.12, radiusY: minDim * 0.12 * squashFactor, radius: 3, speed: 0.005, color: '#A5A5A5', angle: Math.random() * Math.PI * 2 }); // Mercury
             planets.push({ radiusX: minDim * 0.18, radiusY: minDim * 0.18 * squashFactor, radius: 5, speed: 0.004, color: '#E3BB76', angle: Math.random() * Math.PI * 2 }); // Venus
-            planets.push({ radiusX: minDim * 0.28, radiusY: minDim * 0.28 * squashFactor, radius: 5.5, speed: 0.003, color: '#4F86F7', angle: Math.random() * Math.PI * 2, label: "we live in this" }); // Earth
+            planets.push({ radiusX: minDim * 0.28, radiusY: minDim * 0.28 * squashFactor, radius: 5.5, speed: 0.003, color: '#4F86F7', angle: Math.random() * Math.PI * 2, label: "I live here" }); // Earth
             planets.push({ radiusX: minDim * 0.38, radiusY: minDim * 0.38 * squashFactor, radius: 4, speed: 0.0024, color: '#FF5733', angle: Math.random() * Math.PI * 2 }); // Mars
             planets.push({ radiusX: minDim * 0.55, radiusY: minDim * 0.55 * squashFactor, radius: 10, speed: 0.0016, color: '#D9A066', angle: Math.random() * Math.PI * 2 }); // Jupiter
         };
@@ -102,9 +102,9 @@ const Preloader = () => {
                 x: Math.random() * width,
                 y: Math.random() * height * 0.5,
                 length: Math.random() * 80 + 20,
-                speed: Math.random() * 15 + 10,
+                speed: Math.random() * 2 + 10,
                 angle: Math.PI / 4 + (Math.random() * 0.2 - 0.1), // Diagonal
-                opacity: 1
+                opacity: 0.8
             });
         };
 
@@ -114,7 +114,8 @@ const Preloader = () => {
             
             const systemTilt = -15 * (Math.PI / 180); // 15 degree tilt
             const centerX = width / 2;
-            const centerY = height / 2;
+            // Move the solar system slightly up from the exact center for better visual balance
+            const centerY = height * 0.38;
 
             // Draw Stars
             stars.forEach(star => {
@@ -258,7 +259,7 @@ const Preloader = () => {
             });
 
             // Shooting Stars
-            if (Math.random() < 0.03) createShootingStar();
+            if (Math.random() < 0.02) createShootingStar();
 
             for (let i = shootingStars.length - 1; i >= 0; i--) {
                 const s = shootingStars[i];

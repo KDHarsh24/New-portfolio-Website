@@ -1,5 +1,5 @@
 .navbar{
-    width: 100%;
+    width: 94%;
     height: 90px; /* Fixed height for better control */
     font-family: "Neue Montreal";
     display: flex;
@@ -11,7 +11,7 @@
     left: 50%;
     transform: translateX(-50%);
     color: #0a0a0a;
-    padding: 0 40px;
+    padding: 0 10px;
     font-size: 1.2em;
     transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -29,11 +29,11 @@
                 inset 0 0 40px rgba(255, 255, 255, 0.15); /* Intense inner glow */
     color: #e5e3dc;
     height: 65px;
-    width: 98%;
+    width: 93%;
     max-width: 1800px;
     top: 8px;
-    border-radius: 30px;
-    padding: 0 30px;
+    border-radius: 15px;
+    padding: 0 20px;
 }
 
 .logo{

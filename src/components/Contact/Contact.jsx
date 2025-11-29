@@ -16,9 +16,31 @@ const Contact = () => {
             addHoverEffect(btn);
         }
 
+        // Submit button blast handler
+        const handleBlast = (ev) => {
+            // Prevent actual form submit; show effect and message instead
+            ev.preventDefault();
+            const button = submitBtnRef.current;
+            if (!button) return;
+            if (button.classList.contains('sent') || button.classList.contains('blast')) return;
+            button.classList.add('blast');
+            button.disabled = true;
+
+            // After animation, show confirmation text
+            setTimeout(() => {
+                const span = button.querySelector('.btn-content span');
+                if (span) span.textContent = 'Teleported';
+                button.classList.remove('blast');
+                button.classList.add('sent');
+            }, 1200); // matches CSS animation duration
+        };
+
+        if (btn) btn.addEventListener('click', handleBlast);
+
         return () => {
             if (btn) {
                 removeHoverEffect(btn);
+                btn.removeEventListener('click', handleBlast);
             }
         };
     }, []);
@@ -190,7 +212,7 @@ const Contact = () => {
                     </div>
                 </div>
                 <div className="contact-form col">
-                    <h4 className="mail-notification">Send an Email</h4>
+                    <h4 className="mail-notification">Send a Message</h4>
                     <form className="contact-wrapper" id="myform" action="https://formsubmit.co/kdharsh24@gmail.com" method="POST">
                         <div className="contact-row">
                             <input type="text" placeholder="Name" name="name" className="hover-this" id="name"/>
@@ -210,6 +232,7 @@ const Contact = () => {
                                     <span>Submit</span>
                                     <canvas ref={blackholeCanvasRef} className="blackhole-canvas"></canvas>
                                 </div>
+                                <div className="blast-overlay" aria-hidden="true"></div>
                             </button>
                         </div>
                     </form>

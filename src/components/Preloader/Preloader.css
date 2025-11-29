@@ -60,19 +60,35 @@
 
 .progress-bar-wrapper {
     width: 100%;
-    height: 7px; /* Made thicker */
-    background-color: #333;
+    height: 10px; /* Slightly taller for the glass strip */
     margin-bottom: 1.5rem;
     position: relative;
     overflow: hidden;
-    border-radius: 6px;
+    border-radius: 12px;
+    /* Subtle frosted-glass background */
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.06);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+    backdrop-filter: blur(6px) saturate(110%);
+    -webkit-backdrop-filter: blur(6px) saturate(110%);
 }
 
 .progress-bar {
     height: 100%;
-    background-color: #ff4c00; /* Accent color */
+    background: linear-gradient(90deg, rgba(255,76,0,1), rgba(255,120,50,0.95)); /* Accent gradient */
     width: 0%;
-    transition: width 0.1s linear;
+    transition: width 0.12s linear;
+    box-shadow: 0 2px 8px rgba(255,76,0,0.12) inset;
+}
+
+/* Make the percent number sit on the same glass strip on larger screens */
+.count-preload {
+    background: rgba(255,255,255,0.02);
+    padding: 8px 14px;
+    border-radius: 15px;
+    border: 1px solid rgba(255,255,255,0.04);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
 }
 
 .thought-text {
