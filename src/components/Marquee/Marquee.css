@@ -7,11 +7,63 @@
     position: relative;
     z-index: 5;
     scroll-margin-top: 100px; /* Offset for fixed navbar */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Invert colors in dark mode as requested */
+[data-theme="dark"] .marquee-section {
+    background: linear-gradient(135deg, #dbeafe 0%, #93c5fd 100%); /* More bluish gradient */
+    color: #000000;
+}
+
+[data-theme="dark"] .marquee-subheading {
+    color: #ffffff; /* White text for subheading */
+}
+
+[data-theme="dark"] .marquee-header-container {
+    background: rgba(0, 0, 0, 0.4); /* Darker glass effect */
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .company-name {
+    color: #000000 !important; /* Force filled black always */
+    -webkit-text-stroke: 0 !important;
+}
+
+[data-theme="dark"] .marquee-item:hover {
+    background: rgba(0, 0, 0, 0.05); /* Black glass effect */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+[data-theme="dark"] .marquee-item:hover .company-name {
+    color: #000 !important; /* Force black on hover */
+    -webkit-text-stroke: 0 !important;
+}
+
+[data-theme="dark"] .marquee-item:hover .company-role {
+    color: #000;
+}
+
+[data-theme="dark"] .marquee-item:hover .company-duration {
+    color: #000;
+}
+
+[data-theme="dark"] .company-role {
+    color: #000;
+}
+
+[data-theme="dark"] .company-duration {
+    color: #000;
 }
 
 .marquee-header-container {
     position: absolute;
-    left: 3.5%;
+    left: 6%;
     top: 50%;
     transform: translateY(-50%);
     width: fit-content;
@@ -31,28 +83,47 @@
 
 .marquee-heading {
     font-family: "Monument Extended Regular", sans-serif;
-    font-size: 1.5rem;
-    color: #fff;
-    margin-bottom: 0.5rem;
+    font-size: 1.8rem;
+    background: linear-gradient(90deg, #ffffff, #ff8a00, #7efcd6);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
     display: flex;
     justify-content: center;
     text-transform: uppercase;
     letter-spacing: 2px;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.35);
 }
 
 .marquee-subheading {
     font-family: "Neue Montreal", sans-serif;
-    font-size: 0.9rem;
-    color: #aaa;
+    font-size: 0.95rem;
+    color: rgba(255,255,255,0.75);
+    margin-top: 0.25rem;
+    font-weight: 500;
     max-width: 100%;
-    line-height: 1.6;
+    line-height: 1.1;
 }
 
 .marquee-container {
-    width: 100%;
-    overflow: hidden;
+    width: var(--container-width);
+    max-width: var(--container-max-width);
+    margin-left: auto;
+    margin-right: auto; /* Center it */
+    overflow-x: auto; /* Allow scrolling for drag */
+    overflow-y: hidden;
     white-space: nowrap;
-    cursor: none; /* Hide default cursor to show custom one */
+    cursor: none;
+    mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* IE 10+ */
+    position: relative;
+    z-index: 2;
+}
+
+.marquee-container::-webkit-scrollbar { 
+    display: none;  /* Chrome Safari */
 }
 
 .marquee-content {
@@ -64,27 +135,34 @@
     animation-play-state: paused;
 }
 
+/* Pause animation while dragging for manual scroll */
+.marquee-container.is-dragging .marquee-content {
+    animation-play-state: paused;
+}
+
 .marquee-item {
-    margin-right: 8rem;
+    margin-right: 6rem;
+    padding: 2.5rem 1rem;
     display: inline-flex;
     align-items: center;
-    gap: 2rem;
+    gap: 0.5rem;
     cursor: none; /* Override pointer to keep custom cursor */
     vertical-align: middle;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, background 0.3s ease, border 0.3s ease;
+    border: 1px solid transparent; /* Reserve space for border to prevent layout shift */
 }
 
 .company-name {
     font-family: "Monument Extended Regular", sans-serif;
-    font-size: 5rem;
+    font-size: 2rem;
     font-weight: 700;
-    color: rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.6); /* Lighter, faint white */
     text-transform: uppercase;
     transition: color 0.3s ease;
 }
 
 .company-logo {
-    height: 60px; /* Smaller logo next to big text */
+    height: 2.5rem; /* Smaller logo next to big text */
     width: auto;
     filter: grayscale(100%) brightness(0.7);
     transition: filter 0.3s ease, transform 0.3s ease;
@@ -97,6 +175,14 @@
 
 .marquee-container:hover .company-logo {
     opacity: 0.8;
+}
+
+.marquee-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
 }
 
 .marquee-item:hover .company-name {
@@ -131,6 +217,7 @@
     justify-content: center;
     align-items: center;
     z-index: 10000;
+    padding-top: 4rem; /* Add padding to avoid navbar overlap if needed */
 }
 
 .company-dialog {
@@ -138,7 +225,7 @@
     padding: 3rem;
     border-radius: 24px;
     width: 90%;
-    max-width: 600px;
+    max-width: 1000px; /* Increased width */
     position: relative;
     border: 1px solid #333;
     box-shadow: 0 20px 50px rgba(0,0,0,0.5);
@@ -147,6 +234,18 @@
     display: flex;
     flex-direction: column;
     gap: 2rem;
+    max-height: 85vh; /* Limit height to viewport */
+    overflow-y: auto; /* Enable scrolling */
+}
+
+/* Custom scrollbar for dialog - Hidden */
+.company-dialog::-webkit-scrollbar {
+    display: none;
+}
+
+.company-dialog {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
 }
 
 @keyframes dialog-pop {
@@ -163,7 +262,7 @@
     color: #555;
     font-size: 2.5rem;
     line-height: 1;
-    cursor: pointer;
+    cursor: none; /* Hide default cursor */
     transition: color 0.3s;
     z-index: 10;
 }
@@ -203,6 +302,23 @@
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+}
+
+.tech-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.tech-badge {
+    background: rgba(255,255,255,0.04);
+    color: #fff;
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-family: "Neue Montreal", sans-serif;
+    font-size: 0.85rem;
+    border: 1px solid rgba(255,255,255,0.06);
 }
 
 .dialog-label {
@@ -248,33 +364,86 @@
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+@media (max-width: 1024px) {
+    .marquee-container {
+        width: 100%; /* Use full available width on tablet */
+    }
+    
+    .marquee-header-container {
+        position: relative; /* Stack it */
+        left: 0;
+        top: 0;
+        transform: none;
+        margin: 0 auto 2rem auto;
+        max-width: 100%;
+        width: var(--container-width);
+    }
+    
+    .marquee-heading {
+        font-size: 1.5rem;
+    }
+}
+
 @media (max-width: 768px) {
     .marquee-header-container {
         position: relative;
         right: auto;
         top: auto;
         transform: none;
-        margin: 0 1rem 2rem 1rem;
+        margin: 0 1rem 1rem 1rem;
         padding: 1.5rem;
         width: auto;
         max-width: none;
         pointer-events: auto;
+        left: 0;
     }
 
     .marquee-heading {
         font-size: 1.5rem;
     }
 
+    .marquee-container {
+        width: 100%;
+        mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+        -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+    }
+
     .marquee-item {
-        font-size: 3rem;
-        margin-right: 2rem;
+        margin-right: 3rem;
+        padding: 1.5rem 0.5rem;
+    }
+
+    .company-name {
+        font-size: 1.5rem;
+    }
+
+    .company-logo {
+        height: 2rem;
     }
     
     .dialog-title {
-        font-size: 1.8rem;
+        font-size: 1.5rem;
     }
     
     .company-dialog {
-        padding: 2rem;
+        padding: 1.5rem;
+        width: 95%;
+    }
+
+    .dialog-role-text {
+        font-size: 1.1rem;
+    }
+
+    .dialog-text {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .marquee-container {
+        width: 100%;
+        margin-left: 0;
+        mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+        -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
     }
 }

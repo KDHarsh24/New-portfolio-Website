@@ -21,7 +21,10 @@ const Journey = () => {
 
     return (
         <section className="journey-split-section" id="journey">
-            {/* <h2 className="journey-heading">Journey</h2> */}
+            <div className="journey-header-container">
+                <h2 className="journey-heading">Journey</h2>
+                <p className="journey-subheading">A timeline of my professional evolution.</p>
+            </div>
             <JourneyBackground />
             <div className="ancient-box">
                 <div className="journey-left-wrapper">

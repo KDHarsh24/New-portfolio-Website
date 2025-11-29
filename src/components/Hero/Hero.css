@@ -1,15 +1,16 @@
 .new-hero {
     width: 100%;
     min-height: 75vh; /* Reduced from 85vh */
-    background-color: #e5e3dc; /* Beige color */
+    background-color: var(--secondary-bg);
     display: flex;
     align-items: center;
     justify-content: center;
     font-family: "Neue Montreal", sans-serif;
-    padding: 2rem;
+    padding: 2rem 0; /* Remove side padding, handled by container */
     box-sizing: border-box;
     overflow: hidden;
     position: relative; /* For canvas positioning */
+    color: var(--text-color);
 }
 
 .hero-canvas {
@@ -26,11 +27,11 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 100%;
-    max-width: 1200px;
+    width: var(--container-width);
+    max-width: var(--container-max-width);
     margin: 0 auto;
     position: relative;
-    z-index: 2; /* Above canvas */
+    z-index: 2; /* Above canvas and scroll line */
 }
 
 .hero-content {
@@ -42,13 +43,18 @@
     font-family: "Monument Extended Regular", sans-serif;
     font-size: 5rem;
     line-height: 1.1;
-    color: #222;
+    color: var(--text-color);
     margin-bottom: 1.5rem;
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
     position: relative;
     z-index: 10001; /* Ensure text is above the fixed cursor if possible, or at least high up */
+    transition: color 0.3s ease;
+}
+
+[data-theme="dark"] .hero-title {
+    color: #ffffff; /* Pure white in dark mode */
 }
 
 .hero-title span {
@@ -59,11 +65,20 @@
     color: #ff4c00;
 }
 
+[data-theme="dark"] .hero-title .highlight {
+    color: #ff4c00; /* Back to orange in dark mode */
+}
+
 .hero-subtitle {
     font-size: 2rem;
     font-weight: 500;
     color: #555;
     margin-bottom: 1rem;
+    transition: color 0.3s ease;
+}
+
+[data-theme="dark"] .hero-subtitle {
+    color: #e2e8f0; /* Light slate in dark mode */
 }
 
 .hero-desc {
@@ -71,6 +86,11 @@
     color: #777;
     max-width: 500px;
     line-height: 1.6;
+    transition: color 0.3s ease;
+}
+
+[data-theme="dark"] .hero-desc {
+    color: #cbd5e1; /* Lighter gray in dark mode */
 }
 
 .hero-visual {
@@ -167,7 +187,7 @@
     .new-hero {
         padding: 1rem;
         min-height: auto; /* Allow content to dictate height on mobile */
-        padding-top: 100px; /* Space for navbar */
+        padding-top: 50px; /* Space for navbar */
         padding-bottom: 50px;
     }
 

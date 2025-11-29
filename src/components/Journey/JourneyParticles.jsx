@@ -113,12 +113,12 @@ const JourneyParticles = ({ activeId, memories, isTouch }) => {
 
     return (
         <div className="journey-col-visual">
-            <div className="visual-header">
+            {/* <div className="visual-header">
                 <span>Interactive Memory</span>
                 <div className="visual-dots">
                     <span></span><span></span><span></span>
                 </div>
-            </div>
+            </div> */}
             <canvas ref={canvasRef} className="interactive-canvas"></canvas>
             <div className="visual-footer">
                 <span>{isTouch ? "Touch to interact" : "Move cursor to interact"}</span>

@@ -32,6 +32,7 @@ const ContactBlackhole = () => {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             const centerX = canvas.width / 2;
             const centerY = canvas.height / 2;
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
 
             // Accretion Disk
             particles.forEach(p => {
@@ -42,34 +43,47 @@ const ContactBlackhole = () => {
                 
                 ctx.beginPath();
                 ctx.arc(x, y, p.size, 0, Math.PI * 2);
-                ctx.fillStyle = p.color;
+                // Black particles in dark mode
+                ctx.fillStyle = isDark 
+                    ? p.color.replace('255, 255, 255', '0, 0, 0') 
+                    : p.color;
                 ctx.fill();
             });
 
             // Event Horizon (Black Circle)
             ctx.beginPath();
-            ctx.arc(centerX, centerY, 10, 0, Math.PI * 2);
-            ctx.fillStyle = '#000';
+            ctx.arc(centerX, centerY, 8, 0, Math.PI * 2);
+            // In dark mode (light bg), make the hole black but maybe with a white rim? 
+            // Or just keep it black as requested "blackhole in black colour"
+            ctx.fillStyle = '#000'; 
             ctx.fill();
             
-            // Photon Ring (White Glow)
-            ctx.beginPath();
-            ctx.arc(centerX, centerY, 10, 0, Math.PI * 2);
-            ctx.strokeStyle = 'rgba(255, 255, 255, 0.8)';
-            ctx.lineWidth = 1;
-            ctx.stroke();
-
-            animationFrameId = requestAnimationFrame(drawBlackhole);
+            // Optional: Add a rim to distinguish it if needed, but user asked for black
+            if (isDark) {
+                ctx.strokeStyle = 'rgba(0,0,0,0.2)';
+                ctx.lineWidth = 1;
+                ctx.stroke();
+            }
         };
 
+        const animate = () => {
+            drawBlackhole();
+            animationFrameId = requestAnimationFrame(animate);
+        };
+        animate();
+
+        window.addEventListener('resize', resizeCanvas);
         resizeCanvas();
         initParticles();
-        drawBlackhole();
 
-        return () => cancelAnimationFrame(animationFrameId);
+        return () => {
+            window.removeEventListener('resize', resizeCanvas);
+            cancelAnimationFrame(animationFrameId);
+        };
     }, []);
 
-    return <canvas ref={blackholeCanvasRef} className="blackhole-canvas"></canvas>;
+    return <canvas ref={blackholeCanvasRef} className="contact-blackhole" />;
 };
+
 
 export default ContactBlackhole;

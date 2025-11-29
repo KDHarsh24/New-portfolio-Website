@@ -43,10 +43,10 @@ const ContactForm = () => {
             <h4 className="mail-notification">Send a Message</h4>
             <form className="contact-wrapper" id="myform" action="https://formsubmit.co/kdharsh24@gmail.com" method="POST">
                 <div className="contact-row">
-                    <input type="text" placeholder="Name" name="name" className="hover-this" id="name"/>
+                    <input type="text" placeholder="Name" name="name" className="hover-this small" id="name"/>
                 </div>
                 <div className="contact-row">
-                    <input type="email" placeholder="Email" name="email" className="hover-this" id="email"/>
+                    <input type="email" placeholder="Email" name="email" className="hover-this small" id="email"/>
                 </div>
                 <div className="contact-row">
                     <textarea name="message" 

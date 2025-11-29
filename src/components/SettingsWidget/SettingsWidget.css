@@ -1,0 +1,208 @@
+/* Local Variables for specific color requirements */
+:root {
+    --ribbon-bg: #fdfcf0;
+    --ribbon-text: #000;
+    --ribbon-border: #000;
+}
+
+[data-theme="dark"] {
+    --ribbon-bg: #000;
+    --ribbon-text: #fdfcf0;
+    --ribbon-border: #fdfcf0;
+}
+
+.settings-ribbon-container {
+    position: fixed;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* The vertical ribbon */
+.settings-ribbon {
+    background-color: var(--ribbon-bg);
+    color: var(--ribbon-text);
+    border: 2px solid var(--ribbon-border);
+    border-right: none; /* Attached to side */
+    padding: 2rem 0.8rem;
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+    cursor: pointer;
+    box-shadow: -4px 4px 0px rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    position: relative;
+    z-index: 1002;
+    transition: all 0.3s ease;
+}
+
+.ribbon-text {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    transform: rotate(180deg);
+    font-family: "Monument Extended Regular", sans-serif;
+    font-size: 0.6rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+/* The hidden panel */
+.settings-panel {
+    background-color: var(--ribbon-bg);
+    border: 2px solid var(--ribbon-border);
+    border-right: none;
+    height: auto;
+    width: 0;
+    overflow: hidden;
+    transition: width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), padding 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+    margin-right: -2px; /* Overlap border */
+}
+
+.settings-ribbon-container.open .settings-panel {
+    width: 280px;
+    padding: 1.5rem;
+    box-shadow: -8px 8px 0px rgba(0,0,0,0.2);
+}
+
+.settings-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    opacity: 0;
+    transform: translateX(20px);
+    transition: all 0.3s ease 0.1s;
+    width: 250px; /* Fixed width for content */
+}
+
+.settings-ribbon-container.open .settings-content {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.setting-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: "Neue Montreal", sans-serif;
+    color: var(--ribbon-text);
+}
+
+.setting-label {
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+/* Reusing previous widget styles inside the panel */
+.widget-tag {
+    background: var(--ribbon-text); /* Inverted inside */
+    color: var(--ribbon-bg);
+    padding: 0.3rem 0.8rem;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+}
+
+.status-dot {
+    width: 6px;
+    height: 6px;
+    background-color: #00ff00;
+    border-radius: 50%;
+    box-shadow: 0 0 5px #00ff00;
+    animation: pulse 2s infinite;
+}
+
+.theme-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.toggle-track {
+    width: 50px;
+    height: 26px;
+    background: var(--ribbon-text);
+    border-radius: 30px;
+    position: relative;
+    transition: background 0.3s ease;
+    border: 1px solid var(--ribbon-border);
+}
+
+.toggle-thumb {
+    width: 20px;
+    height: 20px;
+    background: var(--ribbon-bg);
+    border-radius: 50%;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.toggle-track.dark .toggle-thumb {
+    transform: translateX(24px);
+}
+
+.cookie-status {
+    font-size: 0.8rem;
+    opacity: 0.7;
+}
+
+/* Cookie Banner - Keep fixed at bottom left */
+.cookie-banner {
+    position: fixed;
+    bottom: 2rem;
+    left: 2rem;
+    z-index: 1000;
+    background: var(--ribbon-bg);
+    border: 2px solid var(--ribbon-border);
+    padding: 1.5rem;
+    border-radius: 16px;
+    box-shadow: 8px 8px 0px var(--ribbon-border);
+    max-width: 300px;
+    animation: slideIn 0.5s ease-out;
+    color: var(--ribbon-text);
+}
+
+.cookie-btn {
+    background: var(--ribbon-text);
+    color: var(--ribbon-bg);
+    border: none;
+    padding: 0.5rem 1.5rem;
+    border-radius: 8px;
+    font-family: "Neue Montreal", sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+@media (max-width: 768px) {
+    .settings-ribbon-container {
+        top: auto;
+        bottom: 2rem;
+        transform: none;
+    }
+    
+    .settings-ribbon {
+        height: 150px;
+    }
+}

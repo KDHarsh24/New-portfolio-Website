@@ -31,11 +31,15 @@ const ContactStars = () => {
 
         const drawStars = () => {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
             
             stars.forEach(star => {
                 ctx.beginPath();
                 ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(255, 255, 255, ${star.alpha})`;
+                // Black stars in dark mode (since bg is light), White in light mode
+                ctx.fillStyle = isDark 
+                    ? `rgba(0, 0, 0, ${star.alpha})` 
+                    : `rgba(255, 255, 255, ${star.alpha})`;
                 ctx.fill();
                 
                 star.alpha += star.twinkleSpeed;

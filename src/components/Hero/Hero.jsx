@@ -49,10 +49,15 @@ const Hero = () => {
 
         const animateCanvas = () => {
             c.clearRect(0, 0, width, height);
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            
             stars.forEach(star => {
                 c.beginPath();
                 c.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-                c.fillStyle = `rgba(0, 0, 0, ${star.alpha})`; 
+                // White stars in dark mode, Black stars in light mode
+                c.fillStyle = isDark 
+                    ? `rgba(255, 255, 255, ${star.alpha})` 
+                    : `rgba(0, 0, 0, ${star.alpha})`; 
                 c.fill();
             });
             animationFrameId = requestAnimationFrame(animateCanvas);
@@ -201,11 +206,15 @@ const Hero = () => {
     const handleTextLeave = (e) => {
         setCursorBubble(false);
         const isHighlight = e.target.classList.contains('highlight');
+        // Clear inline styles to let CSS take over for theme support
         gsap.to(e.target, {
-            color: isHighlight ? "#ff4c00" : "#222",
+            color: isHighlight ? "" : "", 
             webkitTextStroke: "0px transparent",
             duration: 0.3,
-            ease: "power2.out"
+            ease: "power2.out",
+            onComplete: () => {
+                e.target.style.color = ""; // Ensure it's cleared
+            }
         });
     };
 

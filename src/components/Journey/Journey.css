@@ -1,28 +1,58 @@
 .journey-split-section {
     width: 100%;
-    height: 100vh;
+    height: 110vh;
     display: flex;
     flex-direction: column; /* Changed to column to stack heading */
-    background-color: #e5e3dc; /* Old Beige */
+    background-color: #fdfcf0; /* Old Beige */
     overflow: hidden;
     font-family: "Neue Montreal", sans-serif;
-    padding: 100px 2rem 2rem 2rem;
+    padding: 2rem 0rem 2rem 0rem;
     box-sizing: border-box;
     position: relative;
     scroll-margin-top: 100px; /* Offset for fixed navbar */
-    /* cursor: none; Removed global hide */
+    transition: background-color 0.3s ease;
+}
+
+[data-theme="dark"] .journey-split-section {
+    background: transparent; /* Allow global gradient to show */
+}
+
+.journey-header-container {
+    width: var(--container-width);
+    max-width: var(--container-max-width);
+    margin: 0 auto 2rem auto;
+    text-align: left;
+    position: relative;
+    z-index: 2;
 }
 
 .journey-heading {
     font-family: "Monument Extended Regular", sans-serif;
     font-size: 3rem;
     color: #222;
-    text-align: center;
-    margin-bottom: 2rem;
+    text-align: left; /* Align left */
+    margin-bottom: 0.5rem;
     text-transform: uppercase;
     letter-spacing: 2px;
     position: relative;
     z-index: 2;
+    transition: color 0.3s ease;
+}
+
+.journey-subheading {
+    font-family: "Neue Montreal", sans-serif;
+    font-size: 1.2rem;
+    color: #555;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+[data-theme="dark"] .journey-heading {
+    color: #ffffff;
+}
+
+[data-theme="dark"] .journey-subheading {
+    color: #e2e8f0;
 }
 
 .star-background-canvas {
@@ -39,8 +69,9 @@
     position: relative;
     z-index: 1;
     display: flex;
-    width: 97%; /* Reduced width */
-    height: 95%;
+    width: var(--container-width);
+    max-width: var(--container-max-width);
+    height: 100%; /* Increased height to fill container */
     margin: 0 auto;
     background: #fdfcf0;
     border: 5px solid #5d4037; /* Wood border */
@@ -52,6 +83,20 @@
         0 0 0 2px #3e2723, /* Darker outer rim */
         inset 0 0 0 2px #3e2723; /* Darker inner rim */
     border-radius: 4px;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+[data-theme="dark"] .ancient-box {
+    background: rgba(30, 41, 59, 0.8); /* Bluish slate with opacity */
+    border-color: #334155;
+    backdrop-filter: blur(10px);
+    color: #f0f0f0; /* Ensure text inside is light */
+}
+
+[data-theme="dark"] .ancient-box h3, 
+[data-theme="dark"] .ancient-box p,
+[data-theme="dark"] .ancient-box span {
+    color: #f0f0f0;
 }
 
 .journey-left-wrapper {
@@ -70,6 +115,12 @@
     border-bottom: 2px solid #5d4037;
     background-color: #fff;
     overflow: hidden;
+    transition: background-color 0.3s ease;
+}
+
+[data-theme="dark"] .journey-col-text {
+    background-color: transparent;
+    border-bottom-color: rgba(255, 255, 255, 0.1);
 }
 
 .text-card-bg {
@@ -98,6 +149,12 @@
     flex-direction: column;
     justify-content: center;
     border: 1px solid #eee;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+[data-theme="dark"] .text-card-overlay {
+    background: rgba(0, 0, 0, 0.8);
+    border-color: #333;
 }
 
 .text-content {
@@ -120,6 +177,23 @@
     line-height: 1;
     margin-bottom: 1rem;
     text-transform: uppercase;
+    transition: color 0.3s ease;
+}
+
+[data-theme="dark"] .chapter-title {
+    color: #ffffff;
+}
+
+[data-theme="dark"] .chapter-year {
+    color: #cbd5e1;
+}
+
+[data-theme="dark"] .chapter-desc {
+    color: #e2e8f0;
+}
+
+[data-theme="dark"] .separator-line {
+    background-color: #fff;
 }
 
 .separator-line {
@@ -176,7 +250,7 @@
     padding: 0.5rem;
     text-align: center;
     font-size: 0.8rem;
-    color: #aaa;
+    color: #382819;
     text-transform: uppercase;
     letter-spacing: 1px;
     box-sizing: border-box;

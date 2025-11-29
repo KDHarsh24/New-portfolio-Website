@@ -55,17 +55,12 @@ const Navbar = () => {
         <>
             <Menu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
             <div className={`navbar navbar-inverse navbar-fixed-top opaque-navbar ${opaque ? 'opaque' : ''}`}>
-                <div 
-                    ref={hamburgerRef}
-                    className="hamburger-menu hover-this small" 
-                    style={{ cursor: 'none', zIndex: 100 }} 
-                    onClick={toggleMenu}
-                >
-                    <div className={`bar ${opaque && !isMenuOpen ? 'light' : 'dark'}`}></div>
-                    <div className={`bar ${opaque && !isMenuOpen ? 'light' : 'dark'}`}></div>
-                    <div className={`bar ${opaque && !isMenuOpen ? 'light' : 'dark'}`}></div>
-                </div>
                 
+                <div className={`branding ${opaque ? 'light' : ''}`}>
+                    <p>HKD</p>
+                    <img src="/assets/img/Logo.png" alt="" className="contact-logo"/>
+                    <p>2004</p>
+                </div>
                 {/* Navbar Eyes */}
                 <div className="navbar-eyes-container hover-grow-only small" onClick={blinkEyes} style={{ cursor: 'none' }}>
                     <svg id="navbar-eyes" viewBox="0 0 200 100">
@@ -80,10 +75,16 @@ const Navbar = () => {
                     </svg>
                 </div>
 
-                <div className={`branding ${opaque ? 'light' : ''}`}>
-                    <p>HKD</p>
-                    <img src="/assets/img/Logo.png" alt="" className="contact-logo"/>
-                    <p>2004</p>
+                
+                <div 
+                    ref={hamburgerRef}
+                    className="hamburger-menu hover-this small" 
+                    style={{ cursor: 'none', zIndex: 100 }} 
+                    onClick={toggleMenu}
+                >
+                    <div className={`bar ${opaque && !isMenuOpen ? 'light' : 'dark'}`}></div>
+                    <div className={`bar ${opaque && !isMenuOpen ? 'light' : 'dark'}`}></div>
+                    <div className={`bar ${opaque && !isMenuOpen ? 'light' : 'dark'}`}></div>
                 </div>
             </div>
         </>

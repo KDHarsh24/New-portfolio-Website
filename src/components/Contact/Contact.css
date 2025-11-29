@@ -10,29 +10,62 @@
     overflow-x: hidden; /* Allow vertical scroll, prevent horizontal */
     overflow-y: visible;
     scroll-margin-top: 100px; /* Offset for fixed navbar */
+    transition: background-color 0.3s ease, color 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center content */
+}
+
+/* Invert to light theme when global theme is dark */
+[data-theme="dark"] .contact-web {
+    background-color: #fdfcf0;
+    color: #0a0a0a;
+}
+
+[data-theme="dark"] .contact-web input,
+[data-theme="dark"] .contact-web textarea#message {
+    color: #0a0a0a;
+    border-bottom: 1px solid #0a0a0a;
+}
+
+[data-theme="dark"] .contact-web .submit button {
+    color: #0a0a0a;
+    background: rgba(0, 0, 0, 0.05); /* Little black glass */
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] .contact-web .submit button:hover {
+    background: rgba(0, 0, 0, 0.1);
+    border-color: rgba(0, 0, 0, 0.2);
 }
 
 .contact-marquee{
-    width: 100%;
+    width: var(--container-width);
+    max-width: 96%;
     margin: 0 auto;
     white-space: nowrap;
     overflow: hidden;
     padding: 1em;
+    mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
 }
 .contact-marquee span{
     font-family: "Monument Extended Regular";
     font-weight: 700;
-    color: #ff4c00;
+    color: #f75f1e;
     font-size: 6em;
     text-transform: uppercase;
     display: inline-block;
     padding-left: -10%;
     animation: marquee-animation 30s linear infinite;
 }
+.col:first-child{
+    padding-right: 3em;
+}
 .col{
     width: 50%;
     height: 100%;
-    padding: 1em 3em;
+    padding: 1em 0em;
 }
 .contact-section h3{
     text-transform: uppercase;
@@ -41,7 +74,12 @@
     margin-bottom: 10px;
 }
 .contact-section{
+    width: var(--container-width);
+    max-width: var(--container-max-width);
     height: 100%;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
 }
 .contact-section span{
     text-transform: uppercase;
@@ -109,7 +147,7 @@ textarea#message{
     cursor: none;
     position: relative;
     overflow: hidden;
-    height: 100px; /* Fixed height for canvas */
+    height: 5.5rem; /* Fixed height for canvas */
 }
 
 .btn-star-canvas {
@@ -234,7 +272,7 @@ textarea#message{
 
 @media (min-width:900px) {
     .contact-section{
-        width: 100%;
+        width: var(--container-width); /* Respect global container */
         display: flex;
     }
 }

@@ -7,6 +7,8 @@ import Marquee from './components/Marquee/Marquee';
 import Projects from './components/Projects/Projects';
 import Journey from './components/Journey/Journey';
 import Contact from './components/Contact/Contact';
+import SettingsWidget from './components/SettingsWidget/SettingsWidget';
+import ScrollLine from './components/ScrollLine/ScrollLine';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -18,6 +20,8 @@ function App() {
     <div className="body">
       <Cursor />
       <Preloader />
+      <ScrollLine />
+      <SettingsWidget />
       <Navbar />
       <Hero />
       <Marquee />

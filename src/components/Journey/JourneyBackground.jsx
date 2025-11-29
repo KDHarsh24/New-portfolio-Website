@@ -35,11 +35,15 @@ const JourneyBackground = () => {
 
         const drawStars = () => {
             ctx.clearRect(0, 0, width, height);
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
             
             stars.forEach(star => {
                 ctx.beginPath();
                 ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(44, 44, 44, ${star.alpha})`;
+                // Light stars in dark mode, Dark stars in light mode
+                ctx.fillStyle = isDark 
+                    ? `rgba(255, 255, 255, ${star.alpha})` 
+                    : `rgba(44, 44, 44, ${star.alpha})`;
                 ctx.fill();
                 
                 star.alpha += star.speed;
