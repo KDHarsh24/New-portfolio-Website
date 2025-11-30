@@ -344,7 +344,7 @@
 
     .ancient-box {
         flex-direction: column;
-        width: 100%; /* Further reduced for mobile */
+        width: calc(var(--container-width)-10px);/* Further reduced for mobile */
     }
 
     .custom-cursor {
