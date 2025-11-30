@@ -20,7 +20,7 @@
 .journey-header-container {
     width: var(--container-width);
     max-width: var(--container-max-width);
-    margin: 0 auto 2rem auto;
+    margin: 0 auto 2rem 0;
     text-align: left;
     position: relative;
     z-index: 2;
@@ -69,7 +69,7 @@
     position: relative;
     z-index: 1;
     display: flex;
-    width: calc(var(--container-width)-10px);
+    width: var(--container-width);
     max-width: var(--container-max-width);
     height: 100%; /* Increased height to fill container */
     margin: 0 auto;
@@ -344,7 +344,7 @@
 
     .ancient-box {
         flex-direction: column;
-        width: calc(var(--container-width)-10px);/* Further reduced for mobile */
+        width: var(--container-width);/* Further reduced for mobile */
     }
 
     .custom-cursor {
