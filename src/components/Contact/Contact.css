@@ -280,7 +280,7 @@ textarea#message{
 @media (max-width: 900px) {
     .col{
         width: 100%;
-        padding: 1em 1.5em; /* Reduced padding */
+        padding: 1em 0em; /* Reduced padding */
     }
     /* .contact-web{ overflow-y: scroll; } Removed */
     .contact-info{
