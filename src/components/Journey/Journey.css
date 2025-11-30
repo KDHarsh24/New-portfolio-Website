@@ -1,5 +1,5 @@
 .journey-split-section {
-    width: 100%;
+    width: 96%;
     height: 110vh;
     display: flex;
     flex-direction: column; /* Changed to column to stack heading */
