@@ -436,22 +436,105 @@ const Preloader = () => {
             const height = maxY - minY;
 
             if (width > 30 && height > 30 && isDownThenUp) {
-                setSmileSuccess(true);
-                localStorage.setItem('preloaderTicked', 'true');
-                
-                // Exit animation using GSAP
-                gsap.to(".preloader", {
-                    yPercent: -100,
-                    borderBottomLeftRadius: "50vw", // Round bottom corners
-                    borderBottomRightRadius: "50vw",
-                    duration: 1.5,
-                    ease: "power3.inOut",
-                    delay: 0.2,
-                    onComplete: () => {
-                        setVisible(false);
-                        document.body.style.overflow = '';
+                // Animate the pen returning along the drawn path, then exit.
+                const penReturnDuration = 700; // ms
+                const pathCopy = path.slice();
+                // helper: compute total length of the path
+                const computeTotalLength = (pts) => {
+                    let total = 0;
+                    for (let i = 1; i < pts.length; i++) {
+                        const dx = pts[i].x - pts[i-1].x;
+                        const dy = pts[i].y - pts[i-1].y;
+                        total += Math.hypot(dx, dy);
                     }
-                });
+                    return total;
+                };
+
+                const getPointAt = (pts, distance) => {
+                    if (pts.length === 0) return null;
+                    let acc = 0;
+                    for (let i = 1; i < pts.length; i++) {
+                        const prev = pts[i-1];
+                        const curr = pts[i];
+                        const dx = curr.x - prev.x;
+                        const dy = curr.y - prev.y;
+                        const seg = Math.hypot(dx, dy);
+                        if (acc + seg >= distance) {
+                            const remain = distance - acc;
+                            const t = seg === 0 ? 0 : (remain / seg);
+                            return {
+                                x: prev.x + dx * t,
+                                y: prev.y + dy * t
+                            };
+                        }
+                        acc += seg;
+                    }
+                    return pts[pts.length - 1];
+                };
+
+                const totalLen = computeTotalLength(pathCopy);
+                let startTime = null;
+                let rafId = null;
+
+                const animatePenReturn = (timestamp) => {
+                    if (!startTime) startTime = timestamp;
+                    const elapsed = timestamp - startTime;
+                    const progress = Math.min(1, elapsed / penReturnDuration);
+                    // We want the pen to move from end -> start, so distance along path is (1 - progress) * totalLen
+                    const dist = (1 - progress) * totalLen;
+
+                    // Clear and redraw the user's stroke (so it looks like pen is retracing)
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    // redraw full stroke as faded (so pen motion is visible)
+                    ctx.save();
+                    ctx.lineWidth = 8;
+                    ctx.lineCap = 'round';
+                    ctx.lineJoin = 'round';
+                    ctx.strokeStyle = 'rgba(255,255,255,0.9)';
+                    ctx.beginPath();
+                    for (let i = 0; i < pathCopy.length; i++) {
+                        const p = pathCopy[i];
+                        if (i === 0) ctx.moveTo(p.x, p.y);
+                        else ctx.lineTo(p.x, p.y);
+                    }
+                    ctx.stroke();
+                    ctx.restore();
+
+                    // Draw the pen (small circle) at current position
+                    const penPos = getPointAt(pathCopy, dist);
+                    if (penPos) {
+                        ctx.save();
+                        ctx.fillStyle = '#fff';
+                        ctx.beginPath();
+                        ctx.arc(penPos.x, penPos.y, 8, 0, Math.PI * 2);
+                        ctx.fill();
+                        ctx.restore();
+                    }
+
+                    if (progress < 1) {
+                        rafId = requestAnimationFrame(animatePenReturn);
+                    } else {
+                        cancelAnimationFrame(rafId);
+                        // finalize success state and exit
+                        setSmileSuccess(true);
+                        localStorage.setItem('preloaderTicked', 'true');
+                        gsap.to(".preloader", {
+                            yPercent: -100,
+                            borderBottomLeftRadius: "50vw",
+                            borderBottomRightRadius: "50vw",
+                            duration: 1.5,
+                            ease: "power3.inOut",
+                            delay: 0.2,
+                            onComplete: () => {
+                                setVisible(false);
+                                document.body.style.overflow = '';
+                            }
+                        });
+                    }
+                };
+
+                // Start the animation
+                requestAnimationFrame(animatePenReturn);
             }
         };
 
