@@ -375,7 +375,7 @@
         top: 0;
         transform: none;
         margin: 0 auto 2rem auto;
-        max-width: 100%;
+        max-width: 96%;
         width: var(--container-width);
     }
     
@@ -403,7 +403,7 @@
     }
 
     .marquee-container {
-        width: 100%;
+        width: 96%;
         mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
         -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
     }
@@ -441,7 +441,7 @@
 
 @media (max-width: 768px) {
     .marquee-container {
-        width: 100%;
+        width: 96%;
         margin-left: 0;
         mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
         -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
