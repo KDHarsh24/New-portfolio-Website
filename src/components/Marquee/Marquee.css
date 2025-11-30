@@ -1,4 +1,4 @@
-.marquee-section {
+8.marquee-section {
     width: 100%;
     padding: 2rem 0;
     background-color: #0a0a0a;
@@ -392,7 +392,7 @@
         transform: none;
         margin: 0 1rem 1rem 1rem;
         padding: 1.5rem;
-        width: auto;
+        width: var(--container-width);
         max-width: none;
         pointer-events: auto;
         left: 0;
@@ -403,7 +403,7 @@
     }
 
     .marquee-container {
-        width: 96%;
+        width: var(--container-width);
         mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
         -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
     }
@@ -441,7 +441,7 @@
 
 @media (max-width: 768px) {
     .marquee-container {
-        width: 96%;
+        width: var(--container-width);
         margin-left: 0;
         mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
         -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
