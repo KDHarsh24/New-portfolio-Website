@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './SettingsWidget.css';
 import { FiSettings } from 'react-icons/fi';
+import { trackUser } from '../../utils/trackUser';
 
 const SettingsWidget = () => {
     const [theme, setTheme] = useState('light');
@@ -20,6 +21,13 @@ const SettingsWidget = () => {
             setShowCookieBanner(true);
         } else {
             setCookiesAccepted(true);
+            // If consent already given, trigger tracking once per session
+            try {
+                trackUser();
+            } catch (err) {
+                // fail silently
+                console.warn('trackUser error:', err);
+            }
         }
     }, []);
 
@@ -34,6 +42,12 @@ const SettingsWidget = () => {
         localStorage.setItem('cookieConsent', 'true');
         setCookiesAccepted(true);
         setShowCookieBanner(false);
+        // Start tracking now that user consented
+        try {
+            trackUser();
+        } catch (err) {
+            console.warn('trackUser error:', err);
+        }
     };
 
     const containerRef = useRef(null);
