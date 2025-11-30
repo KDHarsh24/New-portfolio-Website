@@ -327,6 +327,7 @@ button{
 .map{
     padding-top: 20px;
     height: 100%;
+    width: 100%;
 }
 .mapPart{
     border-radius: 10px;
