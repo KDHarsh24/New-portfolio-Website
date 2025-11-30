@@ -2,7 +2,7 @@ const TRACK_ENDPOINT = import.meta.env.VITE_TRACK_ENDPOINT || 'https://visitstra
 
 export const trackUser = async (opts = {}) => {
   try {
-    // if (sessionStorage.getItem('tracked')) return;
+    if (sessionStorage.getItem('tracked')) return;
 
     const payload = {
       userAgent: navigator.userAgent || '',
