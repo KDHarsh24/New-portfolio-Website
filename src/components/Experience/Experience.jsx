@@ -1,7 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
-import './Marquee.css';
+import './Experience.css';
 import { setCursorText, setCursorGrow } from '../Cursor/CursorAnim';
+import { renderToStaticMarkup } from 'react-dom/server';
+import { FaMousePointer } from 'react-icons/fa';
 
+// For now we reuse the companies array from Marquee; consider moving to a data file later
 const companies = [
     {
         name: "Bamboobox",
@@ -29,37 +32,29 @@ const companies = [
         desc: "Designed and implemented alpha-generating algorithms for quantitative trading, including backtesting infrastructure and production pipelines for signal generation.",
         techStack: ["Python", "C++", "NumPy", "pandas", "scikit-learn", "KDB+/q", "SQL", "AWS", "Docker"],
         logo: "https://upload.wikimedia.org/wikipedia/commons/b/bf/WorldQuant_Text_Logo_2022.jpg"
-    },
-    // { 
-    //     name: "Netflix", 
-    //     about: "A subscription-based streaming service and production company offering a library of films and television series.",
-    //     role: "UI/UX Engineer", 
-    //     timeline: "2016 - 2018",
-    //     desc: "Revamped the user profile interface, resulting in a 15% increase in user engagement. Conducted A/B testing for new feature rollouts.",
-    //     logo: "https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg"
-    // }
+    }
 ];
 
-const Marquee = () => {
+const Experience = () => {
     const [selectedCompany, setSelectedCompany] = useState(null);
     const containerRef = useRef(null);
     const contentRef = useRef(null);
     const [isDragging, setIsDragging] = useState(false);
     const [startX, setStartX] = useState(0);
     const [scrollLeft, setScrollLeft] = useState(0);
+    const [repeats, setRepeats] = useState(3);
 
     const handleMouseEnter = () => {
-        // Show stacked "Know More" with an inline Mac-style cursor SVG to the right
+        // Use the Font Awesome mouse-pointer SVG from react-icons, rendered to static markup
+        const iconMarkup = renderToStaticMarkup(<FaMousePointer className="mac-cursor" aria-hidden="true" />);
         setCursorText(
-            '<div class="cursor-flex-wrapper">' +
+            '<div class="marquee-pro cursor-flex-wrapper" role="presentation">' +
                 '<div class="cursor-text-stack">' +
                     '<span>Know</span>' +
                     '<span>More</span>' +
                 '</div>' +
                 '<div class="cursor-icon-wrapper">' +
-                    '<svg class="mac-cursor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 22" width="16" height="22" aria-hidden="true">' +
-                    '<path d="M1 1 L12 11 L8 12 L12 21 L10 22 L5 13 L1 22 Z" fill="currentColor"/>' +
-                    '</svg>' +
+                    iconMarkup +
                 '</div>' +
             '</div>'
         );
@@ -94,22 +89,17 @@ const Marquee = () => {
         }
     };
 
-    const [repeats, setRepeats] = useState(3);
-
-    // Compute how many times to repeat the items so that clickable React elements
-    // are present across the visible scroll area (avoids cloning DOM nodes).
     useEffect(() => {
         const container = containerRef.current;
         const content = contentRef.current;
         if (!container || !content) return;
 
         const compute = () => {
-            // baseWidth: width of one set of items
             const baseWidth = content.scrollWidth || 0;
             const minWidth = Math.max(container.clientWidth * 2, container.clientWidth + baseWidth);
             if (baseWidth > 0) {
                 const needed = Math.max(2, Math.ceil(minWidth / baseWidth));
-                setRepeats(needed + 1); // add one extra for safety
+                setRepeats(needed + 1);
             } else {
                 setRepeats(3);
             }
@@ -123,7 +113,7 @@ const Marquee = () => {
 
     const closeDialog = () => {
         setSelectedCompany(null);
-        setCursorGrow(false); // Ensure cursor resets
+        setCursorGrow(false);
     };
 
     return (
@@ -164,10 +154,11 @@ const Marquee = () => {
                             onClick={closeDialog}
                             onMouseEnter={() => setCursorGrow(true)}
                             onMouseLeave={() => setCursorGrow(false)}
+                            aria-label="Close dialog"
                         >
                             &times;
                         </button>
-                        
+
                         <div className="dialog-header">
                             <img src={selectedCompany.logo} alt={selectedCompany.name} className="dialog-logo-img" />
                             <h2 className="dialog-title">{selectedCompany.name}</h2>
@@ -208,4 +199,4 @@ const Marquee = () => {
     );
 };
 
-export default Marquee;
+export default Experience;

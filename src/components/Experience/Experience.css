@@ -1,3 +1,47 @@
+.company-dialog {
+    position: relative;
+}
+
+/* Move close button slightly higher relative to company name */
+.company-dialog .close-dialog-btn {
+    position: absolute;
+    top: 8px; /* moved up */
+    right: 18px;
+    background: none;
+    border: none;
+    color: #bbb;
+    font-size: 2.2rem;
+    cursor: none; /* custom cursor used */
+    z-index: 30;
+}
+
+@media (max-width: 768px) {
+    .company-dialog .close-dialog-btn {
+        top: 6px;
+        right: 14px;
+        font-size: 2rem;
+    }
+    .dialog-title {
+        font-size: 1.4rem;
+    }
+    .dialog-text {
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .company-dialog .close-dialog-btn {
+        top: 4px;
+        right: 10px;
+        font-size: 1.8rem;
+    }
+    .dialog-title {
+        font-size: 1.2rem;
+    }
+    .dialog-text {
+        font-size: 0.9rem;
+    }
+}
 .marquee-section {
     width: 100%;
     padding: 2rem 0;

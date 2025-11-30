@@ -34,7 +34,7 @@
 
 .scroll-line-path-orange {
     stroke: #ff4c00;
-    stroke-width: 2;
+    stroke-width: 2.5;
     fill: none;
     filter: drop-shadow(0 0 5px #ff4c00);
 }

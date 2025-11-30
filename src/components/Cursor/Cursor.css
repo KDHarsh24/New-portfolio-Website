@@ -5,7 +5,10 @@
     background-color: #e5e3dc;
     border-radius: 50%;
     mix-blend-mode: difference;
-    transition: transform 0.3s ease, width 0.3s ease, height 0.3s ease, border-radius 0.3s ease;
+    /* Use CSS variable for scale so we can combine translate(center) + scale(smoothly) */
+    --cursor-scale: 1;
+    transform: translate(-50%, -50%) scale(var(--cursor-scale));
+    transition: transform 260ms cubic-bezier(.2,.9,.2,1), width 260ms ease, height 260ms ease, border-radius 260ms ease;
     z-index: 10000; /* High z-index to be visible over menu */
     left: 0;
     top: 0;
@@ -93,8 +96,8 @@
 }
 
 .cursor.has-content {
-    width: 130px;
-    height: 130px;
+    width: 110px;
+    height: 110px;
     border-radius: 50%;
     background-color: #e5e3dc;
     mix-blend-mode: normal;
@@ -107,8 +110,8 @@
 
 .cursor.has-content .cursor-content {
     opacity: 1;
-    width: 100%;
-    height: 100%;
+    width: 90%;
+    height: 90%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -143,13 +146,17 @@
 }
 
 .grow, .grow-small{
-    transition: 100ms;
-    transform: scale(10);
+    /* toggle scale via CSS variable so we preserve center translate */
+    transition: --cursor-scale 300ms cubic-bezier(.2,.9,.2,1);
+    --cursor-scale: 1;
     background: #e5e3dc;
     mix-blend-mode: difference;
 }
+.grow{
+    --cursor-scale: 10;
+}
 .grow-small{
-    transform: scale(5);
+    --cursor-scale: 5;
 }
 
 .plus {

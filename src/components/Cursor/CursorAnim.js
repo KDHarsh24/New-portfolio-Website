@@ -89,9 +89,9 @@ export const setCursorBubble = (active) => {
 export const setCursorGrow = (active) => {
     if (!cursor) return;
     if (active) {
-        cursor.classList.add('grow');
+        cursor.classList.add('grow-small');
     } else {
-        cursor.classList.remove('grow');
+        cursor.classList.remove('grow-small');
     }
 };
 
@@ -100,27 +100,23 @@ export const initCursorAnimation = () => {
     let mouseX = 0;
     let mouseY = 0;
 
-    // Mouse movement tracking
+    // Smoothly animate the cursor to follow the pointer while keeping it centered.
+    // Use a single mousemove handler that tweens left/top with overwrite so we don't spawn many tweens.
     const mouseMoveHandler = function(e){
         mouseX = e.clientX;
         mouseY = e.clientY;
-    };
-    window.addEventListener("mousemove", mouseMoveHandler);
 
-    // GSAP ticker for smooth following
-    const ticker = gsap.to({}, 0.016, {
-        repeat: -1,
-        onRepeat: function(){
-            if (cursor) {
-                gsap.set(cursor, {
-                    css:{
-                        left: mouseX,
-                        top: mouseY
-                    }
-                });
-            }
-        }
-    });
+        if (!cursor) return;
+        // Animate the left/top with a short duration and easing for smooth trailing.
+        gsap.to(cursor, {
+            duration: 0.12,
+            left: mouseX,
+            top: mouseY,
+            ease: 'power3.out',
+            overwrite: 'auto'
+        });
+    };
+    window.addEventListener("mousemove", mouseMoveHandler, { passive: true });
 
     // Hover effects
     const links = document.querySelectorAll('.hover-this');
@@ -136,7 +132,6 @@ export const initCursorAnimation = () => {
     // Cleanup function
     return () => {
         window.removeEventListener("mousemove", mouseMoveHandler);
-        ticker.kill();
         links.forEach(removeHoverEffect);
         growOnlyLinks.forEach(link => {
             link.removeEventListener("mousemove", cursorEnter);

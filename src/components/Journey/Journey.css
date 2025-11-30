@@ -95,11 +95,11 @@
     color: #f0f0f0; /* Ensure text inside is light */
 }
 
-[data-theme="dark"] .ancient-box h3, 
+/* [data-theme="dark"] .ancient-box h3, 
 [data-theme="dark"] .ancient-box p,
 [data-theme="dark"] .ancient-box span {
     color: #f0f0f0;
-}
+} */
 
 .journey-left-wrapper {
     width: 40%; /* Reduced to 40% */
@@ -318,7 +318,7 @@
     padding: 6px 12px;
     font-size: 0.9rem;
     font-weight: bold;
-    color: #333 !important; /* Force black text always */
+    color: #333 !important;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     transform: translateZ(20px); /* Pop out */
 }

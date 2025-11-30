@@ -282,6 +282,9 @@ textarea#message{
         width: 100%;
         padding: 1em 0em; /* Reduced padding */
     }
+    .contact-details{
+        padding-right: 0px !important;
+    }
     /* .contact-web{ overflow-y: scroll; } Removed */
     .contact-info{
         flex-direction: column;

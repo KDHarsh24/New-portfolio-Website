@@ -28,15 +28,16 @@
     color: var(--ribbon-text);
     border: 2px solid var(--ribbon-border);
     border-right: none; /* Attached to side */
-    padding: 2rem 0.8rem;
+    padding: 1rem 0.5rem;
     border-top-left-radius: 12px;
     border-bottom-left-radius: 12px;
-    cursor: pointer;
+    cursor: none;
     box-shadow: -4px 4px 0px rgba(0,0,0,0.2);
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 200px;
+    height: 150px;
     position: relative;
     z-index: 1002;
     transition: all 0.3s ease;
@@ -53,20 +54,31 @@
     white-space: nowrap;
 }
 
+.ribbon-gear {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 8px; /* space between icon and vertical text */
+    color: var(--ribbon-text);
+    transform: rotate(-90deg); /* rotate the gear to match vertical orientation */
+}
+
+.ribbon-gear svg {
+    display: block;
+}
+
 /* The hidden panel */
 .settings-panel {
     background-color: var(--ribbon-bg);
     border: 2px solid var(--ribbon-border);
     border-right: none;
-    height: auto;
+    height: 150px;
     width: 0;
     overflow: hidden;
     transition: width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), padding 0.4s ease;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    border-top-left-radius: 12px;
-    border-bottom-left-radius: 12px;
     margin-right: -2px; /* Overlap border */
 }
 
@@ -129,7 +141,7 @@
 .theme-toggle {
     background: none;
     border: none;
-    cursor: pointer;
+    cursor: none;
     padding: 0;
 }
 

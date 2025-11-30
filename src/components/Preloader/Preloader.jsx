@@ -345,7 +345,7 @@ const Preloader = () => {
                         return 100;
                     }
                 });
-            }, 70); // Slower speed (70ms * 100 = 7 seconds)
+            }, 30); // Slower speed (70ms * 100 = 7 seconds)
             
             return () => clearInterval(interval);
         }

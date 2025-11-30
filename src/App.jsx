@@ -3,7 +3,7 @@ import Cursor from './components/Cursor/Cursor';
 import Preloader from './components/Preloader/Preloader';
 import Navbar from './components/Navbar/Navbar';
 import Hero from './components/Hero/Hero';
-import Marquee from './components/Marquee/Marquee';
+import Experience from './components/Experience/Experience';
 import Projects from './components/Projects/Projects';
 import Journey from './components/Journey/Journey';
 import Contact from './components/Contact/Contact';
@@ -24,7 +24,7 @@ function App() {
       <SettingsWidget />
       <Navbar />
       <Hero />
-      <Marquee />
+      <Experience />
       <Projects />
       <Journey />
       <Contact />

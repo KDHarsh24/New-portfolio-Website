@@ -29,8 +29,8 @@ const ScrollLine = () => {
 
             // Path parameters
             const amplitude = width * 0.3; // Swing width
-            const frequency = 0.002; // How fast it waves
-            const center = width * 0.5;
+            const frequency = 0.003; // How fast it waves
+            const center = width * 0.45;
 
             // Start from center so the line originates in the middle of the page
             const startX = center;

@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './SettingsWidget.css';
+import { FiSettings } from 'react-icons/fi';
 
 const SettingsWidget = () => {
     const [theme, setTheme] = useState('light');
@@ -35,18 +36,47 @@ const SettingsWidget = () => {
         setShowCookieBanner(false);
     };
 
+    const containerRef = useRef(null);
+
+    // Close when clicking outside the widget
+    useEffect(() => {
+        const handleOutsideClick = (e) => {
+            if (!containerRef.current) return;
+
+            // Use composedPath when available to handle shadow DOM / SVG / nested elements
+            const path = (e.composedPath && e.composedPath()) || e.path || (e.composedPath && e.composedPath()) || [];
+            const clickedInside = path && path.length ? path.includes(containerRef.current) : containerRef.current.contains(e.target);
+
+            if (isOpen && !clickedInside) {
+                setIsOpen(false);
+            }
+        };
+
+        document.addEventListener('mousedown', handleOutsideClick);
+        return () => document.removeEventListener('mousedown', handleOutsideClick);
+    }, [isOpen]);
+
     return (
         <>
             <div 
+                ref={containerRef}
                 className={`settings-ribbon-container ${isOpen ? 'open' : ''}`}
-                onMouseEnter={() => setIsOpen(true)}
-                onMouseLeave={() => setIsOpen(false)}
             >
-                <div className="settings-ribbon">
-                    <span className="ribbon-text">Settings & Config.</span>
+                <div 
+                    className="settings-ribbon"
+                    onClick={() => setIsOpen(v => !v)}
+                    role="button"
+                    aria-expanded={isOpen}
+                    tabIndex={0}
+                    onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setIsOpen(v => !v); } }}
+                >
+                    <span className="ribbon-gear" aria-hidden="true">
+                        <FiSettings size={16} />
+                    </span>
+                    <span className="ribbon-text">Settings</span>
                 </div>
                 
-                <div className="settings-panel">
+                <div className="settings-panel" onMouseDown={(e) => e.stopPropagation()}>
                     <div className="settings-content">
                         <div className="setting-item">
                             <span className="setting-label">System Status</span>

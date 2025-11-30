@@ -187,7 +187,7 @@ const Menu = ({ isOpen, onClose }) => {
                 className="menu-overlay" 
                 ref={overlayRef} 
                 onClick={onClose}
-                onTouchStart={(e) => { e.preventDefault(); onClose(); }}
+                onPointerDown={(e) => { e.preventDefault(); onClose(); }}
             ></div>
             <div className="menu-container" ref={menuRef}>
                 <canvas ref={canvasRef} className="starry-canvas"></canvas>
@@ -196,7 +196,8 @@ const Menu = ({ isOpen, onClose }) => {
                     ref={closeBtnRef}
                     className="menu-close-btn hover-this" 
                     onClick={(e) => { e.stopPropagation(); onClose(); }}
-                    onTouchStart={(e) => { e.stopPropagation(); e.preventDefault(); onClose(); }}
+                    onPointerDown={(e) => { e.stopPropagation(); e.preventDefault(); onClose(); }}
+                    aria-label="Close menu"
                 >
                     <div className="close-icon">
                         <div className="line"></div>
