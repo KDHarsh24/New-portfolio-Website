@@ -83,7 +83,7 @@
 }
 
 .settings-ribbon-container.open .settings-panel {
-    width: 280px;
+    width: 180px;
     padding: 1.5rem;
     box-shadow: -8px 8px 0px rgba(0,0,0,0.2);
 }
