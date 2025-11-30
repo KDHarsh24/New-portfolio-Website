@@ -200,7 +200,7 @@
     }
     
     .navbar-eyes-container {
-        height: 50px;
+        height: 100%;
         width: 100px;
     }
 }
