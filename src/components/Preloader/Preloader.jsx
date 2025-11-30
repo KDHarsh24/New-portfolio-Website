@@ -259,7 +259,7 @@ const Preloader = () => {
             });
 
             // Shooting Stars
-            if (Math.random() < 0.02) createShootingStar();
+            if (Math.random() < 0.01) createShootingStar();
 
             for (let i = shootingStars.length - 1; i >= 0; i--) {
                 const s = shootingStars[i];
@@ -316,7 +316,7 @@ const Preloader = () => {
                 setCount((prevCount) => {
                     if (prevCount < 100) {
                         // Change thought randomly every ~25% for longer visibility
-                        if (prevCount % 20 === 0) { // Adjusted for slower speed
+                        if (prevCount % 30 === 0) { // Adjusted for slower speed
                             setThought(techThoughts[Math.floor(Math.random() * techThoughts.length)]);
                         }
                         return prevCount + 1;

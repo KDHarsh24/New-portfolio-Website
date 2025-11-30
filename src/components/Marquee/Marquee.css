@@ -1,4 +1,4 @@
-8.marquee-section {
+.marquee-section {
     width: 100%;
     padding: 2rem 0;
     background-color: #0a0a0a;
@@ -365,6 +365,12 @@
 }
 
 @media (max-width: 1024px) {
+    .marquee-section{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
     .marquee-container {
         width: 100%; /* Use full available width on tablet */
     }
@@ -375,7 +381,7 @@
         top: 0;
         transform: none;
         margin: 0 auto 2rem auto;
-        max-width: 96%;
+        max-width: var(--container-width);
         width: var(--container-width);
     }
     
@@ -393,9 +399,8 @@
         margin: 0 1rem 1rem 1rem;
         padding: 1.5rem;
         width: var(--container-width);
-        max-width: none;
+        max-width: var(--container-width);
         pointer-events: auto;
-        left: 0;
     }
 
     .marquee-heading {
@@ -442,7 +447,6 @@
 @media (max-width: 768px) {
     .marquee-container {
         width: var(--container-width);
-        margin-left: 0;
         mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
         -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
     }

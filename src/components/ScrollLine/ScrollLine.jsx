@@ -28,10 +28,12 @@ const ScrollLine = () => {
             svg.style.height = `${height}px`;
 
             // Path parameters
-            const startX = width * 0.1; // Start 10% from left
-            const amplitude = width * 0.35; // Swing width
-            const frequency = 0.0015; // How fast it waves
+            const amplitude = width * 0.3; // Swing width
+            const frequency = 0.002; // How fast it waves
             const center = width * 0.5;
+
+            // Start from center so the line originates in the middle of the page
+            const startX = center;
 
             let d1 = `M ${startX} 0`;
             let d2 = `M ${startX + 10} 0`; // Offset by 10px
@@ -67,8 +69,9 @@ const ScrollLine = () => {
             const docHeight = document.documentElement.scrollHeight;
             
             // Calculate ratio of viewport to total height
-            // We add a buffer (1.2x viewport) to ensure the tip is always slightly off-screen or at the bottom
-            const initialDrawRatio = (viewportHeight * 1.2) / docHeight;
+            // We want the tip of the line to start at the middle of the screen (0.5 viewport)
+            // and stay roughly in the middle as we scroll.
+            const initialDrawRatio = (viewportHeight * 0.5) / docHeight;
             const initialOffset = length1 * initialDrawRatio;
 
             // Reset styles
@@ -87,7 +90,7 @@ const ScrollLine = () => {
                     trigger: "body",
                     start: "top top",
                     end: "bottom bottom",
-                    scrub: 1, // Add a little delay/smoothness
+                    scrub: 0.5, // Tighter scrub to keep it in the middle without lagging too far behind
                 }
             });
         };
