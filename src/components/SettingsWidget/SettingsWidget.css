@@ -84,7 +84,7 @@
 
 .settings-ribbon-container.open .settings-panel {
     width: 180px;
-    padding: 1.5rem;
+    padding: 1rem;
     box-shadow: -8px 8px 0px rgba(0,0,0,0.2);
 }
 
@@ -93,9 +93,9 @@
     flex-direction: column;
     gap: 1.5rem;
     opacity: 0;
-    transform: translateX(20px);
+    transform: translateX(10px);
     transition: all 0.3s ease 0.1s;
-    width: 250px; /* Fixed width for content */
+    width: 160px; /* Fixed width for content */
 }
 
 .settings-ribbon-container.open .settings-content {
