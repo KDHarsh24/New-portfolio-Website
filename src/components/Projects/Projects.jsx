@@ -2,44 +2,81 @@ import React from 'react';
 import './Projects.css';
 import { setCursorMedia } from '../Cursor/CursorAnim';
 
-const projects = [
+const projects =[
     {
         id: 1,
-        title: "E-Commerce Platform",
-        category: "Web Development",
-        details: "A full-featured online store with cart, checkout, and payment integration.",
-        techStack: ["React", "Node.js", "MongoDB", "Stripe"],
-        link: "https://github.com",
-        image: "https://images.unsplash.com/photo-1556742049-0cfed4f7a07d?q=80&w=1000&auto=format&fit=crop"
+        title: "Rasoda: Smart Campus Dining",
+        category: "Mobile App",
+        details: "A 1k+ user campus dining and queue-management app with real-time menu updates, pre-booking, and waste-reduction insights.",
+        techStack: ["Flutter", "PHP", "Firebase", "MySQL", "Hostinger CI/CD"],
+        link: "https://play.google.com/store/apps/details?id=com.rasoda.messapp",
+        image: "https://images.unsplash.com/photo-1556912167-f556f1f39fdf?q=80&w=1000&auto=format&fit=crop"
     },
     {
         id: 2,
-        title: "AI Dashboard",
-        category: "UI/UX Design",
-        details: "Interactive dashboard for visualizing AI model performance metrics.",
-        techStack: ["Vue.js", "D3.js", "Python", "FastAPI"],
-        link: "https://github.com",
-        image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000&auto=format&fit=crop"
+        title: "NavSarjan: SIH Winning Platform",
+        category: "Full Stack",
+        details: "A research, IPR, and startup workflow platform built for 200+ institutes with real-time communication and WebRTC collaboration.",
+        techStack: ["React.js", "Node.js", "MongoDB", "WebRTC", "Socket.io"],
+        link: "https://navsarjan.vercel.app",
+        image: "https://images.unsplash.com/photo-1526378722484-bd91ca387e72?q=80&w=1000&auto=format&fit=crop"
     },
     {
         id: 3,
-        title: "Crypto Wallet",
-        category: "Mobile App",
-        details: "Secure mobile wallet for managing and trading cryptocurrencies.",
-        techStack: ["React Native", "Redux", "Web3.js"],
-        link: "https://github.com",
-        image: "https://images.unsplash.com/photo-1621416894569-0f39ed31d247?q=80&w=1000&auto=format&fit=crop"
+        title: "CCTV-Based Face Recognition Attendance",
+        category: "Machine Learning",
+        details: "A real-time CCTV attendance system using advanced face recognition and GPU-accelerated pipelines with 91%+ accuracy.",
+        techStack: ["InsightFace", "FastAPI", "OpenCV", "Python", "PostgreSQL"],
+        link: "https://facerecord.vercel.app",
+        image: "https://images.unsplash.com/photo-1592496431122-2349e0beed15?q=80&w=1000&auto=format&fit=crop"
     },
     {
         id: 4,
-        title: "Social Network",
-        category: "Full Stack",
-        details: "A community platform for developers to share code and collaborate.",
-        techStack: ["Next.js", "GraphQL", "PostgreSQL", "AWS"],
-        link: "https://github.com",
-        image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1000&auto=format&fit=crop"
+        title: "Multilingual Spell Checker",
+        category: "NLP",
+        details: "A Trie and BERT-based spell checker for Manipuri, Hindi, and Bengali with typo modeling and 100K+ dataset.",
+        techStack: ["Python", "Trie", "BERT", "NLTK", "T5"],
+        link: "https://triespellchecker.vercel.app",
+        image: "https://images.unsplash.com/photo-1526378722484-bd91ca387e72?q=80&w=1000&auto=format&fit=crop"
+    },
+    {
+        id: 5,
+        title: "Jantagram Civic Issue Reporter",
+        category: "Mobile App",
+        details: "A civic problem-reporting platform built during a hackathon to help users report issues with location, media, and status tracking.",
+        techStack: ["Flutter", "Firebase", "Google Maps API"],
+        link: "https://github.com/kdharsh24/Jantagram",
+        image: "https://images.unsplash.com/photo-1540574163026-643ea20ade25?q=80&w=1000&auto=format&fit=crop"
+    },
+    {
+        id: 6,
+        title: "Neuroverse Assistive Learning Tool",
+        category: "AI Product",
+        details: "An AI-powered reading and study assistant for ADHD and dyslexic users that simplifies content and generates practice questions.",
+        techStack: ["React.js", "Node.js", "Python", "LLM Prompting"],
+        link: "https://github.com/cgoyal69/Neurodiverse",
+        image: "https://images.unsplash.com/photo-1556157382-97eda2d62296?q=80&w=1000&auto=format&fit=crop"
+    },
+    {
+        id: 7,
+        title: "WebTree: HTML Structure CLI Tool",
+        category: "Systems / CLI",
+        details: "A native Linux command-line tool that parses HTML and generates a tree-structured representation with error detection.",
+        techStack: ["C++", "Bash", "Makefile", "GDB"],
+        link: "https://github.com/KDHarsh24/WebTree",
+        image: "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1000&auto=format&fit=crop"
+    },
+    {
+        id: 8,
+        title: "Mike Ross: AI Legal Research Assistant",
+        category: "AI Agent",
+        details: "An AI legal assistant built for TechXchange that processes long documents, answers legal queries, and assists researchers.",
+        techStack: ["Python", "FastAPI", "RAG", "LLMs", "Vector DB"],
+        link: "https://github.com/KDHarsh24/Project-Pearson",
+        image: "https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=1000&auto=format&fit=crop"
     }
 ];
+
 
 const Projects = () => {
     const handleMouseEnter = (image) => {

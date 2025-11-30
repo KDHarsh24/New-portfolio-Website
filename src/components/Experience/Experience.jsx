@@ -32,6 +32,15 @@ const companies = [
         desc: "Designed and implemented alpha-generating algorithms for quantitative trading, including backtesting infrastructure and production pipelines for signal generation.",
         techStack: ["Python", "C++", "NumPy", "pandas", "scikit-learn", "KDB+/q", "SQL", "AWS", "Docker"],
         logo: "https://upload.wikimedia.org/wikipedia/commons/b/bf/WorldQuant_Text_Logo_2022.jpg"
+    },
+    {
+        name: "IIIT Manipur",
+        about: "IIIT Manipur is a premier institute for information technology education and research in India, focusing on cutting-edge tech and innovation.",
+        role: "Bachelor of Technology in Computer Science and Engineering",
+        timeline: "2022 - Present",
+        desc: "Pursuing a B.Tech degree with a focus on computer science fundamentals, software development, and emerging technologies. Engaged in various projects and research activities.",
+        techStack: ["Data Structures", "Algorithms", "Web Development", "Machine Learning", "Databases", "Operating Systems"],
+        logo: "https://iiitmanipur.ac.in/assets/images/iiitm_logo.png"
     }
 ];
 
