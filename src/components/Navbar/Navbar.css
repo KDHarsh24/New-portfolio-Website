@@ -179,11 +179,11 @@
 
 @media (max-width: 768px) {
     .navbar {
-        height: 90px;
+        height: 70px;
         padding: 0 20px;
     }
     .opaque-navbar.opaque {
-        height: 50px;
+        height: 65px;
         padding: 0 15px;
     }
     .branding p {
