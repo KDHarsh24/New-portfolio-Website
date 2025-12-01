@@ -103,9 +103,7 @@
 
 [data-theme="dark"] .ancient-box h3, 
 [data-theme="dark"] .ancient-box p,
-[data-theme="dark"] .ancient-box span {
-    color: #f0f0f0;
-}
+
 
 .journey-left-wrapper {
     width: 40%; /* Reduced to 40% */
