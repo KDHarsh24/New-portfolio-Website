@@ -40,7 +40,7 @@ const companies = [
         timeline: "2022 - Present",
         desc: "Pursuing a B.Tech degree with a focus on computer science fundamentals, software development, and emerging technologies. Engaged in various projects and research activities.",
         techStack: ["Data Structures", "Algorithms", "Web Development", "Machine Learning", "Databases", "Operating Systems"],
-        logo: "https://iiitmanipur.ac.in/assets/images/iiitm_logo.png"
+        logo: "https://upload.wikimedia.org/wikipedia/en/b/b8/Indian_Institute_of_Information_Technology%2C_Manipur_logo.png"
     }
 ];
 
