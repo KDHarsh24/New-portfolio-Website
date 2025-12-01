@@ -35,6 +35,7 @@ const ContactInfo = () => {
                     title="map"
                 ></iframe>
             </div>
+            
         </div>
     );
 };

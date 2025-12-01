@@ -28,27 +28,33 @@
 
 .journey-heading {
     font-family: "Monument Extended Regular", sans-serif;
-    font-size: 3rem;
-    color: #222;
-    text-align: left; /* Align left */
+    /* Match Projects header style: responsive, bold, uppercase */
+    font-family: "Monument Extended Regular", sans-serif;
+    font-size: clamp(2rem, 6vw, 4rem);
+    color: var(--text-color, #222);
+    text-align: left;
     margin-bottom: 0.5rem;
     text-transform: uppercase;
     letter-spacing: 2px;
     position: relative;
     z-index: 2;
     transition: color 0.3s ease;
+    /* give a bold cartoonish hard shadow like Proof Of Works */
+    text-shadow: 4px 4px 0px #ff4c00;
 }
 
 .journey-subheading {
     font-family: "Neue Montreal", sans-serif;
-    font-size: 1.2rem;
-    color: #555;
+    /* responsive subheading similar to Projects description */
+    font-size: clamp(1rem, 2.4vw, 1.4rem);
+    color: var(--text-color-secondary, #555);
     font-weight: 500;
     transition: color 0.3s ease;
 }
 
 [data-theme="dark"] .journey-heading {
     color: #ffffff;
+    text-shadow: 4px 4px 0px #38bdf8; /* blue shadow in dark mode to match Projects */
 }
 
 [data-theme="dark"] .journey-subheading {
@@ -95,11 +101,11 @@
     color: #f0f0f0; /* Ensure text inside is light */
 }
 
-/* [data-theme="dark"] .ancient-box h3, 
+[data-theme="dark"] .ancient-box h3, 
 [data-theme="dark"] .ancient-box p,
 [data-theme="dark"] .ancient-box span {
     color: #f0f0f0;
-} */
+}
 
 .journey-left-wrapper {
     width: 40%; /* Reduced to 40% */
@@ -318,7 +324,7 @@
     padding: 6px 12px;
     font-size: 0.9rem;
     font-weight: bold;
-    color: #333 !important;
+    color: #333 !important; /* Force black text always */
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     transform: translateZ(20px); /* Pop out */
 }

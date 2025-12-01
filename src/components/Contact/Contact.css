@@ -278,12 +278,12 @@ textarea#message{
 }
 
 @media (max-width: 900px) {
+    .col:first-child{
+        padding-right: 0;
+    }
     .col{
         width: 100%;
         padding: 1em 0em; /* Reduced padding */
-    }
-    .contact-details{
-        padding-right: 0px !important;
     }
     /* .contact-web{ overflow-y: scroll; } Removed */
     .contact-info{
@@ -337,3 +337,73 @@ button{
     width: 100%;
     height: 250px;
 }
+
+/* Make map more prominent on small devices: full-bleed and taller for touch */
+@media (max-width: 900px) {
+    .map { /* span full viewport width */
+        padding: 0 0 20px 0;
+    }
+    .mapPart{
+        width: 100%;
+        max-width: none;
+        height: 300px; /* a bit taller on mobile */
+        border-radius: 8px;
+    }
+
+    /* Social buttons under contact map */
+    .social-buttons {
+        display: flex;
+        gap: 1rem;
+        margin: 1.25rem 0 2rem 0;
+        justify-content: flex-start;
+    }
+
+    .social-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.6rem 1rem;
+        background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+        border: 1px solid rgba(255,255,255,0.06);
+        border-radius: 12px;
+        color: inherit;
+        font-family: "Neue Montreal";
+        font-size: 1rem;
+        cursor: pointer;
+        transition: transform 180ms cubic-bezier(.2,.9,.2,1), box-shadow 180ms ease;
+    }
+
+    .social-btn svg { width: 22px; height: 22px; }
+
+    .social-btn:active,
+    .social-btn:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 8px 20px rgba(0,0,0,0.12); }
+
+    .social-btn.github { --accent: #333; }
+    .social-btn.linkedin { --accent: #0a66c2; }
+
+    .social-btn span { font-weight: 600; }
+
+    /* make sure touch double-tap isn't interpreted as hover */
+    @media (hover: none) and (pointer: coarse) {
+        .social-btn:hover { transform: none; box-shadow: none; }
+    }
+
+    /* contact footer */
+    .contact-footer {
+        width: var(--container-width);
+        max-width: var(--container-max-width);
+        margin: 2rem auto 4rem auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+        color: var(--text-color);
+        opacity: 0.85;
+        font-size: 0.95rem;
+    }
+
+    .contact-footer .copyright { display:flex; align-items:center; gap:0.5rem; }
+    .contact-footer .logos { display:flex; gap:0.8rem; align-items:center; }
+    .contact-footer .small-logo { width:20px; height:20px; }
+}
+

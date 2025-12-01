@@ -82,7 +82,7 @@ const Menu = ({ isOpen, onClose }) => {
         } else {
             gsap.to(menu, {
                 duration: 0.8,
-                top: '-100%',
+                top: '-120vh',
                 ease: 'power3.inOut'
             });
             gsap.to(overlay, {
@@ -93,6 +93,17 @@ const Menu = ({ isOpen, onClose }) => {
             });
         }
     }, [isOpen]);
+
+    // close on Escape for accessibility
+    useEffect(() => {
+        const onKey = (e) => {
+            if (e.key === 'Escape' || e.key === 'Esc') {
+                if (isOpen) onClose();
+            }
+        };
+        window.addEventListener('keydown', onKey);
+        return () => window.removeEventListener('keydown', onKey);
+    }, [isOpen, onClose]);
 
     // Starry Background Effect
     useEffect(() => {
@@ -196,7 +207,7 @@ const Menu = ({ isOpen, onClose }) => {
                     ref={closeBtnRef}
                     className="menu-close-btn hover-this" 
                     onClick={(e) => { e.stopPropagation(); onClose(); }}
-                    onPointerDown={(e) => { e.stopPropagation(); e.preventDefault(); onClose(); }}
+                    onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onClose(); } }}
                     aria-label="Close menu"
                 >
                     <div className="close-icon">
@@ -223,6 +234,12 @@ const Menu = ({ isOpen, onClose }) => {
                                 </a>
                             </div>
                         ))}
+                    </div>
+                </div>
+
+                <div className="menu-footer">
+                    <div className="menu-copyright">
+                        &copy; {new Date().getFullYear()} Harsh Kumar Das
                     </div>
                 </div>
             </div>

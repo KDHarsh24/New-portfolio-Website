@@ -12,15 +12,16 @@
 
 .menu-container {
     position: fixed;
-    top: -100%;
+    top: -120vh; /* push further offscreen to avoid peeking on very short viewports */
     left: 0;
     width: 100%;
     height: auto; /* Fit content */
     min-height: 40vh; /* Minimum height */
-    padding-bottom: 3rem;
+    padding-bottom: 0.5rem;
     background-color: #e5e3dc;
     z-index: 999; /* Keep above overlay */
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     overflow: hidden;
@@ -55,6 +56,9 @@
     font-size: 1rem;
     color: #0a0a0a;
     -webkit-tap-highlight-color: transparent;
+    padding: 15px; /* Increase touch target */
+    margin: -15px; /* Compensate for padding to keep visual position */
+    touch-action: manipulation;
 }
 
 .menu-close-btn span {
@@ -97,12 +101,31 @@
 .menu-content {
     width: 100%;
     max-width: 1200px;
-    padding: 2rem;
+    padding: 2rem 2rem 0.3rem 2rem;
     display: flex;
     justify-content: center;
     position: relative;
     z-index: 1; /* Above canvas */
 }
+
+.menu-footer {
+    width: 100%;
+    text-align: center;
+    max-width: 1200px;
+    padding: 0.1rem 0rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    border-top: 1px solid rgba(0,0,0,0.06);
+    position: relative;
+    z-index: 1;
+    background: transparent;
+}
+
+.menu-footer .menu-copyright { font-size: 0.75rem; color: #0a0a0a; font-family: 'Bangers', 'Fredoka One', 'Neue Montreal', sans-serif; }
+.menu-footer .menu-logos a { display:inline-flex; align-items:center; color: inherit; font-family: 'Bangers', 'Fredoka One', 'Neue Montreal', sans-serif; }
+.menu-footer .small-logo { width:20px; height:20px; opacity:0.95; font-family: 'Bangers', 'Fredoka One', 'Neue Montreal', sans-serif;}
 
 .menu-links {
     display: flex;

@@ -111,6 +111,55 @@ const Projects = () => {
         window.open(link, "_blank");
     };
 
+    // Equalize carousel card heights to match the tallest card when carousel is active
+    useEffect(() => {
+        if (!isCarousel) {
+            // reset any inline heights
+            const els = document.querySelectorAll('.project-item.project-carousel-item');
+            els.forEach(el => el.style.height = '');
+            return;
+        }
+
+        let rafId = null;
+        let timeoutId = null;
+
+        const equalize = () => {
+            const els = Array.from(document.querySelectorAll('.project-item.project-carousel-item'));
+            if (!els.length) return;
+            // reset
+            els.forEach(el => el.style.height = 'auto');
+            // measure
+            const heights = els.map(el => Math.round(el.getBoundingClientRect().height || 0));
+            const max = Math.max(...heights, 360);
+            els.forEach(el => el.style.height = `${max}px`);
+        };
+
+        const debounced = () => {
+            clearTimeout(timeoutId);
+            timeoutId = setTimeout(() => {
+                // use RAF to ensure layout has settled
+                rafId = requestAnimationFrame(equalize);
+            }, 80);
+        };
+
+        // initial run
+        debounced();
+
+        window.addEventListener('resize', debounced);
+
+        // watch for DOM changes inside carousel (images loading etc.)
+        const carouselRoot = document.querySelector('.projects-carousel');
+        const observer = new MutationObserver(debounced);
+        if (carouselRoot) observer.observe(carouselRoot, { childList: true, subtree: true });
+
+        return () => {
+            window.removeEventListener('resize', debounced);
+            if (observer) observer.disconnect();
+            if (rafId) cancelAnimationFrame(rafId);
+            clearTimeout(timeoutId);
+        };
+    }, [isCarousel]);
+
     return (
         <section className="projects-section" id="projects">
             <div className="projects-header">
@@ -122,16 +171,15 @@ const Projects = () => {
                     <Swiper
                         modules={[Navigation, Autoplay]}
                         spaceBetween={24}
-                        slidesPerView={1.05}
-                        centeredSlides
+                        slidesPerView={1}
                         loop
                         speed={900}
                         autoplay={{ delay: 7000, disableOnInteraction: false }}
                         navigation={{ prevEl: prevRef.current, nextEl: nextRef.current }}
                         breakpoints={{
                             0: { slidesPerView: 1, spaceBetween: 16 },
-                            640: { slidesPerView: 1.05, spaceBetween: 20 },
-                            900: { slidesPerView: 1.2, spaceBetween: 24 }
+                            640: { slidesPerView: 1, spaceBetween: 20 },
+                            900: { slidesPerView: 1, spaceBetween: 24 }
                         }}
                         onInit={(swiper) => {
                             if (prevRef.current && nextRef.current) {
@@ -174,7 +222,10 @@ const Projects = () => {
                             type="button"
                             aria-label="Show previous project"
                         >
-                            <span className="nav-icon">⟵</span>
+                            <svg className="nav-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                                {/* simple cartoon left arrow */}
+                                <path className="chev" d="M15 6 L9 12 L15 18" />
+                            </svg>
                         </button>
                         <button
                             className="projects-nav-button next"
@@ -182,12 +233,15 @@ const Projects = () => {
                             type="button"
                             aria-label="Show next project"
                         >
-                            <span className="nav-icon">⟶</span>
+                            <svg className="nav-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                                {/* simple cartoon right arrow */}
+                                <path className="chev" d="M9 6 L15 12 L9 18" />
+                            </svg>
                         </button>
                     </div>
                 </div>
             ) : (
-                <div className="projects-grid">
+                <div className="projects-list">
                     {projects.map((project) => (
                         <div
                             key={project.id}
