@@ -1,6 +1,10 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './Projects.css';
 import { setCursorMedia } from '../Cursor/CursorAnim';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Autoplay } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
 
 const projects =[
     {
@@ -79,6 +83,22 @@ const projects =[
 
 
 const Projects = () => {
+    const [isCarousel, setIsCarousel] = useState(() => {
+        if (typeof window === 'undefined') return false;
+        return window.innerWidth <= 1024;
+    });
+    const prevRef = useRef(null);
+    const nextRef = useRef(null);
+
+    useEffect(() => {
+        if (typeof window === 'undefined') return undefined;
+        const handleResize = () => {
+            setIsCarousel(window.innerWidth <= 1024);
+        };
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
     const handleMouseEnter = (image) => {
         setCursorMedia(image);
     };
@@ -97,33 +117,102 @@ const Projects = () => {
                 <h2>Proof Of Works</h2>
                 <p>A collection of projects that define my journey.</p>
             </div>
-            <div className="projects-list">
-                {projects.map((project) => (
-                    <div 
-                        key={project.id} 
-                        className="project-item"
-                        onMouseEnter={() => handleMouseEnter(project.image)}
-                        onMouseLeave={handleMouseLeave}
-                        onClick={() => handleLinkClick(project.link)}
+            {isCarousel ? (
+                <div className="projects-carousel">
+                    <Swiper
+                        modules={[Navigation, Autoplay]}
+                        spaceBetween={24}
+                        slidesPerView={1.05}
+                        centeredSlides
+                        loop
+                        speed={900}
+                        autoplay={{ delay: 7000, disableOnInteraction: false }}
+                        navigation={{ prevEl: prevRef.current, nextEl: nextRef.current }}
+                        breakpoints={{
+                            0: { slidesPerView: 1, spaceBetween: 16 },
+                            640: { slidesPerView: 1.05, spaceBetween: 20 },
+                            900: { slidesPerView: 1.2, spaceBetween: 24 }
+                        }}
+                        onInit={(swiper) => {
+                            if (prevRef.current && nextRef.current) {
+                                swiper.params.navigation.prevEl = prevRef.current;
+                                swiper.params.navigation.nextEl = nextRef.current;
+                                swiper.navigation.init();
+                                swiper.navigation.update();
+                            }
+                        }}
                     >
-                        <div className="project-content">
-                            <div className="project-header-row">
-                                <h3 className="project-title">{project.title}</h3>
-                                <span className="project-category">{project.category}</span>
-                            </div>
-                            <p className="project-details">{project.details}</p>
-                            <div className="project-tech">
-                                {project.techStack.map((tech, index) => (
-                                    <span key={index} className="tech-tag">{tech}</span>
-                                ))}
-                            </div>
-                        </div>
-                        <div className="project-arrow">
-                            →
-                        </div>
+                        {projects.map((project) => (
+                            <SwiperSlide key={project.id}>
+                                <div
+                                    className="project-item project-carousel-item"
+                                    onMouseEnter={() => handleMouseEnter(project.image)}
+                                    onMouseLeave={handleMouseLeave}
+                                    onClick={() => handleLinkClick(project.link)}
+                                >
+                                    <div className="project-content">
+                                        <div className="project-header-row">
+                                            <h3 className="project-title">{project.title}</h3>
+                                            <span className="project-category">{project.category}</span>
+                                        </div>
+                                        <p className="project-details">{project.details}</p>
+                                        <div className="project-tech">
+                                            {project.techStack.map((tech, index) => (
+                                                <span key={index} className="tech-tag">{tech}</span>
+                                            ))}
+                                        </div>
+                                    </div>
+                                    <div className="project-arrow">→</div>
+                                </div>
+                            </SwiperSlide>
+                        ))}
+                    </Swiper>
+                    <div className="projects-nav">
+                        <button
+                            className="projects-nav-button prev"
+                            ref={prevRef}
+                            type="button"
+                            aria-label="Show previous project"
+                        >
+                            <span className="nav-icon">⟵</span>
+                        </button>
+                        <button
+                            className="projects-nav-button next"
+                            ref={nextRef}
+                            type="button"
+                            aria-label="Show next project"
+                        >
+                            <span className="nav-icon">⟶</span>
+                        </button>
                     </div>
-                ))}
-            </div>
+                </div>
+            ) : (
+                <div className="projects-list">
+                    {projects.map((project) => (
+                        <div
+                            key={project.id}
+                            className="project-item"
+                            onMouseEnter={() => handleMouseEnter(project.image)}
+                            onMouseLeave={handleMouseLeave}
+                            onClick={() => handleLinkClick(project.link)}
+                        >
+                            <div className="project-content">
+                                <div className="project-header-row">
+                                    <h3 className="project-title">{project.title}</h3>
+                                    <span className="project-category">{project.category}</span>
+                                </div>
+                                <p className="project-details">{project.details}</p>
+                                <div className="project-tech">
+                                    {project.techStack.map((tech, index) => (
+                                        <span key={index} className="tech-tag">{tech}</span>
+                                    ))}
+                                </div>
+                            </div>
+                            <div className="project-arrow">→</div>
+                        </div>
+                    ))}
+                </div>
+            )}
         </section>
     );
 };
