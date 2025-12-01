@@ -76,7 +76,7 @@ const projects =[
         category: "AI Agent",
         details: "An AI legal assistant built for TechXchange that processes long documents, answers legal queries, and assists researchers.",
         techStack: ["Python", "FastAPI", "RAG", "LLMs", "Vector DB"],
-        link: "https://github.com/KDHarsh24/Project-Pearson",
+        link: "https://github.com/KDHarsh24/Project_Pearson",
         image: "https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=1000&auto=format&fit=crop"
     }
 ];

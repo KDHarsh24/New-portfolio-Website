@@ -31,7 +31,7 @@ const ContactForm = () => {
 
         const formData = new FormData(e.target);
         const data = Object.fromEntries(formData.entries());
-        const endpoint = import.meta.env.VITE_SEND_MESSAGE || "https://formsubmit.co/ajax/kdharsh24@gmail.com";
+        const endpoint = import.meta.env.VITE_SEND_MESSAGE || "https://visitstracker.vercel.app/send-message";
 
         try {
             const response = await fetch(endpoint, {
