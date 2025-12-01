@@ -94,10 +94,12 @@
     display: flex;
     justify-content: center;
     padding: 1rem 0;
+    height: auto; /* Ensure slide takes full height */
 }
 
 .project-carousel-item {
     width: min(90vw, 620px);
+    height: 100%; /* Fill the slide height */
     margin: 0 auto;
 }
 
@@ -171,6 +173,7 @@
     align-items: center;
     justify-content: space-between;
     overflow: hidden;
+    height: 100%; /* Ensure equal height in grid/carousel */
 }
 
 @media (max-width: 1024px) {

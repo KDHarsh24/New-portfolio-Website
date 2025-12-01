@@ -187,7 +187,7 @@ const Projects = () => {
                     </div>
                 </div>
             ) : (
-                <div className="projects-list">
+                <div className="projects-grid">
                     {projects.map((project) => (
                         <div
                             key={project.id}
