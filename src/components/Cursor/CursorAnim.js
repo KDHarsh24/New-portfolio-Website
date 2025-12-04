@@ -97,26 +97,51 @@ export const setCursorGrow = (active) => {
 
 export const initCursorAnimation = () => {
     cursor = document.querySelector(".cursor");
-    let mouseX = 0;
-    let mouseY = 0;
+    let targetX = window.innerWidth / 2;
+    let targetY = window.innerHeight / 2;
+    let currentX = targetX;
+    let currentY = targetY;
+    let ease = 0.16; // smoothing factor (0.01-1)
+    let scrollTimer = null;
 
-    // Smoothly animate the cursor to follow the pointer while keeping it centered.
-    // Use a single mousemove handler that tweens left/top with overwrite so we don't spawn many tweens.
-    const mouseMoveHandler = function(e){
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-
-        if (!cursor) return;
-        // Animate the left/top with a short duration and easing for smooth trailing.
-        gsap.to(cursor, {
-            duration: 0.12,
-            left: mouseX,
-            top: mouseY,
-            ease: 'power3.out',
-            overwrite: 'auto'
-        });
+    // Update target on pointer move. Keep handler lightweight.
+    const mouseMoveHandler = (e) => {
+        targetX = e.clientX;
+        targetY = e.clientY;
     };
-    window.addEventListener("mousemove", mouseMoveHandler, { passive: true });
+    window.addEventListener('mousemove', mouseMoveHandler, { passive: true });
+
+    // RAF loop: interpolate current position towards target and apply transform via translate3d.
+    let rafId = null;
+    const render = () => {
+        // lerp
+        currentX += (targetX - currentX) * ease;
+        currentY += (targetY - currentY) * ease;
+
+        if (cursor) {
+            // Use translate3d for GPU acceleration and include the centering and scale variable.
+            cursor.style.transform = `translate3d(${currentX}px, ${currentY}px, 0) translate(-50%, -50%) scale(var(--cursor-scale))`;
+        }
+
+        rafId = requestAnimationFrame(render);
+    };
+    rafId = requestAnimationFrame(render);
+
+    // Improve responsiveness during scroll: temporarily increase easing so cursor doesn't trail badly
+    const onScrollActivity = () => {
+        // make cursor snappier during scroll
+        ease = 0.32;
+        if (scrollTimer) clearTimeout(scrollTimer);
+        scrollTimer = setTimeout(() => {
+            ease = 0.16; // restore
+            scrollTimer = null;
+        }, 180);
+    };
+
+    // Use passive listeners for scroll/touch/wheel to avoid blocking
+    window.addEventListener('scroll', onScrollActivity, { passive: true });
+    window.addEventListener('wheel', onScrollActivity, { passive: true });
+    window.addEventListener('touchmove', onScrollActivity, { passive: true });
 
     // Hover effects
     const links = document.querySelectorAll('.hover-this');
@@ -131,11 +156,12 @@ export const initCursorAnimation = () => {
 
     // Cleanup function
     return () => {
-        window.removeEventListener("mousemove", mouseMoveHandler);
+        window.removeEventListener('mousemove', mouseMoveHandler);
+        if (rafId) cancelAnimationFrame(rafId);
         links.forEach(removeHoverEffect);
         growOnlyLinks.forEach(link => {
-            link.removeEventListener("mousemove", cursorEnter);
-            link.removeEventListener("mouseleave", cursorLeave);
+            link.removeEventListener('mousemove', cursorEnter);
+            link.removeEventListener('mouseleave', cursorLeave);
         });
     };
 };

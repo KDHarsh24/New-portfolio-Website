@@ -8,9 +8,10 @@
     background-color: #e5e3dc;
     border-radius: 50%;
     mix-blend-mode: difference;
+    will-change: transform, width, height;
     /* Use CSS variable for scale so we can combine translate(center) + scale(smoothly) */
     --cursor-scale: 1;
-    transform: translate(-50%, -50%) scale(var(--cursor-scale));
+    transform: translate3d(0,0,0) translate(-50%, -50%) scale(var(--cursor-scale));
     transition: transform 260ms cubic-bezier(.2,.9,.2,1), width 260ms ease, height 260ms ease, border-radius 260ms ease;
     z-index: 10000; /* High z-index to be visible over menu */
     left: 0;
