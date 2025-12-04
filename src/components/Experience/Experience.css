@@ -43,7 +43,7 @@
     }
 }
 .marquee-section {
-    width: 80%;
+    width: 100%;
     padding: 2rem 0;
     background-color: #0a0a0a;
     color: #fff;
@@ -150,7 +150,7 @@
 }
 
 .marquee-container {
-    width: var(--container-width);
+    width: 80%;
     max-width: var(--container-max-width);
     margin-left: auto;
     margin-right: auto; /* Center it */
