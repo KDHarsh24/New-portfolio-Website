@@ -22,31 +22,35 @@
     stroke: #ff4c00;;
     stroke-width: 6;
     fill: none;
-    filter: blur(4px);
+    /* filter: blur(4px); Removed for performance */
+    opacity: 0.3;
+    will-change: stroke-dashoffset;
 }
 
 .scroll-line-path-cyan {
     stroke: #106db4;
     stroke-width: 2;
     fill: none;
-    filter: drop-shadow(0 0 5px rgb(0, 47, 255));
+    /* filter: drop-shadow(0 0 5px rgb(0, 47, 255)); Removed for performance */
+    will-change: stroke-dashoffset;
 }
 
 .scroll-line-path-orange {
     stroke: #ff4c00;
     stroke-width: 2.5;
     fill: none;
-    filter: drop-shadow(0 0 5px #ff4c00);
+    /* filter: drop-shadow(0 0 5px #ff4c00); Removed for performance */
+    will-change: stroke-dashoffset;
 }
 
 [data-theme="dark"] .scroll-line-path-cyan {
     stroke: #00ffff;
-    filter: drop-shadow(0 0 8px cyan);
+    /* filter: drop-shadow(0 0 8px cyan); */
 }
 
 [data-theme="dark"] .scroll-line-path-orange {
     stroke: #ff4c00;
-    filter: drop-shadow(0 0 8px #ff4c00);
+    /* filter: drop-shadow(0 0 8px #ff4c00); */
 }
 
 /* Adjust for light mode if needed */

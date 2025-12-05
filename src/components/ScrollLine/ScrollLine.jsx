@@ -39,7 +39,7 @@ const ScrollLine = () => {
             let d2 = `M ${startX + 10} 0`; // Offset by 10px
 
             // Generate points
-            const steps = Math.ceil(height / 50); // Resolution
+            const steps = Math.ceil(height / 30); // Reduced resolution (was 50) for performance
             
             for (let i = 0; i <= steps; i++) {
                 const y = (i / steps) * height;

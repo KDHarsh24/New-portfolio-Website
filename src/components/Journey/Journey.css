@@ -80,8 +80,8 @@
     height: 100%; /* Increased height to fill container */
     margin: 0 auto;
     background: rgba(253, 252, 240, 0.7); /* Glassy beige */
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    /* backdrop-filter: blur(10px); Removed for performance */
+    /* -webkit-backdrop-filter: blur(10px); Removed for performance */
     border: 5px solid #5d4037; /* Wood border */
     /* 3D Box Effect */
     box-shadow: 
@@ -92,12 +92,15 @@
         inset 0 0 0 2px #3e2723; /* Darker inner rim */
     border-radius: 4px;
     transition: background-color 0.3s ease, border-color 0.3s ease;
+    will-change: transform; /* Hint for composite layer */
 }
 
 [data-theme="dark"] .ancient-box {
-    background: rgba(30, 41, 59, 0.8); /* Bluish slate with opacity */
+    background: rgba(30, 41, 59, 0.9); /* Bluish slate with higher opacity to replace blur */
     border-color: #334155;
-    backdrop-filter: blur(10px);
+    /* backdrop-filter: blur(10px); Removed */
+    /* -webkit-backdrop-filter: blur(10px); Removed */
+
     color: #f0f0f0; /* Ensure text inside is light */
 }
 

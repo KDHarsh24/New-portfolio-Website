@@ -67,6 +67,8 @@ const ContactBlackhole = () => {
         };
 
         const animate = () => {
+            // Optimization: Check if canvas is in viewport? 
+            // For now, just keep it running as it's small (60x60)
             drawBlackhole();
             animationFrameId = requestAnimationFrame(animate);
         };

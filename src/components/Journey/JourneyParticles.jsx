@@ -48,14 +48,21 @@ const JourneyParticles = ({ activeId, memories, isTouch }) => {
         const draw = () => {
             ctx.clearRect(0, 0, width, height);
             
+            // Optimization: Batch drawing for same colors if possible, or just reduce state changes
+            // But here each particle has unique color.
+            // Optimization: Reduce particle count on mobile? (Already handled by isTouch maybe?)
+            
             particles.forEach(p => {
-                const dxMouse = mouse.x - p.x;
-                const dyMouse = mouse.y - p.y;
-                const distMouse = Math.sqrt(dxMouse*dxMouse + dyMouse*dyMouse);
-                if (distMouse < 100) {
-                    const force = (100 - distMouse) / 100;
-                    p.vx -= (dxMouse / distMouse) * force * 2;
-                    p.vy -= (dyMouse / distMouse) * force * 2;
+                // Mouse interaction
+                if (!isTouch) {
+                    const dxMouse = mouse.x - p.x;
+                    const dyMouse = mouse.y - p.y;
+                    const distMouse = Math.sqrt(dxMouse*dxMouse + dyMouse*dyMouse);
+                    if (distMouse < 100) {
+                        const force = (100 - distMouse) / 100;
+                        p.vx -= (dxMouse / distMouse) * force * 2;
+                        p.vy -= (dyMouse / distMouse) * force * 2;
+                    }
                 }
 
                 const dx = p.tx - p.x;
@@ -73,11 +80,15 @@ const JourneyParticles = ({ activeId, memories, isTouch }) => {
                 ctx.fill();
             });
 
+            // Optimization: Reduce connection checks or remove them on low power
+            // Only draw connections for a subset of particles to save CPU
             ctx.strokeStyle = 'rgba(93, 64, 55, 0.1)';
             ctx.lineWidth = 0.5;
-            for(let i=0; i<particles.length; i+=8) {
+            // Increased step to reduce number of checks significantly
+            for(let i=0; i<particles.length; i+=15) { 
                 const p1 = particles[i];
-                for(let j=i+1; j<particles.length; j+=15) {
+                // Limit inner loop range or step
+                for(let j=i+1; j<Math.min(i+100, particles.length); j+=20) {
                     const p2 = particles[j];
                     const dx = p1.x - p2.x;
                     const dy = p1.y - p2.y;

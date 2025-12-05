@@ -155,6 +155,7 @@ const Menu = ({ isOpen, onClose }) => {
         };
 
         const drawStars = () => {
+            if (!isOpen) return; // Stop drawing if menu is closed
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             ctx.fillStyle = '#0a0a0a'; // Dark stars on light background
             
@@ -176,13 +177,13 @@ const Menu = ({ isOpen, onClose }) => {
 
         window.addEventListener('resize', resizeCanvas);
         resizeCanvas();
-        drawStars();
+        if (isOpen) drawStars(); // Only start if open
 
         return () => {
             window.removeEventListener('resize', resizeCanvas);
             cancelAnimationFrame(animationFrameId);
         };
-    }, []);
+    }, [isOpen]); // Re-run when isOpen changes
 
     const menuItems = [
         { label: 'Home', link: '#home' },

@@ -37,17 +37,7 @@ const Hero = () => {
             }
         };
         
-        const resizeCanvas = () => {
-            width = window.innerWidth;
-            height = window.innerHeight;
-            canvas.width = width;
-            canvas.height = height;
-            initStars();
-        };
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
-
-        const animateCanvas = () => {
+        const drawStars = () => {
             c.clearRect(0, 0, width, height);
             const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
             
@@ -60,13 +50,35 @@ const Hero = () => {
                     : `rgba(0, 0, 0, ${star.alpha})`; 
                 c.fill();
             });
-            animationFrameId = requestAnimationFrame(animateCanvas);
         };
-        animateCanvas();
+
+        const resizeCanvas = () => {
+            width = window.innerWidth;
+            height = window.innerHeight;
+            canvas.width = width;
+            canvas.height = height;
+            initStars();
+            drawStars();
+        };
+        
+        window.addEventListener('resize', resizeCanvas);
+        
+        // Observe theme changes to redraw
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.type === 'attributes' && mutation.attributeName === 'data-theme') {
+                    drawStars();
+                }
+            });
+        });
+        
+        observer.observe(document.documentElement, { attributes: true });
+
+        resizeCanvas();
 
         return () => {
             window.removeEventListener('resize', resizeCanvas);
-            cancelAnimationFrame(animationFrameId);
+            observer.disconnect();
         };
     }, []);
 
