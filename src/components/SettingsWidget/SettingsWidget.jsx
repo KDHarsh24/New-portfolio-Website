@@ -4,7 +4,7 @@ import { FiSettings } from 'react-icons/fi';
 import { trackUser } from '../../utils/trackUser';
 import { initClarity, getClarityInfo } from '../../utils/clarity';
 
-const CLARITY_PROJECT_ID = process.env.VITE_CLARITY_PROJECT_ID || "YOUR_CLARITY_PROJECT_ID";
+const CLARITY_PROJECT_ID = process.env.VITE_CLARITY_PROJECT_ID || "ukcu8ngt1o";
 
 const SettingsWidget = () => {
     const [theme, setTheme] = useState('light');
