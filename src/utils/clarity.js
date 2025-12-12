@@ -26,6 +26,25 @@ export const getClarityInfo = () => {
     
     return {
         clarityUserId: getCookie('_clck'),
-        claritySessionId: getCookie('_clsk')
+        claritySessionId: getCookie('_clsk'),
+        mail: "kdharsh24@gmail.com"
     };
+};
+
+export const waitForClarityInfo = (callback) => {
+    let attempts = 0;
+    const maxAttempts = 20; // 10 seconds max
+    
+    const check = () => {
+        attempts++;
+        const info = getClarityInfo();
+        
+        if ((info.clarityUserId && info.claritySessionId) || attempts >= maxAttempts) {
+            callback(info);
+        } else {
+            setTimeout(check, 500);
+        }
+    };
+    
+    check();
 };

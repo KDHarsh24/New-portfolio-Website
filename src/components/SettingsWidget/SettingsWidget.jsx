@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import './SettingsWidget.css';
 import { FiSettings } from 'react-icons/fi';
 import { trackUser } from '../../utils/trackUser';
-import { initClarity, getClarityInfo } from '../../utils/clarity';
+import { initClarity, getClarityInfo, waitForClarityInfo } from '../../utils/clarity';
 
 const CLARITY_PROJECT_ID = process.env.VITE_CLARITY_PROJECT_ID || "ukcu8ngt1o";
 
@@ -30,8 +30,9 @@ const SettingsWidget = () => {
 
             // If consent already given, trigger tracking once per session
             try {
-                const clarityInfo = getClarityInfo();
-                trackUser({ meta: clarityInfo });
+                waitForClarityInfo((clarityInfo) => {
+                    trackUser({ meta: clarityInfo });
+                });
             } catch (err) {
                 // fail silently
                 console.warn('trackUser error:', err);
@@ -56,11 +57,9 @@ const SettingsWidget = () => {
 
         // Start tracking now that user consented
         try {
-            // Small delay to allow Clarity to potentially set cookies
-            setTimeout(() => {
-                const clarityInfo = getClarityInfo();
+            waitForClarityInfo((clarityInfo) => {
                 trackUser({ meta: clarityInfo });
-            }, 500);
+            });
         } catch (err) {
             console.warn('trackUser error:', err);
         }
