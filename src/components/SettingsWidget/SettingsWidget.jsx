@@ -2,6 +2,9 @@ import React, { useState, useEffect, useRef } from 'react';
 import './SettingsWidget.css';
 import { FiSettings } from 'react-icons/fi';
 import { trackUser } from '../../utils/trackUser';
+import { initClarity, getClarityInfo } from '../../utils/clarity';
+
+const CLARITY_PROJECT_ID = process.env.VITE_CLARITY_PROJECT_ID || "YOUR_CLARITY_PROJECT_ID";
 
 const SettingsWidget = () => {
     const [theme, setTheme] = useState('light');
@@ -21,9 +24,14 @@ const SettingsWidget = () => {
             setShowCookieBanner(true);
         } else {
             setCookiesAccepted(true);
+            
+            // Initialize Clarity
+            initClarity(CLARITY_PROJECT_ID);
+
             // If consent already given, trigger tracking once per session
             try {
-                trackUser();
+                const clarityInfo = getClarityInfo();
+                trackUser({ meta: clarityInfo });
             } catch (err) {
                 // fail silently
                 console.warn('trackUser error:', err);
@@ -42,9 +50,17 @@ const SettingsWidget = () => {
         localStorage.setItem('cookieConsent', 'true');
         setCookiesAccepted(true);
         setShowCookieBanner(false);
+        
+        // Initialize Clarity
+        initClarity(CLARITY_PROJECT_ID);
+
         // Start tracking now that user consented
         try {
-            trackUser();
+            // Small delay to allow Clarity to potentially set cookies
+            setTimeout(() => {
+                const clarityInfo = getClarityInfo();
+                trackUser({ meta: clarityInfo });
+            }, 500);
         } catch (err) {
             console.warn('trackUser error:', err);
         }
